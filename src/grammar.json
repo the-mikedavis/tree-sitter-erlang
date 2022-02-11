@@ -765,6 +765,14 @@
         "type": "SEQ",
         "members": [
           {
+            "type": "FIELD",
+            "name": "name",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_identifier"
+            }
+          },
+          {
             "type": "SYMBOL",
             "name": "arguments"
           },
@@ -814,14 +822,6 @@
       "content": {
         "type": "SEQ",
         "members": [
-          {
-            "type": "FIELD",
-            "name": "name",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_identifier"
-            }
-          },
           {
             "type": "SYMBOL",
             "name": "arguments"

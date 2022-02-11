@@ -192,6 +192,7 @@ module.exports = grammar({
       prec.left(
         PREC.STAB_CLAUSE,
         seq(
+          field("name", $._identifier),
           $.arguments,
           optional(field("guard", seq("when", $._guard))),
           "->",
@@ -203,7 +204,6 @@ module.exports = grammar({
       prec.left(
         PREC.STAB_CLAUSE,
         seq(
-          field("name", $._identifier),
           $.arguments,
           optional(field("guard", seq("when", $._guard))),
           "->",
