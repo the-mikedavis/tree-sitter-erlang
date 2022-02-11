@@ -295,46 +295,52 @@ end
 
 (source
   (anonymous_function
-    (arguments
-      (variable))
-    (variable))
-  (anonymous_function
-    (arguments
-      (variable))
-    (binary_operator
-      (variable)
-      (integer))
-    (variable)
-    (arguments
-      (variable))
-    (binary_operator
-      (integer)
+    (stab_clause
+      (arguments
+        (variable))
       (variable)))
   (anonymous_function
-    (variable)
-    (arguments
-      (list
-        (binary_operator
-          (variable)
-          (variable))))
-    (call
-      (variable)
+    (stab_clause
       (arguments
-        (variable)))
-    (variable)
-    (arguments
-      (list
-        (variable)))
-    (variable))
-  (anonymous_function
-    (arguments
-      (variable))
-    (binary_operator
-      (variable)
+        (variable))
       (binary_operator
         (variable)
-        (integer)))
-    (variable)))
+        (integer))
+      (variable))
+    (stab_clause
+      (arguments
+        (variable))
+      (binary_operator
+        (integer)
+        (variable))))
+  (anonymous_function
+    (stab_clause
+      (variable)
+      (arguments
+        (list
+          (binary_operator
+            (variable)
+            (variable))))
+      (call
+        (variable)
+        (arguments
+          (variable))))
+    (stab_clause
+      (variable)
+      (arguments
+        (list
+          (variable)))
+      (variable)))
+  (anonymous_function
+    (stab_clause
+      (arguments
+        (variable))
+      (binary_operator
+        (variable)
+        (binary_operator
+          (variable)
+          (integer)))
+      (variable))))
 
 ================================================================================
 function captures

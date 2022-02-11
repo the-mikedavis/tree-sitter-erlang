@@ -40,8 +40,9 @@ const PREC = {
   RECORD: 1,
   MAP: 1,
   LEFT_BINARY_OP: 1,
-  FUNCTION_CLAUSE: 1,
   CALL: 2,
+  ARGUMENTS: 2,
+  STAB_CLAUSE: 3,
   QUALIFIED_FUNCTION: 3,
 };
 
@@ -70,13 +71,14 @@ module.exports = grammar({
         $.record,
         $.binary_operator,
         $.anonymous_function,
-        $.call,
         $.function_capture,
+        // $.function,
+        $.call,
         $.block,
         $._parenthesized_expression
       ),
 
-    _parenthesized_expression: ($) => parens($._expression),
+    _parenthesized_expression: ($) => prec(-1, parens($._expression)),
 
     // macro identifiers go here once implemented:
     _identifier: ($) => choice($._atom, $.variable),
@@ -170,23 +172,42 @@ module.exports = grammar({
         )
       ),
 
-    anonymous_function: ($) => seq("fun", sep1($._function_clause, ";"), "end"),
+    anonymous_function: ($) => seq("fun", sep1($.stab_clause, ";"), "end"),
 
-    _function_clause: ($) =>
+    // function: ($) => prec.right(sep1($._named_stab_clause, ";")),
+
+    stab_clause: ($) =>
       prec(
-        PREC.FUNCTION_CLAUSE,
+        PREC.STAB_CLAUSE,
+        choice($._named_stab_clause, $._anonymous_stab_clause)
+      ),
+
+    _named_stab_clause: ($) =>
+      prec.left(
+        PREC.STAB_CLAUSE,
         seq(
-          optional(field("name", $._identifier)),
           $.arguments,
           optional(field("guard", seq("when", $._guard))),
           "->",
-          field("body", sep1($._expression, ","))
+          field("body", $._items)
         )
       ),
 
-    _guard: ($) => sep1(sep1($._expression, ","), ";"),
+    _anonymous_stab_clause: ($) =>
+      prec.left(
+        PREC.STAB_CLAUSE,
+        seq(
+          field("name", $._identifier),
+          $.arguments,
+          optional(field("guard", seq("when", $._guard))),
+          "->",
+          field("body", $._items)
+        )
+      ),
 
-    arguments: ($) => parens(sep1($._expression, ",")),
+    _guard: ($) => sep1($._items, ";"),
+
+    arguments: ($) => parens($._items),
 
     _items: ($) => sep1($._expression, ","),
 
@@ -216,7 +237,7 @@ module.exports = grammar({
         )
       ),
 
-    block: ($) => seq("begin", optional(sep1($._expression, ",")), "end"),
+    block: ($) => seq("begin", optional($._items), "end"),
 
     // either an escape sequence or a printable ASCII character
     character: ($) => seq("$", choice($.escape_sequence, /[\x20-\x7f]/)),
