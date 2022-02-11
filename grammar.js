@@ -33,7 +33,7 @@ module.exports = grammar({
         seq(
           "\\",
           choice(
-            // Escapes for special characters
+            // escapes for special characters
             /[bdefnrstv\'\"\\]/,
             // hexadecimal
             /x[\da-fA-F]{2}/,
@@ -50,13 +50,14 @@ module.exports = grammar({
 
     character: ($) => seq("$", choice($.escape_sequence, /[\x20-\x7e]/)),
 
-    comment: ($) => seq(prec(-1, token(repeat1("%"))), /.*/),
     integer: ($) =>
       choice(
         // regular base-10 integers
         /[0-9][0-9_]*/
       ),
 
+    comment: ($) =>
+      seq(prec(-1, token(repeat1("%"))), field("comment_content", /.*/)),
   },
 });
 

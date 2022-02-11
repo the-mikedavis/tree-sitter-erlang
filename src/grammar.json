@@ -26,6 +26,10 @@
         {
           "type": "SYMBOL",
           "name": "character"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "integer"
         }
       ]
     },
@@ -174,6 +178,15 @@
         }
       ]
     },
+    "integer": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "[0-9][0-9_]*"
+        }
+      ]
+    },
     "comment": {
       "type": "SEQ",
       "members": [
@@ -192,8 +205,12 @@
           }
         },
         {
-          "type": "PATTERN",
-          "value": ".*"
+          "type": "FIELD",
+          "name": "comment_content",
+          "content": {
+            "type": "PATTERN",
+            "value": ".*"
+          }
         }
       ]
     }

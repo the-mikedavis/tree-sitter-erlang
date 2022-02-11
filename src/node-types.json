@@ -20,6 +20,11 @@
     "fields": {}
   },
   {
+    "type": "integer",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "quoted_atom",
     "named": true,
     "fields": {
@@ -69,6 +74,10 @@
         },
         {
           "type": "character",
+          "named": true
+        },
+        {
+          "type": "integer",
           "named": true
         },
         {
