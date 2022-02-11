@@ -218,6 +218,7 @@ module.exports = grammar({
 
     block: ($) => seq("begin", optional(sep1($._expression, ",")), "end"),
 
+    // either an escape sequence or a printable ASCII character
     character: ($) => seq("$", choice($.escape_sequence, /[\x20-\x7f]/)),
 
     integer: ($) =>
