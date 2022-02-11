@@ -69,8 +69,9 @@ module.exports = grammar({
         $.record,
         $.binary_operator,
         $.anonymous_function,
-        $.function_capture,
         $.call,
+        $.function_capture,
+        $.block,
         $._parenthesized_expression
       ),
 
@@ -213,6 +214,8 @@ module.exports = grammar({
           field("arity", $._expression)
         )
       ),
+
+    block: ($) => seq("begin", optional(sep1($._expression, ",")), "end"),
 
     character: ($) => seq("$", choice($.escape_sequence, /[\x20-\x7f]/)),
 

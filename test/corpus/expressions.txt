@@ -25,3 +25,27 @@ maps:get(date,DateTime)
     (arguments
       (atom)
       (variable))))
+
+================================================================================
+blocks
+================================================================================
+
+begin
+  _ = 1 + 1,
+  _ = 2 + 2
+end
+
+--------------------------------------------------------------------------------
+
+(source
+  (block
+    (binary_operator
+      (variable)
+      (binary_operator
+        (integer)
+        (integer)))
+    (binary_operator
+      (variable)
+      (binary_operator
+        (integer)
+        (integer)))))

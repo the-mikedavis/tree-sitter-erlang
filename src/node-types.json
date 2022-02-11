@@ -32,6 +32,10 @@
             "named": true
           },
           {
+            "type": "block",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -115,6 +119,10 @@
           },
           {
             "type": "bitstring",
+            "named": true
+          },
+          {
+            "type": "block",
             "named": true
           },
           {
@@ -226,6 +234,10 @@
           "named": true
         },
         {
+          "type": "block",
+          "named": true
+        },
+        {
           "type": "call",
           "named": true
         },
@@ -306,6 +318,10 @@
           },
           {
             "type": "bitstring",
+            "named": true
+          },
+          {
+            "type": "block",
             "named": true
           },
           {
@@ -521,6 +537,10 @@
             "named": true
           },
           {
+            "type": "block",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -594,6 +614,89 @@
         },
         {
           "type": "bitstring",
+          "named": true
+        },
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "call",
+          "named": true
+        },
+        {
+          "type": "character",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "function_capture",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "map",
+          "named": true
+        },
+        {
+          "type": "quoted_atom",
+          "named": true
+        },
+        {
+          "type": "record",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "tuple",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "anonymous_function",
+          "named": true
+        },
+        {
+          "type": "atom",
+          "named": true
+        },
+        {
+          "type": "binary_operator",
+          "named": true
+        },
+        {
+          "type": "bitstring",
+          "named": true
+        },
+        {
+          "type": "block",
           "named": true
         },
         {
@@ -680,6 +783,10 @@
             "named": true
           },
           {
+            "type": "block",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -755,6 +862,10 @@
           },
           {
             "type": "bitstring",
+            "named": true
+          },
+          {
+            "type": "block",
             "named": true
           },
           {
@@ -872,6 +983,10 @@
             "named": true
           },
           {
+            "type": "block",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -947,6 +1062,10 @@
           },
           {
             "type": "bitstring",
+            "named": true
+          },
+          {
+            "type": "block",
             "named": true
           },
           {
@@ -1028,6 +1147,10 @@
             "named": true
           },
           {
+            "type": "block",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -1106,6 +1229,10 @@
         },
         {
           "type": "bitstring",
+          "named": true
+        },
+        {
+          "type": "block",
           "named": true
         },
         {
@@ -1200,6 +1327,10 @@
         },
         {
           "type": "bitstring",
+          "named": true
+        },
+        {
+          "type": "block",
           "named": true
         },
         {
@@ -1352,6 +1483,10 @@
           "named": true
         },
         {
+          "type": "block",
+          "named": true
+        },
+        {
           "type": "call",
           "named": true
         },
@@ -1424,6 +1559,10 @@
         },
         {
           "type": "bitstring",
+          "named": true
+        },
+        {
+          "type": "block",
           "named": true
         },
         {
@@ -1539,6 +1678,10 @@
         },
         {
           "type": "bitstring",
+          "named": true
+        },
+        {
+          "type": "block",
           "named": true
         },
         {
@@ -1738,6 +1881,10 @@
   },
   {
     "type": "band",
+    "named": false
+  },
+  {
+    "type": "begin",
     "named": false
   },
   {

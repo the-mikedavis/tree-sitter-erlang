@@ -61,11 +61,15 @@
         },
         {
           "type": "SYMBOL",
+          "name": "call"
+        },
+        {
+          "type": "SYMBOL",
           "name": "function_capture"
         },
         {
           "type": "SYMBOL",
-          "name": "call"
+          "name": "block"
         },
         {
           "type": "SYMBOL",
@@ -976,6 +980,52 @@
           }
         ]
       }
+    },
+    "block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "begin"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_expression"
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "STRING",
+                        "value": ","
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "_expression"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "end"
+        }
+      ]
     },
     "character": {
       "type": "SEQ",
