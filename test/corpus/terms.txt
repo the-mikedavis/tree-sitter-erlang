@@ -176,6 +176,7 @@ records
 
 #function{}
 #Var{}
+#function
 
 --------------------------------------------------------------------------------
 
@@ -183,4 +184,6 @@ records
   (record
     (atom))
   (record
-    (variable)))
+    (variable))
+  (record
+    (atom)))

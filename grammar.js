@@ -72,12 +72,12 @@ module.exports = grammar({
     list: ($) => seq("[", optional($._items), "]"),
     map: ($) => seq("#{", optional(alias($._items, $.map_content)), "}"),
     record: ($) =>
-      seq(
-        "#",
-        field("name", $._identifier),
-        "{",
-        optional(alias($._items, $.record_content)),
-        "}"
+      prec.right(
+        seq(
+          "#",
+          field("name", $._identifier),
+          optional(seq("{", optional(alias($._items, $.record_content)), "}"))
+        )
       ),
 
     _items: ($) => sep1($._expression, ","),
