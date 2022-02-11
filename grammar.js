@@ -16,13 +16,18 @@ module.exports = grammar({
         $.character,
         $.integer,
         $.float,
-        $.identifier,
+        $.variable,
         $.bitstring,
         $.tuple,
-        $.list
+        $.list,
+        $.map,
+        $.record
       ),
 
-    identifier: ($) => /[A-Z_][a-zA-Z0-9_@]*/,
+    // macro identifiers go here once implemented:
+    _identifier: ($) => choice($._atom, $.variable),
+
+    variable: ($) => /[A-Z_][a-zA-Z0-9_@]*/,
 
     _atom: ($) => choice($.atom, $.quoted_atom),
 
@@ -65,6 +70,15 @@ module.exports = grammar({
     bitstring: ($) => seq("<<", optional($._items), ">>"),
     tuple: ($) => seq("{", optional($._items), "}"),
     list: ($) => seq("[", optional($._items), "]"),
+    map: ($) => seq("#{", optional(alias($._items, $.map_content)), "}"),
+    record: ($) =>
+      seq(
+        "#",
+        field("name", $._identifier),
+        "{",
+        optional(alias($._items, $.record_content)),
+        "}"
+      ),
 
     _items: ($) => sep1($._expression, ","),
 
