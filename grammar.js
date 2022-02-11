@@ -1,4 +1,5 @@
 const WHITE_SPACE = /[\r\n\t\f\v ]+/;
+
 module.exports = grammar({
   name: "erlang",
 
@@ -15,8 +16,11 @@ module.exports = grammar({
         $.character,
         $.integer,
         $.float,
-        $.identifier
+        $.identifier,
+        $.bitstring
       ),
+
+    identifier: ($) => /[A-Z_][a-zA-Z0-9_@]*/,
 
     _atom: ($) => choice($.atom, $.quoted_atom),
 
@@ -28,8 +32,6 @@ module.exports = grammar({
         $.quoted_content,
         field("quoted_end", "'")
       ),
-
-    identifier: ($) => /[A-Z_][a-zA-Z0-9_@]*/,
 
     string: ($) =>
       seq(
@@ -58,6 +60,8 @@ module.exports = grammar({
 
     quoted_content: ($) => /([^\\\"\']+|\\)/,
 
+    bitstring: ($) => seq("<<", optional(sep1($._expression, ",")), ">>"),
+
     character: ($) => seq("$", choice($.escape_sequence, /[\x20-\x7e]/)),
 
     integer: ($) =>
@@ -79,4 +83,8 @@ module.exports = grammar({
 
 function sep1(rule, separator) {
   return seq(rule, repeat(seq(separator, rule)));
+}
+
+function parens(rule) {
+  return seq("(", rule, ")");
 }

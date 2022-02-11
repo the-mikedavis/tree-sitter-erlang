@@ -95,3 +95,26 @@ Var@1
   (identifier)
   (identifier)
   (identifier))
+
+================================================================================
+bitstrings
+================================================================================
+
+<<>>
+<<"hello, binaries!">>
+<<MyBinary>>
+<<$a, $b, $c>>
+
+--------------------------------------------------------------------------------
+
+(source
+  (bitstring)
+  (bitstring
+    (string
+      (quoted_content)))
+  (bitstring
+    (identifier))
+  (bitstring
+    (character)
+    (character)
+    (character)))
