@@ -33,6 +33,14 @@ const LEFT_ASSOC_BINARY_OPS = [
 ];
 const RIGHT_ASSOC_BINARY_OPS = ["!", "=", "++", "--"];
 const UNARY_OPS = ["+", "-", "not", "bnot"];
+const PREC = {
+  COMMENT: -1,
+  RIGHT_BINARY_OP: 0,
+  RECORD: 1,
+  MAP: 1,
+  LEFT_BINARY_OP: 1,
+  CALL: 2,
+};
 
 module.exports = grammar({
   name: "erlang",
@@ -41,6 +49,9 @@ module.exports = grammar({
 
   rules: {
     source: ($) => repeat($._expression),
+
+    // _statement: ($) =>
+    //   seq(sep1($._expression, ","), "."),
 
     _expression: ($) =>
       optionalParens(
@@ -56,7 +67,8 @@ module.exports = grammar({
           $.map,
           $.record,
           $.binary_operator,
-          $.anonymous_function
+          $.anonymous_function,
+          $.call
         )
       ),
 
@@ -117,7 +129,7 @@ module.exports = grammar({
     list: ($) => seq("[", optional($._items), "]"),
     map: ($) =>
       prec(
-        1,
+        PREC.MAP,
         seq(
           optional($.variable),
           "#{",
@@ -127,7 +139,7 @@ module.exports = grammar({
       ),
     record: ($) =>
       prec.right(
-        1,
+        PREC.RECORD,
         seq(
           optional($.variable),
           "#",
@@ -138,8 +150,18 @@ module.exports = grammar({
 
     binary_operator: ($) =>
       choice(
-        binaryOperator($, 1, prec.left, choice(...LEFT_ASSOC_BINARY_OPS)),
-        binaryOperator($, 0, prec.right, choice(...RIGHT_ASSOC_BINARY_OPS))
+        binaryOperator(
+          $,
+          PREC.LEFT_BINARY_OP,
+          prec.left,
+          choice(...LEFT_ASSOC_BINARY_OPS)
+        ),
+        binaryOperator(
+          $,
+          PREC.RIGHT_BINARY_OP,
+          prec.right,
+          choice(...RIGHT_ASSOC_BINARY_OPS)
+        )
       ),
 
     anonymous_function: ($) => seq("fun", sep1($._function_clause, ";"), "end"),
@@ -147,14 +169,30 @@ module.exports = grammar({
     _function_clause: ($) =>
       seq(
         optional(field("name", $._identifier)),
-        // may want to cut this out to a $._arguments rule
-        field("arguments", parens(sep1($._expression, ","))),
+        field("arguments", $._arguments),
         optional(field("guard", seq("when", $._guard))),
         "->",
         field("body", $._expression)
       ),
 
+    _arguments: ($) => parens(sep1($._expression, ",")),
+
     _guard: ($) => sep1(sep1($._expression, ","), ";"),
+
+    call: ($) =>
+      seq(
+        choice($._qualified_call, $._unqualified_call),
+        field("arguments", $._arguments)
+      ),
+
+    _qualified_call: ($) =>
+      seq(
+        field("module", $._expression),
+        ":",
+        field("function", $._expression)
+      ),
+
+    _unqualified_call: ($) => prec(PREC.CALL, field("function", $._expression)),
 
     _items: ($) => sep1($._expression, ","),
 
@@ -173,7 +211,10 @@ module.exports = grammar({
     float: ($) => /[0-9][0-9_]*\.[0-9_]+(e-?[0-9]+)?/,
 
     comment: ($) =>
-      seq(prec(-1, token(repeat1("%"))), field("comment_content", /.*/)),
+      seq(
+        prec(PREC.COMMENT, token(repeat1("%"))),
+        field("comment_content", /.*/)
+      ),
   },
 });
 

@@ -283,7 +283,7 @@ functions
 fun (X) -> X end
 fun (X) when X > 0 -> X; (Y) -> 0 - Y end
 fun
-  Last([_H|T]) -> T;    %% TODO: parse function calls
+  Last([_H|T]) -> Last(T);
   Last([H]) -> H
 end
 
@@ -309,8 +309,9 @@ end
       (binary_operator
         (variable)
         (variable)))
-    (variable)
-    (comment)
+    (call
+      (variable)
+      (variable))
     (variable)
     (list
       (variable))
