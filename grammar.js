@@ -8,7 +8,7 @@ module.exports = grammar({
     source: ($) => repeat($._expression),
 
     _expression: ($) =>
-      choice($.atom, $.quoted_atom, $.string, $.character, $.integer),
+      choice($.atom, $.quoted_atom, $.string, $.character, $.integer, $.float),
 
     _atom: ($) => choice($.atom, $.quoted_atom),
 
@@ -59,6 +59,8 @@ module.exports = grammar({
         // base 36 in reality.
         /[1-3]?[0-9]#[0-9a-zA-Z_]+/
       ),
+
+    float: ($) => /[0-9][0-9_]*\.[0-9_]+(e-?[0-9]+)?/,
 
     comment: ($) =>
       seq(prec(-1, token(repeat1("%"))), field("comment_content", /.*/)),
