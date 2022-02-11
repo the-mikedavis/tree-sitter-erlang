@@ -275,3 +275,43 @@ MyFunction#function{entry = 1}
       (atom))
     (atom))
   (comment))
+
+================================================================================
+functions
+================================================================================
+
+fun (X) -> X end
+fun (X) when X > 0 -> X; (Y) -> 0 - Y end
+fun
+  Last([_H|T]) -> T;    %% TODO: parse function calls
+  Last([H]) -> H
+end
+
+--------------------------------------------------------------------------------
+
+(source
+  (anonymous_function
+    (variable)
+    (variable))
+  (anonymous_function
+    (variable)
+    (binary_operator
+      (variable)
+      (integer))
+    (variable)
+    (variable)
+    (binary_operator
+      (integer)
+      (variable)))
+  (anonymous_function
+    (variable)
+    (list
+      (binary_operator
+        (variable)
+        (variable)))
+    (variable)
+    (comment)
+    (variable)
+    (list
+      (variable))
+    (variable)))

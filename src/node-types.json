@@ -1,5 +1,255 @@
 [
   {
+    "type": "anonymous_function",
+    "named": true,
+    "fields": {
+      "arguments": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": ",",
+            "named": false
+          },
+          {
+            "type": "anonymous_function",
+            "named": true
+          },
+          {
+            "type": "atom",
+            "named": true
+          },
+          {
+            "type": "binary_operator",
+            "named": true
+          },
+          {
+            "type": "bitstring",
+            "named": true
+          },
+          {
+            "type": "character",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "list",
+            "named": true
+          },
+          {
+            "type": "map",
+            "named": true
+          },
+          {
+            "type": "quoted_atom",
+            "named": true
+          },
+          {
+            "type": "record",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "tuple",
+            "named": true
+          },
+          {
+            "type": "variable",
+            "named": true
+          }
+        ]
+      },
+      "body": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "anonymous_function",
+            "named": true
+          },
+          {
+            "type": "atom",
+            "named": true
+          },
+          {
+            "type": "binary_operator",
+            "named": true
+          },
+          {
+            "type": "bitstring",
+            "named": true
+          },
+          {
+            "type": "character",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "list",
+            "named": true
+          },
+          {
+            "type": "map",
+            "named": true
+          },
+          {
+            "type": "quoted_atom",
+            "named": true
+          },
+          {
+            "type": "record",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "tuple",
+            "named": true
+          },
+          {
+            "type": "variable",
+            "named": true
+          }
+        ]
+      },
+      "guard": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": ",",
+            "named": false
+          },
+          {
+            "type": ";",
+            "named": false
+          },
+          {
+            "type": "anonymous_function",
+            "named": true
+          },
+          {
+            "type": "atom",
+            "named": true
+          },
+          {
+            "type": "binary_operator",
+            "named": true
+          },
+          {
+            "type": "bitstring",
+            "named": true
+          },
+          {
+            "type": "character",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "list",
+            "named": true
+          },
+          {
+            "type": "map",
+            "named": true
+          },
+          {
+            "type": "quoted_atom",
+            "named": true
+          },
+          {
+            "type": "record",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "tuple",
+            "named": true
+          },
+          {
+            "type": "variable",
+            "named": true
+          },
+          {
+            "type": "when",
+            "named": false
+          }
+        ]
+      },
+      "name": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "atom",
+            "named": true
+          },
+          {
+            "type": "quoted_atom",
+            "named": true
+          },
+          {
+            "type": "variable",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "binary_operator",
     "named": true,
     "fields": {
@@ -14,6 +264,10 @@
           {
             "type": ")",
             "named": false
+          },
+          {
+            "type": "anonymous_function",
+            "named": true
           },
           {
             "type": "atom",
@@ -74,6 +328,10 @@
         "required": true,
         "types": [
           {
+            "type": "!",
+            "named": false
+          },
+          {
             "type": "*",
             "named": false
           },
@@ -110,11 +368,87 @@
             "named": false
           },
           {
+            "type": "<",
+            "named": false
+          },
+          {
+            "type": "<=",
+            "named": false
+          },
+          {
             "type": "=",
             "named": false
           },
           {
+            "type": "=/=",
+            "named": false
+          },
+          {
+            "type": "=:=",
+            "named": false
+          },
+          {
+            "type": "==",
+            "named": false
+          },
+          {
             "type": "=>",
+            "named": false
+          },
+          {
+            "type": ">",
+            "named": false
+          },
+          {
+            "type": ">=",
+            "named": false
+          },
+          {
+            "type": "and",
+            "named": false
+          },
+          {
+            "type": "andalso",
+            "named": false
+          },
+          {
+            "type": "band",
+            "named": false
+          },
+          {
+            "type": "bor",
+            "named": false
+          },
+          {
+            "type": "bsl",
+            "named": false
+          },
+          {
+            "type": "bsr",
+            "named": false
+          },
+          {
+            "type": "bxor",
+            "named": false
+          },
+          {
+            "type": "div",
+            "named": false
+          },
+          {
+            "type": "or",
+            "named": false
+          },
+          {
+            "type": "orelse",
+            "named": false
+          },
+          {
+            "type": "rem",
+            "named": false
+          },
+          {
+            "type": "xor",
             "named": false
           },
           {
@@ -134,6 +468,10 @@
           {
             "type": ")",
             "named": false
+          },
+          {
+            "type": "anonymous_function",
+            "named": true
           },
           {
             "type": "atom",
@@ -199,6 +537,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "anonymous_function",
+          "named": true
+        },
         {
           "type": "atom",
           "named": true
@@ -288,6 +630,10 @@
       "required": false,
       "types": [
         {
+          "type": "anonymous_function",
+          "named": true
+        },
+        {
           "type": "atom",
           "named": true
         },
@@ -369,6 +715,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "anonymous_function",
+          "named": true
+        },
         {
           "type": "atom",
           "named": true
@@ -507,6 +857,10 @@
       "required": false,
       "types": [
         {
+          "type": "anonymous_function",
+          "named": true
+        },
+        {
           "type": "atom",
           "named": true
         },
@@ -569,6 +923,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "anonymous_function",
+          "named": true
+        },
         {
           "type": "atom",
           "named": true
@@ -673,6 +1031,10 @@
       "required": false,
       "types": [
         {
+          "type": "anonymous_function",
+          "named": true
+        },
+        {
           "type": "atom",
           "named": true
         },
@@ -728,6 +1090,10 @@
     }
   },
   {
+    "type": "!",
+    "named": false
+  },
+  {
     "type": "\"",
     "named": false
   },
@@ -780,6 +1146,10 @@
     "named": false
   },
   {
+    "type": "->",
+    "named": false
+  },
+  {
     "type": ".",
     "named": false
   },
@@ -796,7 +1166,19 @@
     "named": false
   },
   {
+    "type": ";",
+    "named": false
+  },
+  {
+    "type": "<",
+    "named": false
+  },
+  {
     "type": "<<",
+    "named": false
+  },
+  {
+    "type": "<=",
     "named": false
   },
   {
@@ -804,7 +1186,27 @@
     "named": false
   },
   {
+    "type": "=/=",
+    "named": false
+  },
+  {
+    "type": "=:=",
+    "named": false
+  },
+  {
+    "type": "==",
+    "named": false
+  },
+  {
     "type": "=>",
+    "named": false
+  },
+  {
+    "type": ">",
+    "named": false
+  },
+  {
+    "type": ">=",
     "named": false
   },
   {
@@ -820,8 +1222,44 @@
     "named": false
   },
   {
+    "type": "and",
+    "named": false
+  },
+  {
+    "type": "andalso",
+    "named": false
+  },
+  {
     "type": "atom",
     "named": true
+  },
+  {
+    "type": "band",
+    "named": false
+  },
+  {
+    "type": "bor",
+    "named": false
+  },
+  {
+    "type": "bsl",
+    "named": false
+  },
+  {
+    "type": "bsr",
+    "named": false
+  },
+  {
+    "type": "bxor",
+    "named": false
+  },
+  {
+    "type": "div",
+    "named": false
+  },
+  {
+    "type": "end",
+    "named": false
   },
   {
     "type": "escape_sequence",
@@ -832,12 +1270,36 @@
     "named": true
   },
   {
+    "type": "fun",
+    "named": false
+  },
+  {
+    "type": "or",
+    "named": false
+  },
+  {
+    "type": "orelse",
+    "named": false
+  },
+  {
     "type": "quoted_content",
     "named": true
   },
   {
+    "type": "rem",
+    "named": false
+  },
+  {
     "type": "variable",
     "named": true
+  },
+  {
+    "type": "when",
+    "named": false
+  },
+  {
+    "type": "xor",
+    "named": false
   },
   {
     "type": "{",

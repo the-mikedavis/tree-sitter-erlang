@@ -1,6 +1,5 @@
 const WHITE_SPACE = /[\r\n\t\f\v ]+/;
-const BINARY_OPS = [
-  "=",
+const LEFT_ASSOC_BINARY_OPS = [
   "+",
   "-",
   "*",
@@ -8,11 +7,32 @@ const BINARY_OPS = [
   "|",
   "=>",
   ":=",
+  "==",
+  ">=",
+  "<=",
+  ">",
+  "<",
+  "=:=",
+  "=/=",
   ":",
   "++",
   "--",
   ".",
+  "andalso",
+  "orelse",
+  "div",
+  "rem",
+  "band",
+  "and",
+  "bor",
+  "bxor",
+  "bsl",
+  "bsr",
+  "or",
+  "xor",
 ];
+const RIGHT_ASSOC_BINARY_OPS = ["!", "=", "++", "--"];
+const UNARY_OPS = ["+", "-", "not", "bnot"];
 
 module.exports = grammar({
   name: "erlang",
@@ -43,7 +63,8 @@ module.exports = grammar({
           $.list,
           $.map,
           $.record,
-          $.binary_operator
+          $.binary_operator,
+          $.anonymous_function
         )
       ),
 
@@ -120,7 +141,24 @@ module.exports = grammar({
       ),
 
     binary_operator: ($) =>
-      choice(binaryOperator($, prec.left, choice(...BINARY_OPS))),
+      choice(
+        binaryOperator($, 1, prec.left, choice(...LEFT_ASSOC_BINARY_OPS)),
+        binaryOperator($, 0, prec.right, choice(...RIGHT_ASSOC_BINARY_OPS))
+      ),
+
+    anonymous_function: ($) => seq("fun", sep1($._function_clause, ";"), "end"),
+
+    _function_clause: ($) =>
+      seq(
+        optional(field("name", $._identifier)),
+        // may want to cut this out to a $._arguments rule
+        field("arguments", parens(sep1($._expression, ","))),
+        optional(field("guard", seq("when", $._guard))),
+        "->",
+        field("body", $._expression)
+      ),
+
+    _guard: ($) => sep1(sep1($._expression, ","), ";"),
 
     _items: ($) => sep1($._expression, ","),
 
@@ -155,8 +193,9 @@ function optionalParens(rule) {
   return choice(rule, parens(rule));
 }
 
-function binaryOperator($, assoc, operator) {
+function binaryOperator($, precedence, assoc, operator) {
   return assoc(
+    precedence,
     seq(
       field("left", $._expression),
       field("operator", operator),
