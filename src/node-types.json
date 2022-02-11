@@ -16,6 +16,10 @@
             "named": false
           },
           {
+            "type": ",",
+            "named": false
+          },
+          {
             "type": "anonymous_function",
             "named": true
           },

@@ -180,7 +180,7 @@ module.exports = grammar({
           $.arguments,
           optional(field("guard", seq("when", $._guard))),
           "->",
-          field("body", $._expression)
+          field("body", sep1($._expression, ","))
         )
       ),
 

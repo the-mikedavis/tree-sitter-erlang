@@ -286,6 +286,10 @@ fun
   Last([_H|T]) -> Last(T);
   Last([H]) -> H
 end
+fun (X) ->
+  Y = X + 1,
+  Y
+end
 
 --------------------------------------------------------------------------------
 
@@ -321,6 +325,15 @@ end
     (arguments
       (list
         (variable)))
+    (variable))
+  (anonymous_function
+    (arguments
+      (variable))
+    (binary_operator
+      (variable)
+      (binary_operator
+        (variable)
+        (integer)))
     (variable)))
 
 ================================================================================
