@@ -8,7 +8,15 @@ module.exports = grammar({
     source: ($) => repeat($._expression),
 
     _expression: ($) =>
-      choice($.atom, $.quoted_atom, $.string, $.character, $.integer, $.float),
+      choice(
+        $.atom,
+        $.quoted_atom,
+        $.string,
+        $.character,
+        $.integer,
+        $.float,
+        $.identifier
+      ),
 
     _atom: ($) => choice($.atom, $.quoted_atom),
 
@@ -20,6 +28,8 @@ module.exports = grammar({
         $.quoted_content,
         field("quoted_end", "'")
       ),
+
+    identifier: ($) => /[A-Z_][a-zA-Z0-9_@]*/,
 
     string: ($) =>
       seq(
