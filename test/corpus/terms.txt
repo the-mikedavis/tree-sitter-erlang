@@ -4,6 +4,7 @@ strings
 
 ""       %% empty string
 "hello, world!"
+"hello ""world"
 "hello, \"tree-sitter\"\n"
 
 --------------------------------------------------------------------------------
@@ -11,6 +12,10 @@ strings
 (source
   (string)
   (comment)
+  (string
+    (quoted_content))
+  (string
+    (quoted_content))
   (string
     (quoted_content))
   (string
@@ -243,6 +248,7 @@ records
 #Var{}
 #function
 MyFunction#function{entry = 1}
+#function.entry     %% syntax for the element's index in the tuple
 
 --------------------------------------------------------------------------------
 
@@ -263,4 +269,9 @@ MyFunction#function{entry = 1}
     (record_content
       (binary_operator
         (atom)
-        (integer)))))
+        (integer))))
+  (binary_operator
+    (record
+      (atom))
+    (atom))
+  (comment))

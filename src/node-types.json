@@ -94,6 +94,10 @@
             "named": false
           },
           {
+            "type": ".",
+            "named": false
+          },
+          {
             "type": "/",
             "named": false
           },
@@ -363,7 +367,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "atom",
@@ -500,7 +504,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "atom",
@@ -773,6 +777,10 @@
   },
   {
     "type": "--",
+    "named": false
+  },
+  {
+    "type": ".",
     "named": false
   },
   {

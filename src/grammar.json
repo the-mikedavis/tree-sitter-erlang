@@ -16,15 +16,11 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "atom"
+              "name": "_identifier"
             },
             {
               "type": "SYMBOL",
-              "name": "quoted_atom"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "string"
+              "name": "_strings"
             },
             {
               "type": "SYMBOL",
@@ -37,10 +33,6 @@
             {
               "type": "SYMBOL",
               "name": "float"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "variable"
             },
             {
               "type": "SYMBOL",
@@ -80,15 +72,11 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "atom"
+                  "name": "_identifier"
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "quoted_atom"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "string"
+                  "name": "_strings"
                 },
                 {
                   "type": "SYMBOL",
@@ -101,10 +89,6 @@
                 {
                   "type": "SYMBOL",
                   "name": "float"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "variable"
                 },
                 {
                   "type": "SYMBOL",
@@ -201,6 +185,17 @@
           }
         }
       ]
+    },
+    "_strings": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "REPEAT1",
+        "content": {
+          "type": "SYMBOL",
+          "name": "string"
+        }
+      }
     },
     "string": {
       "type": "SEQ",
@@ -534,6 +529,10 @@
                     {
                       "type": "STRING",
                       "value": "--"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "."
                     }
                   ]
                 }
@@ -656,11 +655,11 @@
   "conflicts": [
     [
       "map",
-      "_expression"
+      "_identifier"
     ],
     [
       "record",
-      "_expression"
+      "_identifier"
     ]
   ],
   "precedences": [],

@@ -1,5 +1,18 @@
 const WHITE_SPACE = /[\r\n\t\f\v ]+/;
-const BINARY_OPS = ["=", "+", "-", "*", "/", "|", "=>", ":=", ":", "++", "--"];
+const BINARY_OPS = [
+  "=",
+  "+",
+  "-",
+  "*",
+  "/",
+  "|",
+  "=>",
+  ":=",
+  ":",
+  "++",
+  "--",
+  ".",
+];
 
 module.exports = grammar({
   name: "erlang",
@@ -9,30 +22,30 @@ module.exports = grammar({
   conflicts: ($) => [
     // Maps and records may start with variables when
     // being updated, so they need to take higher precedence
-    // than expressions.
-    [$.map, $._expression],
-    [$.record, $._expression],
+    // than identifiers.
+    [$.map, $._identifier],
+    [$.record, $._identifier],
   ],
 
   rules: {
     source: ($) => repeat($._expression),
 
     _expression: ($) =>
-      optionalParens(choice(
-        $.atom,
-        $.quoted_atom,
-        $.string,
-        $.character,
-        $.integer,
-        $.float,
-        $.variable,
-        $.bitstring,
-        $.tuple,
-        $.list,
-        $.map,
-        $.record,
-        $.binary_operator
-      )),
+      optionalParens(
+        choice(
+          $._identifier,
+          $._strings,
+          $.character,
+          $.integer,
+          $.float,
+          $.bitstring,
+          $.tuple,
+          $.list,
+          $.map,
+          $.record,
+          $.binary_operator
+        )
+      ),
 
     // macro identifiers go here once implemented:
     _identifier: ($) => choice($._atom, $.variable),
@@ -49,6 +62,15 @@ module.exports = grammar({
         $.quoted_content,
         field("quoted_end", "'")
       ),
+
+    // One can write multiple strings with optional whitespace in between.
+    // The strings are combined:
+    //     erl> "hello""world".
+    //     "helloworld"
+    // Note that we don't combined these strings: each string gets its own
+    // node. I believe this will behave more predictably for anyone using
+    // tree-sitter for motion (within an editor for example).
+    _strings: ($) => prec.right(repeat1($.string)),
 
     string: ($) =>
       seq(
