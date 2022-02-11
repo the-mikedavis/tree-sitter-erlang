@@ -270,9 +270,8 @@ MyFunction#function{entry = 1}
       (binary_operator
         (atom)
         (integer))))
-  (binary_operator
-    (record
-      (atom))
+  (record
+    (atom)
     (atom))
   (comment))
 

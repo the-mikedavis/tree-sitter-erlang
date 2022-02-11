@@ -208,10 +208,6 @@
             "named": false
           },
           {
-            "type": ".",
-            "named": false
-          },
-          {
             "type": "/",
             "named": false
           },
@@ -1237,6 +1233,28 @@
     "type": "record",
     "named": true,
     "fields": {
+      "field": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "atom",
+            "named": true
+          },
+          {
+            "type": "quoted_atom",
+            "named": true
+          },
+          {
+            "type": "variable",
+            "named": true
+          }
+        ]
+      },
       "name": {
         "multiple": false,
         "required": true,

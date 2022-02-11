@@ -17,7 +17,6 @@ const LEFT_ASSOC_BINARY_OPS = [
   ":",
   "++",
   "--",
-  ".",
   "<-",
   "andalso",
   "orelse",
@@ -36,14 +35,14 @@ const RIGHT_ASSOC_BINARY_OPS = ["!", "=", "++", "--", "||"];
 const UNARY_OPS = ["+", "-", "not", "bnot"];
 const PREC = {
   COMMENT: -1,
-  RIGHT_BINARY_OP: 0,
-  RECORD: 1,
-  MAP: 1,
-  LEFT_BINARY_OP: 1,
-  CALL: 2,
-  ARGUMENTS: 2,
-  STAB_CLAUSE: 3,
-  QUALIFIED_FUNCTION: 3,
+  RIGHT_BINARY_OP: 5,
+  RECORD: 10,
+  MAP: 10,
+  LEFT_BINARY_OP: 10,
+  CALL: 15,
+  ARGUMENTS: 15,
+  STAB_CLAUSE: 20,
+  QUALIFIED_FUNCTION: 20,
 };
 
 module.exports = grammar({
@@ -52,10 +51,13 @@ module.exports = grammar({
   extras: ($) => [WHITE_SPACE, $.comment],
 
   rules: {
-    source: ($) => repeat($._expression),
+    source: ($) => repeat(choice($._statement, $._expression)),
 
-    // _statement: ($) =>
-    //   seq(sep1($._expression, ","), "."),
+    _statement: ($) =>
+      choice(
+        // $.function,
+        seq($._expression, ".")
+      ),
 
     _expression: ($) =>
       choice(
@@ -72,7 +74,6 @@ module.exports = grammar({
         $.binary_operator,
         $.anonymous_function,
         $.function_capture,
-        // $.function,
         $.call,
         $.block,
         $._parenthesized_expression
@@ -152,7 +153,12 @@ module.exports = grammar({
           optional($.variable),
           "#",
           field("name", $._identifier),
-          optional(seq("{", optional(alias($._items, $.record_content)), "}"))
+          optional(
+            choice(
+              seq("{", optional(alias($._items, $.record_content)), "}"),
+              field("field", seq(".", $._identifier))
+            )
+          )
         )
       ),
 
