@@ -53,7 +53,11 @@ module.exports = grammar({
     integer: ($) =>
       choice(
         // regular base-10 integers
-        /[0-9][0-9_]*/
+        /[0-9][0-9_]*/,
+        // base#value syntax
+        // Note that this is slightly permissive, you can only use up to
+        // base 36 in reality.
+        /[1-3]?[0-9]#[0-9a-zA-Z_]+/
       ),
 
     comment: ($) =>

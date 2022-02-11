@@ -50,6 +50,8 @@ $\n
 1
 100
 1_000_000
+2#101101
+16#deadbeef
 
 --------------------------------------------------------------------------------
 
@@ -59,6 +61,8 @@ $\n
   (character)
   (character
     (escape_sequence))
+  (integer)
+  (integer)
   (integer)
   (integer)
   (integer))
