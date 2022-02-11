@@ -22,6 +22,23 @@
         {
           "type": "SYMBOL",
           "name": "string"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "character"
+        }
+      ]
+    },
+    "_atom": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "atom"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "quoted_atom"
         }
       ]
     },
@@ -112,7 +129,11 @@
               },
               {
                 "type": "PATTERN",
-                "value": "x[\\da-fA-F]+"
+                "value": "x[\\da-fA-F]{2}"
+              },
+              {
+                "type": "PATTERN",
+                "value": "x{[\\da-fA-F]+}"
               },
               {
                 "type": "PATTERN",
@@ -131,16 +152,50 @@
       "type": "PATTERN",
       "value": "([^\\\\\\\"\\']+|\\\\)"
     },
-    "comment": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PREC",
-        "value": -1,
-        "content": {
-          "type": "PATTERN",
-          "value": "%.*"
+    "character": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "$"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "escape_sequence"
+            },
+            {
+              "type": "PATTERN",
+              "value": "[\\x20-\\x7e]"
+            }
+          ]
         }
-      }
+      ]
+    },
+    "comment": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "PREC",
+          "value": -1,
+          "content": {
+            "type": "TOKEN",
+            "content": {
+              "type": "REPEAT1",
+              "content": {
+                "type": "STRING",
+                "value": "%"
+              }
+            }
+          }
+        },
+        {
+          "type": "PATTERN",
+          "value": ".*"
+        }
+      ]
     }
   },
   "extras": [

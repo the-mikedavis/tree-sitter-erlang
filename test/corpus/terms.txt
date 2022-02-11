@@ -39,3 +39,21 @@ hello
   (comment)
   (quoted_atom
     (quoted_content)))
+
+================================================================================
+numbers
+================================================================================
+
+$a        %% erlang docs consider characters to be numbers
+$-
+$\n
+
+--------------------------------------------------------------------------------
+
+
+(source
+  (character)
+  (comment)
+  (character)
+  (character
+    (escape_sequence)))

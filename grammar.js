@@ -7,7 +7,9 @@ module.exports = grammar({
   rules: {
     source: ($) => repeat($._expression),
 
-    _expression: ($) => choice($.atom, $.quoted_atom, $.string),
+    _expression: ($) => choice($.atom, $.quoted_atom, $.string, $.character),
+
+    _atom: ($) => choice($.atom, $.quoted_atom),
 
     atom: ($) => token(/[a-z][a-zA-Z_@]*/),
 
@@ -33,7 +35,8 @@ module.exports = grammar({
             // Escapes for special characters
             /[bdefnrstv\'\"\\]/,
             // hexadecimal
-            /x[\da-fA-F]+/,
+            /x[\da-fA-F]{2}/,
+            /x{[\da-fA-F]+}/,
             // octal
             /[0-7]{1,3}/,
             // control sequences,
@@ -44,7 +47,9 @@ module.exports = grammar({
 
     quoted_content: ($) => /([^\\\"\']+|\\)/,
 
-    comment: ($) => token(prec(-1, /%.*/)),
+    character: ($) => seq("$", choice($.escape_sequence, /[\x20-\x7e]/)),
+
+    comment: ($) => seq(prec(-1, token(repeat1("%"))), /.*/),
   },
 });
 
