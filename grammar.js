@@ -18,6 +18,7 @@ const LEFT_ASSOC_BINARY_OPS = [
   "++",
   "--",
   ".",
+  "<-",
   "andalso",
   "orelse",
   "div",
@@ -31,7 +32,7 @@ const LEFT_ASSOC_BINARY_OPS = [
   "or",
   "xor",
 ];
-const RIGHT_ASSOC_BINARY_OPS = ["!", "=", "++", "--"];
+const RIGHT_ASSOC_BINARY_OPS = ["!", "=", "++", "--", "||"];
 const UNARY_OPS = ["+", "-", "not", "bnot"];
 const PREC = {
   COMMENT: -1,

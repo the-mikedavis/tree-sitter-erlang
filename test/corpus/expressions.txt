@@ -49,3 +49,44 @@ end
       (binary_operator
         (integer)
         (integer)))))
+
+================================================================================
+comprehensions
+================================================================================
+
+%% Comprehensions are parsed very simply by treating '||' as a binary operator.
+%% We could structure this rule more and make syntax assertions about the
+%% generator(s) and qualifier(s) but I don't really see a point.
+[ X * 2 || X <- [1, 2, 3]]
+<< << (X * 2) >> || << X >> <= << 1, 2, 3 >> >>
+
+--------------------------------------------------------------------------------
+
+(source
+  (comment)
+  (comment)
+  (comment)
+  (list
+    (binary_operator
+      (binary_operator
+        (variable)
+        (integer))
+      (binary_operator
+        (variable)
+        (list
+          (integer)
+          (integer)
+          (integer)))))
+  (bitstring
+    (binary_operator
+      (bitstring
+        (binary_operator
+          (variable)
+          (integer)))
+      (binary_operator
+        (bitstring
+          (variable))
+        (bitstring
+          (integer)
+          (integer)
+          (integer))))))

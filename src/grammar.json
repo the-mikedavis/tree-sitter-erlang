@@ -534,6 +534,10 @@
                     },
                     {
                       "type": "STRING",
+                      "value": "<-"
+                    },
+                    {
+                      "type": "STRING",
                       "value": "andalso"
                     },
                     {
@@ -629,6 +633,10 @@
                     {
                       "type": "STRING",
                       "value": "--"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "||"
                     }
                   ]
                 }
