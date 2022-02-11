@@ -17,7 +17,9 @@ module.exports = grammar({
         $.integer,
         $.float,
         $.identifier,
-        $.bitstring
+        $.bitstring,
+        $.tuple,
+        $.list
       ),
 
     identifier: ($) => /[A-Z_][a-zA-Z0-9_@]*/,
@@ -60,7 +62,11 @@ module.exports = grammar({
 
     quoted_content: ($) => /([^\\\"\']+|\\)/,
 
-    bitstring: ($) => seq("<<", optional(sep1($._expression, ",")), ">>"),
+    bitstring: ($) => seq("<<", optional($._items), ">>"),
+    tuple: ($) => seq("{", optional($._items), "}"),
+    list: ($) => seq("[", optional($._items), "]"),
+
+    _items: ($) => sep1($._expression, ","),
 
     character: ($) => seq("$", choice($.escape_sequence, /[\x20-\x7e]/)),
 
