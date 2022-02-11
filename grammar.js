@@ -7,7 +7,8 @@ module.exports = grammar({
   rules: {
     source: ($) => repeat($._expression),
 
-    _expression: ($) => choice($.atom, $.quoted_atom, $.string, $.character),
+    _expression: ($) =>
+      choice($.atom, $.quoted_atom, $.string, $.character, $.integer),
 
     _atom: ($) => choice($.atom, $.quoted_atom),
 
@@ -50,6 +51,12 @@ module.exports = grammar({
     character: ($) => seq("$", choice($.escape_sequence, /[\x20-\x7e]/)),
 
     comment: ($) => seq(prec(-1, token(repeat1("%"))), /.*/),
+    integer: ($) =>
+      choice(
+        // regular base-10 integers
+        /[0-9][0-9_]*/
+      ),
+
   },
 });
 

@@ -47,13 +47,18 @@ numbers
 $a        %% erlang docs consider characters to be numbers
 $-
 $\n
+1
+100
+1_000_000
 
 --------------------------------------------------------------------------------
-
 
 (source
   (character)
   (comment)
   (character)
   (character
-    (escape_sequence)))
+    (escape_sequence))
+  (integer)
+  (integer)
+  (integer))
