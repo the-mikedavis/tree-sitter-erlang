@@ -146,6 +146,7 @@ lists
 []
 [a, b, c]
 [[[]]]
+[a | [b | [c]]]
 
 --------------------------------------------------------------------------------
 
@@ -157,33 +158,69 @@ lists
     (atom))
   (list
     (list
-      (list))))
+      (list)))
+  (list
+    (binary_operator
+      (atom)
+      (list
+        (binary_operator
+          (atom)
+          (list
+            (atom)))))))
 
 ================================================================================
 maps
 ================================================================================
 
 #{}
+#{a => b, c => d}
+MyMap#{a => b}
 
 --------------------------------------------------------------------------------
 
 (source
-  (map))
+  (map)
+  (map
+    (map_content
+      (binary_operator
+        (atom)
+        (atom))
+      (binary_operator
+        (atom)
+        (atom))))
+  (map
+    (variable)
+    (map_content
+      (binary_operator
+        (atom)
+        (atom)))))
 
 ================================================================================
 records
 ================================================================================
 
-#function{}
+#function{entry = 1}
 #Var{}
 #function
+MyFunction#function{entry = 1}
 
 --------------------------------------------------------------------------------
 
 (source
   (record
-    (atom))
+    (atom)
+    (record_content
+      (binary_operator
+        (atom)
+        (integer))))
   (record
     (variable))
   (record
-    (atom)))
+    (atom))
+  (record
+    (variable)
+    (atom)
+    (record_content
+      (binary_operator
+        (atom)
+        (integer)))))

@@ -1,9 +1,18 @@
 const WHITE_SPACE = /[\r\n\t\f\v ]+/;
+const BINARY_OPS = ["=", "+", "-", "/", "|", "=>", ":="];
 
 module.exports = grammar({
   name: "erlang",
 
   extras: ($) => [WHITE_SPACE, $.comment],
+
+  conflicts: ($) => [
+    // Maps and records may start with variables when
+    // being updated, so they need to take higher precedence
+    // than expressions.
+    [$.map, $._expression],
+    [$.record, $._expression],
+  ],
 
   rules: {
     source: ($) => repeat($._expression),
@@ -21,7 +30,8 @@ module.exports = grammar({
         $.tuple,
         $.list,
         $.map,
-        $.record
+        $.record,
+        $.binary_operator
       ),
 
     // macro identifiers go here once implemented:
@@ -70,15 +80,25 @@ module.exports = grammar({
     bitstring: ($) => seq("<<", optional($._items), ">>"),
     tuple: ($) => seq("{", optional($._items), "}"),
     list: ($) => seq("[", optional($._items), "]"),
-    map: ($) => seq("#{", optional(alias($._items, $.map_content)), "}"),
+    map: ($) =>
+      seq(
+        optional($.variable),
+        "#{",
+        optional(alias($._items, $.map_content)),
+        "}"
+      ),
     record: ($) =>
       prec.right(
         seq(
+          optional($.variable),
           "#",
           field("name", $._identifier),
           optional(seq("{", optional(alias($._items, $.record_content)), "}"))
         )
       ),
+
+    binary_operator: ($) =>
+      choice(binaryOperator($, prec.left, choice(...BINARY_OPS))),
 
     _items: ($) => sep1($._expression, ","),
 
@@ -107,4 +127,14 @@ function sep1(rule, separator) {
 
 function parens(rule) {
   return seq("(", rule, ")");
+}
+
+function binaryOperator($, assoc, operator) {
+  return assoc(
+    seq(
+      field("left", $._expression),
+      field("operator", operator),
+      field("right", $._expression)
+    )
+  );
 }
