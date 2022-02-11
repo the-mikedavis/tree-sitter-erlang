@@ -41,6 +41,7 @@ const PREC = {
   LEFT_BINARY_OP: 1,
   FUNCTION_CLAUSE: 1,
   CALL: 2,
+  QUALIFIED_FUNCTION: 3,
 };
 
 module.exports = grammar({
@@ -174,28 +175,30 @@ module.exports = grammar({
         PREC.FUNCTION_CLAUSE,
         seq(
           optional(field("name", $._identifier)),
-          field("arguments", $._arguments),
+          $.arguments,
           optional(field("guard", seq("when", $._guard))),
           "->",
           field("body", $._expression)
         )
       ),
 
-    _arguments: ($) => parens(sep1($._expression, ",")),
-
     _guard: ($) => sep1(sep1($._expression, ","), ";"),
 
+    arguments: ($) => parens(sep1($._expression, ",")),
+
+    _items: ($) => sep1($._expression, ","),
+
     call: ($) =>
-      seq(
-        choice($._qualified_function, $._unqualified_function),
-        field("arguments", $._arguments)
-      ),
+      seq(choice($._qualified_function, $._unqualified_function), $.arguments),
 
     _qualified_function: ($) =>
-      seq(
-        field("module", $._expression),
-        ":",
-        field("function", $._expression)
+      prec(
+        PREC.QUALIFIED_FUNCTION,
+        seq(
+          field("module", $._expression),
+          ":",
+          field("function", $._expression)
+        )
       ),
 
     _unqualified_function: ($) =>
@@ -210,8 +213,6 @@ module.exports = grammar({
           field("arity", $._expression)
         )
       ),
-
-    _items: ($) => sep1($._expression, ","),
 
     character: ($) => seq("$", choice($.escape_sequence, /[\x20-\x7f]/)),
 

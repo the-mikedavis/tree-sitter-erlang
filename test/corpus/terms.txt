@@ -139,11 +139,11 @@ bitstrings
   (bitstring
     (binary_operator
       (binary_operator
-        (binary_operator
-          (variable)
-          (variable))
-        (atom))
-      (integer)))
+        (variable)
+        (variable))
+      (binary_operator
+        (atom)
+        (integer))))
   (bitstring
     (binary_operator
       (binary_operator
@@ -291,30 +291,36 @@ end
 
 (source
   (anonymous_function
-    (variable)
+    (arguments
+      (variable))
     (variable))
   (anonymous_function
-    (variable)
+    (arguments
+      (variable))
     (binary_operator
       (variable)
       (integer))
     (variable)
-    (variable)
+    (arguments
+      (variable))
     (binary_operator
       (integer)
       (variable)))
   (anonymous_function
     (variable)
-    (list
-      (binary_operator
-        (variable)
-        (variable)))
+    (arguments
+      (list
+        (binary_operator
+          (variable)
+          (variable))))
     (call
       (variable)
-      (variable))
+      (arguments
+        (variable)))
     (variable)
-    (list
-      (variable))
+    (arguments
+      (list
+        (variable)))
     (variable)))
 
 ================================================================================
@@ -322,12 +328,16 @@ function captures
 ================================================================================
 
 fun Module:Name/Arity
+fun lists:map/2
 
 --------------------------------------------------------------------------------
 
 (source
   (function_capture
-    (binary_operator
-      (variable)
-      (variable))
-    (variable)))
+    (variable)
+    (variable)
+    (variable))
+  (function_capture
+    (atom)
+    (atom)
+    (integer)))

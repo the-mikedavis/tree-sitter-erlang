@@ -4,15 +4,24 @@ function calls
 
 hd([a])
 tl([a])
+maps:get(date,DateTime)
 
 --------------------------------------------------------------------------------
 
 (source
   (call
     (atom)
-    (list
-      (atom)))
+    (arguments
+      (list
+        (atom))))
   (call
     (atom)
-    (list
-      (atom))))
+    (arguments
+      (list
+        (atom))))
+  (call
+    (atom)
+    (atom)
+    (arguments
+      (atom)
+      (variable))))
