@@ -1,5 +1,5 @@
 const WHITE_SPACE = /[\r\n\t\f\v ]+/;
-const BINARY_OPS = ["=", "+", "-", "/", "|", "=>", ":="];
+const BINARY_OPS = ["=", "+", "-", "*", "/", "|", "=>", ":=", ":", "++", "--"];
 
 module.exports = grammar({
   name: "erlang",
@@ -18,7 +18,7 @@ module.exports = grammar({
     source: ($) => repeat($._expression),
 
     _expression: ($) =>
-      choice(
+      optionalParens(choice(
         $.atom,
         $.quoted_atom,
         $.string,
@@ -32,7 +32,7 @@ module.exports = grammar({
         $.map,
         $.record,
         $.binary_operator
-      ),
+      )),
 
     // macro identifiers go here once implemented:
     _identifier: ($) => choice($._atom, $.variable),
@@ -127,6 +127,10 @@ function sep1(rule, separator) {
 
 function parens(rule) {
   return seq("(", rule, ")");
+}
+
+function optionalParens(rule) {
+  return choice(rule, parens(rule));
 }
 
 function binaryOperator($, assoc, operator) {

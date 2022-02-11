@@ -104,6 +104,10 @@ bitstrings
 <<"hello, binaries!">>
 <<MyBinary>>
 <<$a, $b, $c>>
+<<String0/bitstring,0:(8-Rem)>>
+<<N:Bytes/unit:8>>
+<<0.1:10/native-unsigned>>
+<<"hello" ++ _>>
 
 --------------------------------------------------------------------------------
 
@@ -117,7 +121,37 @@ bitstrings
   (bitstring
     (character)
     (character)
-    (character)))
+    (character))
+  (bitstring
+    (binary_operator
+      (variable)
+      (atom))
+    (binary_operator
+      (integer)
+      (binary_operator
+        (integer)
+        (variable))))
+  (bitstring
+    (binary_operator
+      (binary_operator
+        (binary_operator
+          (variable)
+          (variable))
+        (atom))
+      (integer)))
+  (bitstring
+    (binary_operator
+      (binary_operator
+        (binary_operator
+          (float)
+          (integer))
+        (atom))
+      (atom)))
+  (bitstring
+    (binary_operator
+      (string
+        (quoted_content))
+      (variable))))
 
 ================================================================================
 tuples
@@ -147,6 +181,7 @@ lists
 [a, b, c]
 [[[]]]
 [a | [b | [c]]]
+[from_asm, {validate, false}]
 
 --------------------------------------------------------------------------------
 
@@ -166,7 +201,12 @@ lists
         (binary_operator
           (atom)
           (list
-            (atom)))))))
+            (atom))))))
+  (list
+    (atom)
+    (tuple
+      (atom)
+      (atom))))
 
 ================================================================================
 maps
