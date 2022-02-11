@@ -39,6 +39,7 @@ const PREC = {
   RECORD: 1,
   MAP: 1,
   LEFT_BINARY_OP: 1,
+  FUNCTION_CLAUSE: 1,
   CALL: 2,
 };
 
@@ -54,23 +55,25 @@ module.exports = grammar({
     //   seq(sep1($._expression, ","), "."),
 
     _expression: ($) =>
-      optionalParens(
-        choice(
-          $._identifier,
-          $._strings,
-          $.character,
-          $.integer,
-          $.float,
-          $.bitstring,
-          $.tuple,
-          $.list,
-          $.map,
-          $.record,
-          $.binary_operator,
-          $.anonymous_function,
-          $.call
-        )
+      choice(
+        $._identifier,
+        $._strings,
+        $.character,
+        $.integer,
+        $.float,
+        $.bitstring,
+        $.tuple,
+        $.list,
+        $.map,
+        $.record,
+        $.binary_operator,
+        $.anonymous_function,
+        $.function_capture,
+        $.call,
+        $._parenthesized_expression
       ),
+
+    _parenthesized_expression: ($) => parens($._expression),
 
     // macro identifiers go here once implemented:
     _identifier: ($) => choice($._atom, $.variable),
@@ -167,12 +170,15 @@ module.exports = grammar({
     anonymous_function: ($) => seq("fun", sep1($._function_clause, ";"), "end"),
 
     _function_clause: ($) =>
-      seq(
-        optional(field("name", $._identifier)),
-        field("arguments", $._arguments),
-        optional(field("guard", seq("when", $._guard))),
-        "->",
-        field("body", $._expression)
+      prec(
+        PREC.FUNCTION_CLAUSE,
+        seq(
+          optional(field("name", $._identifier)),
+          field("arguments", $._arguments),
+          optional(field("guard", seq("when", $._guard))),
+          "->",
+          field("body", $._expression)
+        )
       ),
 
     _arguments: ($) => parens(sep1($._expression, ",")),
@@ -181,22 +187,33 @@ module.exports = grammar({
 
     call: ($) =>
       seq(
-        choice($._qualified_call, $._unqualified_call),
+        choice($._qualified_function, $._unqualified_function),
         field("arguments", $._arguments)
       ),
 
-    _qualified_call: ($) =>
+    _qualified_function: ($) =>
       seq(
         field("module", $._expression),
         ":",
         field("function", $._expression)
       ),
 
-    _unqualified_call: ($) => prec(PREC.CALL, field("function", $._expression)),
+    _unqualified_function: ($) =>
+      prec(PREC.CALL, field("function", $._expression)),
+
+    function_capture: ($) =>
+      prec.left(
+        seq(
+          "fun",
+          choice($._qualified_function, $._unqualified_function),
+          "/",
+          field("arity", $._expression)
+        )
+      ),
 
     _items: ($) => sep1($._expression, ","),
 
-    character: ($) => seq("$", choice($.escape_sequence, /[\x20-\x7e]/)),
+    character: ($) => seq("$", choice($.escape_sequence, /[\x20-\x7f]/)),
 
     integer: ($) =>
       choice(
@@ -224,10 +241,6 @@ function sep1(rule, separator) {
 
 function parens(rule) {
   return seq("(", rule, ")");
-}
-
-function optionalParens(rule) {
-  return choice(rule, parens(rule));
 }
 
 function binaryOperator($, precedence, assoc, operator) {
