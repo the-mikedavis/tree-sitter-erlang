@@ -1,7 +1,8 @@
+const WHITE_SPACE = /[\r\n\t\f\v ]+/;
 module.exports = grammar({
   name: "erlang",
 
-  // extras: ($) => [],
+  extras: ($) => [WHITE_SPACE, $.comment],
 
   rules: {
     source: ($) => repeat($._expression),
@@ -42,6 +43,8 @@ module.exports = grammar({
       ),
 
     quoted_content: ($) => /([^\\\"\']+|\\)/,
+
+    comment: ($) => token(prec(-1, /%.*/)),
   },
 });
 

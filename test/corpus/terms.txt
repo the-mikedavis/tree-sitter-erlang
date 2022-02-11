@@ -2,7 +2,7 @@
 strings
 ================================================================================
 
-""
+""       %% empty string
 "hello, world!"
 "hello, \"tree-sitter\"\n"
 
@@ -10,6 +10,7 @@ strings
 
 (source
   (string)
+  (comment)
   (string
     (quoted_content))
   (string
@@ -25,7 +26,7 @@ atoms
 
 ok
 hello
-'%'
+'%'      %% escaping '%'
 '123'
 
 --------------------------------------------------------------------------------
@@ -35,5 +36,6 @@ hello
   (atom)
   (quoted_atom
     (quoted_content))
+  (comment)
   (quoted_atom
     (quoted_content)))

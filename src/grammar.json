@@ -130,12 +130,27 @@
     "quoted_content": {
       "type": "PATTERN",
       "value": "([^\\\\\\\"\\']+|\\\\)"
+    },
+    "comment": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": -1,
+        "content": {
+          "type": "PATTERN",
+          "value": "%.*"
+        }
+      }
     }
   },
   "extras": [
     {
       "type": "PATTERN",
-      "value": "\\s"
+      "value": "[\\r\\n\\t\\f\\v ]+"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "comment"
     }
   ],
   "conflicts": [],
