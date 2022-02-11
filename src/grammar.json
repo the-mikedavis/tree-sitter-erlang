@@ -5,15 +5,55 @@
       "type": "REPEAT",
       "content": {
         "type": "SYMBOL",
-        "name": "expression"
+        "name": "_expression"
       }
     },
-    "expression": {
+    "_expression": {
       "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
+          "name": "atom"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "quoted_atom"
+        },
+        {
+          "type": "SYMBOL",
           "name": "string"
+        }
+      ]
+    },
+    "atom": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "[a-z][a-zA-Z_@]*"
+      }
+    },
+    "quoted_atom": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "quoted_start",
+          "content": {
+            "type": "STRING",
+            "value": "'"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "quoted_content"
+        },
+        {
+          "type": "FIELD",
+          "name": "quoted_end",
+          "content": {
+            "type": "STRING",
+            "value": "'"
+          }
         }
       ]
     },
@@ -89,7 +129,7 @@
     },
     "quoted_content": {
       "type": "PATTERN",
-      "value": "([^\\\\\\\"]+|\\\\)"
+      "value": "([^\\\\\\\"\\']+|\\\\)"
     }
   },
   "extras": [

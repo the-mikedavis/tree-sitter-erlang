@@ -1,14 +1,35 @@
 [
   {
-    "type": "expression",
+    "type": "quoted_atom",
     "named": true,
-    "fields": {},
+    "fields": {
+      "quoted_end": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "'",
+            "named": false
+          }
+        ]
+      },
+      "quoted_start": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "'",
+            "named": false
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "string",
+          "type": "quoted_content",
           "named": true
         }
       ]
@@ -23,7 +44,15 @@
       "required": false,
       "types": [
         {
-          "type": "expression",
+          "type": "atom",
+          "named": true
+        },
+        {
+          "type": "quoted_atom",
+          "named": true
+        },
+        {
+          "type": "string",
           "named": true
         }
       ]
@@ -72,6 +101,14 @@
   {
     "type": "\"",
     "named": false
+  },
+  {
+    "type": "'",
+    "named": false
+  },
+  {
+    "type": "atom",
+    "named": true
   },
   {
     "type": "escape_sequence",

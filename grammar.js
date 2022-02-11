@@ -4,9 +4,18 @@ module.exports = grammar({
   // extras: ($) => [],
 
   rules: {
-    source: ($) => repeat($.expression),
+    source: ($) => repeat($._expression),
 
-    expression: ($) => choice($.string),
+    _expression: ($) => choice($.atom, $.quoted_atom, $.string),
+
+    atom: ($) => token(/[a-z][a-zA-Z_@]*/),
+
+    quoted_atom: ($) =>
+      seq(
+        field("quoted_start", "'"),
+        $.quoted_content,
+        field("quoted_end", "'")
+      ),
 
     string: ($) =>
       seq(
@@ -32,8 +41,7 @@ module.exports = grammar({
         )
       ),
 
-    // any non-backslash and non-double-quote start
-    quoted_content: ($) => /([^\\\"]+|\\)/,
+    quoted_content: ($) => /([^\\\"\']+|\\)/,
   },
 });
 
