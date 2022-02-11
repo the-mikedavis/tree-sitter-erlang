@@ -1,5 +1,7 @@
 # tree-sitter-erlang
 
+[![CI](https://github.com/the-mikedavis/tree-sitter-erlang/actions/workflows/ci.yml/badge.svg)](https://github.com/the-mikedavis/tree-sitter-erlang/actions/workflows/ci.yml)
+
 An Erlang grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter).
 
 ## Prior work
