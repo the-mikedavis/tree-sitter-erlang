@@ -39,14 +39,6 @@ module.exports = grammar({
 
   extras: ($) => [WHITE_SPACE, $.comment],
 
-  conflicts: ($) => [
-    // Maps and records may start with variables when
-    // being updated, so they need to take higher precedence
-    // than identifiers.
-    [$.map, $._identifier],
-    [$.record, $._identifier],
-  ],
-
   rules: {
     source: ($) => repeat($._expression),
 
@@ -124,14 +116,18 @@ module.exports = grammar({
     tuple: ($) => seq("{", optional($._items), "}"),
     list: ($) => seq("[", optional($._items), "]"),
     map: ($) =>
-      seq(
-        optional($.variable),
-        "#{",
-        optional(alias($._items, $.map_content)),
-        "}"
+      prec(
+        1,
+        seq(
+          optional($.variable),
+          "#{",
+          optional(alias($._items, $.map_content)),
+          "}"
+        )
       ),
     record: ($) =>
       prec.right(
+        1,
         seq(
           optional($.variable),
           "#",
