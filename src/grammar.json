@@ -1,0 +1,21 @@
+{
+  "name": "erlang",
+  "rules": {
+    "source": {
+      "type": "STRING",
+      "value": "hello world"
+    }
+  },
+  "extras": [
+    {
+      "type": "PATTERN",
+      "value": "\\s"
+    }
+  ],
+  "conflicts": [],
+  "precedences": [],
+  "externals": [],
+  "inline": [],
+  "supertypes": []
+}
+
