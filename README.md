@@ -18,3 +18,7 @@ correct but performing validation in tree-sitter is generally discouraged.
 
 This grammar attempts to be closer in design to
 [tree-sitter-elixir](https://github.com/tree-sitter/tree-sitter-elixir).
+
+## Status
+
+Just starting out - nothing to see here yet.
