@@ -367,7 +367,7 @@
       "type": "TOKEN",
       "content": {
         "type": "PATTERN",
-        "value": "[a-z][a-zA-Z_@]*"
+        "value": "[a-z][a-zA-Z0-9_@]*"
       }
     },
     "quoted_atom": {
@@ -1603,34 +1603,33 @@
           "name": "_expression"
         },
         {
-          "type": "ALIAS",
+          "type": "SYMBOL",
+          "name": "body"
+        }
+      ]
+    },
+    "body": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_expression"
+        },
+        {
+          "type": "REPEAT1",
           "content": {
             "type": "SEQ",
             "members": [
               {
-                "type": "SYMBOL",
-                "name": "_expression"
+                "type": "STRING",
+                "value": ","
               },
               {
-                "type": "REPEAT1",
-                "content": {
-                  "type": "SEQ",
-                  "members": [
-                    {
-                      "type": "STRING",
-                      "value": ","
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "_expression"
-                    }
-                  ]
-                }
+                "type": "SYMBOL",
+                "name": "_expression"
               }
             ]
-          },
-          "named": true,
-          "value": "body"
+          }
         }
       ]
     },

@@ -104,7 +104,7 @@ module.exports = grammar({
 
     _atom: ($) => choice($.atom, $.quoted_atom),
 
-    atom: ($) => token(/[a-z][a-zA-Z_@]*/),
+    atom: ($) => token(/[a-z][a-zA-Z0-9_@]*/),
 
     quoted_atom: ($) =>
       seq(
