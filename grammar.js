@@ -172,9 +172,9 @@ module.exports = grammar({
     _literal: ($) =>
       choice($._number, $._identifier, $._parenthesized_expression),
 
-    anonymous_function: ($) => seq("fun", sep1($.stab_clause, ";"), "end"),
+    anonymous_function: ($) => seq("fun", sep($.stab_clause, ";"), "end"),
 
-    // function: ($) => prec.right(sep1($._named_stab_clause, ";")),
+    // function: ($) => prec.right(sep($._named_stab_clause, ";")),
 
     stab_clause: ($) => choice($._named_stab_clause, $._anonymous_stab_clause),
 
@@ -185,7 +185,7 @@ module.exports = grammar({
           $.arguments,
           optional(field("guard", seq("when", $._guard))),
           "->",
-          field("body", $._items)
+          $._body
         )
       ),
 
@@ -195,15 +195,18 @@ module.exports = grammar({
           $.arguments,
           optional(field("guard", seq("when", $._guard))),
           "->",
-          field("body", $._items)
+          $._body
         )
       ),
 
-    _guard: ($) => sep1($._items, ";"),
+    _guard: ($) => sep($._items, ";"),
 
     arguments: ($) => parens($._items),
 
-    _items: ($) => sep1($._expression, ","),
+    _body: ($) =>
+      choice($._expression, alias(sep1($._expression, ","), $.body)),
+
+    _items: ($) => sep($._expression, ","),
 
     call: ($) =>
       seq(choice($._qualified_function, $._unqualified_function), $.arguments),
@@ -250,8 +253,12 @@ module.exports = grammar({
   },
 });
 
-function sep1(rule, separator) {
+function sep(rule, separator) {
   return seq(rule, repeat(seq(separator, rule)));
+}
+
+function sep1(rule, separator) {
+  return seq(rule, repeat1(seq(separator, rule)));
 }
 
 function parens(rule) {

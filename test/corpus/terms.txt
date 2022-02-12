@@ -334,12 +334,14 @@ end
     (stab_clause
       (arguments
         (variable))
-      (binary_operator
-        (variable)
+      (body
         (binary_operator
           (variable)
-          (integer)))
-      (variable))))
+          (binary_operator
+            (variable)
+            (integer))))
+      (body
+        (variable)))))
 
 ================================================================================
 function captures
