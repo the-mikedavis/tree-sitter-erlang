@@ -92,6 +92,7 @@ module.exports = grammar({
         $.if,
         $.case,
         $.receive,
+        $.try,
         $._parenthesized_expression
       ),
 
@@ -287,6 +288,16 @@ module.exports = grammar({
       seq("receive", optional(sep($.clause, ";")), optional($.after), "end"),
 
     after: ($) => seq("after", $._expression, "->", $._body),
+
+    try: ($) =>
+      seq(
+        "try",
+        field("subject", $._body),
+        optional(field("of", seq("of", sep($.clause, ";")))),
+        optional(field("catch", seq("catch", sep($.clause, ";")))),
+        optional(field("after", alias(seq("after", $._body), $.after))),
+        "end"
+      ),
 
     // either an escape sequence or a printable ASCII character
     character: ($) => seq("$", choice($.escape_sequence, /[\x20-\x7f]/)),

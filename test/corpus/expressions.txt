@@ -208,6 +208,85 @@ end.
       (atom))))
 
 ================================================================================
+try
+================================================================================
+
+try Expr
+catch
+  Pattern when Guard -> ok
+end.
+
+try Expr of
+  Pattern when Guard -> ok
+after
+  error
+end.
+
+try
+  Expr,
+  Expr1
+of
+  Pattern when Guard -> ok
+end.
+
+try Expr
+catch
+  throw:Thrown -> Thrown;
+  exit:_Reason -> exit;
+  error:Reason:Stacktrace -> Stacktrace
+end.
+
+--------------------------------------------------------------------------------
+
+(source
+  (try
+    (variable)
+    (clause
+      (variable)
+      (guard
+        (variable))
+      (atom)))
+  (try
+    (variable)
+    (clause
+      (variable)
+      (guard
+        (variable))
+      (atom))
+    (after)
+    (after
+      (atom)))
+  (try
+    (body
+      (variable))
+    (body
+      (variable))
+    (clause
+      (variable)
+      (guard
+        (variable))
+      (atom)))
+  (try
+    (variable)
+    (clause
+      (binary_operator
+        (atom)
+        (variable))
+      (variable))
+    (clause
+      (binary_operator
+        (atom)
+        (variable))
+      (atom))
+    (clause
+      (binary_operator
+        (binary_operator
+          (atom)
+          (variable))
+        (variable))
+      (variable))))
+
+================================================================================
 unary operators
 ================================================================================
 
