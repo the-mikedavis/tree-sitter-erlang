@@ -64,6 +64,10 @@
           "named": true
         },
         {
+          "type": "macro",
+          "named": true
+        },
+        {
           "type": "map",
           "named": true
         },
@@ -171,6 +175,10 @@
         },
         {
           "type": "list",
+          "named": true
+        },
+        {
+          "type": "macro",
           "named": true
         },
         {
@@ -308,6 +316,10 @@
           },
           {
             "type": "list",
+            "named": true
+          },
+          {
+            "type": "macro",
             "named": true
           },
           {
@@ -555,6 +567,10 @@
             "named": true
           },
           {
+            "type": "macro",
+            "named": true
+          },
+          {
             "type": "map",
             "named": true
           },
@@ -648,6 +664,10 @@
         },
         {
           "type": "list",
+          "named": true
+        },
+        {
+          "type": "macro",
           "named": true
         },
         {
@@ -746,6 +766,10 @@
           "named": true
         },
         {
+          "type": "macro",
+          "named": true
+        },
+        {
           "type": "map",
           "named": true
         },
@@ -838,6 +862,10 @@
         },
         {
           "type": "list",
+          "named": true
+        },
+        {
+          "type": "macro",
           "named": true
         },
         {
@@ -944,6 +972,10 @@
             "named": true
           },
           {
+            "type": "macro",
+            "named": true
+          },
+          {
             "type": "map",
             "named": true
           },
@@ -1039,6 +1071,10 @@
           },
           {
             "type": "list",
+            "named": true
+          },
+          {
+            "type": "macro",
             "named": true
           },
           {
@@ -1153,6 +1189,10 @@
           },
           {
             "type": "list",
+            "named": true
+          },
+          {
+            "type": "macro",
             "named": true
           },
           {
@@ -1289,6 +1329,10 @@
             "named": true
           },
           {
+            "type": "macro",
+            "named": true
+          },
+          {
             "type": "map",
             "named": true
           },
@@ -1405,6 +1449,10 @@
             "named": true
           },
           {
+            "type": "macro",
+            "named": true
+          },
+          {
             "type": "map",
             "named": true
           },
@@ -1497,6 +1545,10 @@
         },
         {
           "type": "list",
+          "named": true
+        },
+        {
+          "type": "macro",
           "named": true
         },
         {
@@ -1612,6 +1664,10 @@
             "named": true
           },
           {
+            "type": "macro",
+            "named": true
+          },
+          {
             "type": "map",
             "named": true
           },
@@ -1665,6 +1721,10 @@
         "types": [
           {
             "type": "atom",
+            "named": true
+          },
+          {
+            "type": "macro",
             "named": true
           },
           {
@@ -1755,6 +1815,10 @@
           },
           {
             "type": "list",
+            "named": true
+          },
+          {
+            "type": "macro",
             "named": true
           },
           {
@@ -1856,6 +1920,10 @@
             "named": true
           },
           {
+            "type": "macro",
+            "named": true
+          },
+          {
             "type": "map",
             "named": true
           },
@@ -1954,6 +2022,10 @@
             "named": true
           },
           {
+            "type": "macro",
+            "named": true
+          },
+          {
             "type": "map",
             "named": true
           },
@@ -2047,6 +2119,10 @@
         },
         {
           "type": "list",
+          "named": true
+        },
+        {
+          "type": "macro",
           "named": true
         },
         {
@@ -2165,6 +2241,10 @@
           "named": true
         },
         {
+          "type": "macro",
+          "named": true
+        },
+        {
           "type": "map",
           "named": true
         },
@@ -2197,6 +2277,40 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "macro",
+    "named": true,
+    "fields": {
+      "arguments": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "arguments",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "atom",
+            "named": true
+          },
+          {
+            "type": "quoted_atom",
+            "named": true
+          },
+          {
+            "type": "variable",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -2276,6 +2390,10 @@
         },
         {
           "type": "list",
+          "named": true
+        },
+        {
+          "type": "macro",
           "named": true
         },
         {
@@ -2385,6 +2503,10 @@
             "named": true
           },
           {
+            "type": "macro",
+            "named": true
+          },
+          {
             "type": "quoted_atom",
             "named": true
           },
@@ -2400,6 +2522,10 @@
         "types": [
           {
             "type": "atom",
+            "named": true
+          },
+          {
+            "type": "macro",
             "named": true
           },
           {
@@ -2486,6 +2612,10 @@
         },
         {
           "type": "list",
+          "named": true
+        },
+        {
+          "type": "macro",
           "named": true
         },
         {
@@ -2589,6 +2719,10 @@
         },
         {
           "type": "list",
+          "named": true
+        },
+        {
+          "type": "macro",
           "named": true
         },
         {
@@ -2699,6 +2833,10 @@
             "named": true
           },
           {
+            "type": "macro",
+            "named": true
+          },
+          {
             "type": "map",
             "named": true
           },
@@ -2752,6 +2890,10 @@
         "types": [
           {
             "type": "atom",
+            "named": true
+          },
+          {
+            "type": "macro",
             "named": true
           },
           {
@@ -2877,6 +3019,10 @@
           "named": true
         },
         {
+          "type": "macro",
+          "named": true
+        },
+        {
           "type": "map",
           "named": true
         },
@@ -2977,6 +3123,10 @@
           },
           {
             "type": "list",
+            "named": true
+          },
+          {
+            "type": "macro",
             "named": true
           },
           {
@@ -3175,6 +3325,10 @@
   },
   {
     "type": ">>",
+    "named": false
+  },
+  {
+    "type": "?",
     "named": false
   },
   {

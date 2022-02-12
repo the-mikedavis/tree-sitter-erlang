@@ -126,37 +126,29 @@ attributes
 (source
   (attribute
     (atom)
-    (arguments)
     (arguments
-      (atom))
-    (arguments))
+      (atom)))
   (attribute
     (atom)
-    (arguments)
     (arguments
       (string
-        (quoted_content)))
-    (arguments))
+        (quoted_content))))
   (attribute
     (atom)
-    (arguments)
     (arguments
       (list
         (binary_operator
           (atom)
-          (integer))))
-    (arguments))
+          (integer)))))
   (attribute
     (atom)
-    (arguments)
     (arguments
       (tuple
         (atom)
         (list
           (binary_operator
             (atom)
-            (integer)))))
-    (arguments)))
+            (integer)))))))
 
 ================================================================================
 type declarations
@@ -177,3 +169,30 @@ type declarations
         (call
           (atom)
           (arguments))))))
+
+================================================================================
+macro declarations
+================================================================================
+
+-define(MIN(X, Y), if X < Y -> X; true -> Y end).
+
+--------------------------------------------------------------------------------
+
+(source
+  (attribute
+    (atom)
+    (arguments
+      (call
+        (variable)
+        (arguments
+          (variable)
+          (variable)))
+      (if
+        (clause
+          (binary_operator
+            (variable)
+            (variable))
+          (variable))
+        (clause
+          (atom)
+          (variable))))))

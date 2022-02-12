@@ -99,9 +99,7 @@ module.exports = grammar({
       prec(PREC.PARENS_EXPR, parens($._expression)),
 
     // macro identifiers go here once implemented:
-    _identifier: ($) => choice($._atom, $.variable),
-
-    variable: ($) => /[A-Z_][a-zA-Z0-9_@]*/,
+    _identifier: ($) => choice($._atom, $.variable, $.macro),
 
     _atom: ($) => choice($.atom, $.quoted_atom),
 
@@ -112,6 +110,17 @@ module.exports = grammar({
         field("quoted_start", "'"),
         $.quoted_content,
         field("quoted_end", "'")
+      ),
+
+    variable: ($) => /[A-Z_][a-zA-Z0-9_@]*/,
+
+    macro: ($) =>
+      prec.right(
+        seq(
+          "?",
+          field("name", choice($._atom, $.variable)),
+          optional(field("arguments", $.arguments))
+        )
       ),
 
     // One can write multiple strings with optional whitespace in between.
