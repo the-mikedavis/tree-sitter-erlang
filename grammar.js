@@ -61,6 +61,7 @@ module.exports = grammar({
         "-",
         field("name", alias(choice("spec", "callback"), $.atom)),
         sep($.stab_clause, ";"),
+        optional(seq("when", $.guard)),
         "."
       ),
 
