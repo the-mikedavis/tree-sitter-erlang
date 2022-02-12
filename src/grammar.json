@@ -1032,21 +1032,17 @@
       ]
     },
     "stab_clause": {
-      "type": "PREC",
-      "value": 0,
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "_named_stab_clause"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "_anonymous_stab_clause"
-          }
-        ]
-      }
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_named_stab_clause"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_anonymous_stab_clause"
+        }
+      ]
     },
     "_named_stab_clause": {
       "type": "PREC_LEFT",
@@ -1246,44 +1242,36 @@
       ]
     },
     "_qualified_function": {
-      "type": "PREC",
-      "value": 0,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "FIELD",
-            "name": "module",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_literal"
-            }
-          },
-          {
-            "type": "STRING",
-            "value": ":"
-          },
-          {
-            "type": "FIELD",
-            "name": "function",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_literal"
-            }
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "module",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_literal"
           }
-        ]
-      }
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "FIELD",
+          "name": "function",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_literal"
+          }
+        }
+      ]
     },
     "_unqualified_function": {
-      "type": "PREC",
-      "value": 0,
+      "type": "FIELD",
+      "name": "function",
       "content": {
-        "type": "FIELD",
-        "name": "function",
-        "content": {
-          "type": "SYMBOL",
-          "name": "_literal"
-        }
+        "type": "SYMBOL",
+        "name": "_literal"
       }
     },
     "function_capture": {

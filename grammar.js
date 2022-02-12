@@ -10,6 +10,7 @@ const RIGHT_ASSOC_BINARY_OPS = ["!", "=", "++", "--", "||"];
 const UNARY_OPS = ["+", "-", "not", "bnot"];
 const PREC = {
   COMMENT: -1,
+  PARENS_EXPR: -1,
   COLON: 100,
   POUND: 95,
   PREFIX_OP: 90,
@@ -64,7 +65,8 @@ module.exports = grammar({
         $._parenthesized_expression
       ),
 
-    _parenthesized_expression: ($) => prec(-1, parens($._expression)),
+    _parenthesized_expression: ($) =>
+      prec(PREC.PARENS_EXPR, parens($._expression)),
 
     // macro identifiers go here once implemented:
     _identifier: ($) => choice($._atom, $.variable),
@@ -173,12 +175,10 @@ module.exports = grammar({
 
     // function: ($) => prec.right(sep1($._named_stab_clause, ";")),
 
-    stab_clause: ($) =>
-      prec(0, choice($._named_stab_clause, $._anonymous_stab_clause)),
+    stab_clause: ($) => choice($._named_stab_clause, $._anonymous_stab_clause),
 
     _named_stab_clause: ($) =>
       prec.left(
-        0,
         seq(
           field("name", $._identifier),
           $.arguments,
@@ -190,7 +190,6 @@ module.exports = grammar({
 
     _anonymous_stab_clause: ($) =>
       prec.left(
-        0,
         seq(
           $.arguments,
           optional(field("guard", seq("when", $._guard))),
@@ -209,12 +208,9 @@ module.exports = grammar({
       seq(choice($._qualified_function, $._unqualified_function), $.arguments),
 
     _qualified_function: ($) =>
-      prec(
-        0,
-        seq(field("module", $._literal), ":", field("function", $._literal))
-      ),
+      seq(field("module", $._literal), ":", field("function", $._literal)),
 
-    _unqualified_function: ($) => prec(0, field("function", $._literal)),
+    _unqualified_function: ($) => field("function", $._literal),
 
     function_capture: ($) =>
       prec.left(
