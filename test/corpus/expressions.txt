@@ -247,7 +247,7 @@ try Expr
 catch
   throw:Thrown -> Thrown;
   exit:_Reason -> exit;
-  error:Reason:Stacktrace -> Stacktrace
+  error:{error,Reason}:Stacktrace -> Stacktrace
 end.
 
 --------------------------------------------------------------------------------
@@ -295,7 +295,9 @@ end.
       (binary_operator
         (binary_operator
           (atom)
-          (variable))
+          (tuple
+            (atom)
+            (variable)))
         (variable))
       (variable))))
 

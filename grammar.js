@@ -197,7 +197,7 @@ module.exports = grammar({
 
     binary_operator: ($) =>
       choice(
-        binaryOp($, PREC.COLON, prec, ":", $._expression, $._literal),
+        binaryOp($, PREC.COLON, prec.left, ":"),
         binaryOp($, PREC.MULT_OP, prec.left, choice(...MULT_OPS)),
         binaryOp($, PREC.ADD_OP, prec.left, choice(...ADD_OPS)),
         binaryOp($, PREC.LIST_OP, prec.right, choice(...LIST_OPS)),
