@@ -109,67 +109,6 @@ module.exports = grammar({
     _parenthesized_expression: ($) =>
       prec(PREC.PARENS_EXPR, parens($._expression)),
 
-    // macro identifiers go here once implemented:
-    _identifier: ($) => choice($._atom, $.variable, $.macro),
-
-    _atom: ($) => choice($.atom, $.quoted_atom),
-
-    atom: ($) => token(/[a-z][a-zA-Z0-9_@]*/),
-
-    quoted_atom: ($) =>
-      seq(
-        field("quoted_start", "'"),
-        repeat(choice($.quoted_content, alias("\\'", $.escape_sequence))),
-        field("quoted_end", "'")
-      ),
-
-    variable: ($) => /[A-Z_][a-zA-Z0-9_@]*/,
-
-    macro: ($) =>
-      prec.right(
-        seq(
-          "?",
-          field("name", choice($._atom, $.variable)),
-          optional(field("arguments", $.arguments))
-        )
-      ),
-
-    // One can write multiple strings with optional whitespace in between.
-    // The strings are combined:
-    //     erl> "hello""world".
-    //     "helloworld"
-    // Note that we don't combined these strings: each string gets its own
-    // node. I believe this will behave more predictably for anyone using
-    // tree-sitter for motion (within an editor for example).
-    _strings: ($) => prec.right(repeat1($.string)),
-
-    string: ($) =>
-      seq(
-        field("quoted_start", '"'),
-        repeat(choice($.escape_sequence, $.quoted_content)),
-        field("quoted_end", '"')
-      ),
-
-    escape_sequence: ($) =>
-      token(
-        seq(
-          "\\",
-          choice(
-            // escapes for special characters
-            /[bdefnrstv\'\"\\]/,
-            // hexadecimal
-            /x[\da-fA-F]{2}/,
-            /x{[\da-fA-F]+}/,
-            // octal
-            /[0-7]{1,3}/,
-            // control sequences,
-            /\^[a-fA-F]/
-          )
-        )
-      ),
-
-    quoted_content: ($) => /([^\\\"\']+|[\\\"\'])/,
-
     bitstring: ($) => seq("<<", optional($._items), ">>"),
     tuple: ($) => seq("{", optional($._items), "}"),
     list: ($) => seq("[", optional($._items), "]"),
@@ -314,8 +253,8 @@ module.exports = grammar({
         "end"
       ),
 
-    // either an escape sequence or a printable ASCII character
-    character: ($) => seq("$", choice($.escape_sequence, /[\x20-\x7f]/)),
+    // an escape sequence, printable ASCII character, or unicode
+    character: ($) => seq("$", choice($.escape_sequence, /[^\\]/)),
 
     _number: ($) => choice($.integer, $.float),
 
@@ -330,6 +269,66 @@ module.exports = grammar({
       ),
 
     float: ($) => /[0-9][0-9_]*\.[0-9_]+(e-?[0-9]+)?/,
+
+    _identifier: ($) => choice($._atom, $.variable, $.macro),
+
+    _atom: ($) => choice($.atom, $.quoted_atom),
+
+    atom: ($) => token(/[a-z][a-zA-Z0-9_@]*/),
+
+    quoted_atom: ($) =>
+      seq(
+        field("quoted_start", "'"),
+        repeat(choice($.quoted_content, alias("\\'", $.escape_sequence))),
+        field("quoted_end", "'")
+      ),
+
+    variable: ($) => /[A-Z_][a-zA-Z0-9_@]*/,
+
+    macro: ($) =>
+      prec.right(
+        seq(
+          "?",
+          field("name", choice($._atom, $.variable)),
+          optional(field("arguments", $.arguments))
+        )
+      ),
+
+    // One can write multiple strings with optional whitespace in between.
+    // The strings are combined:
+    //     erl> "hello""world".
+    //     "helloworld"
+    // Note that we don't combined these strings: each string gets its own
+    // node. I believe this will behave more predictably for anyone using
+    // tree-sitter for motion (within an editor for example).
+    _strings: ($) => prec.right(repeat1($.string)),
+
+    string: ($) =>
+      seq(
+        field("quoted_start", '"'),
+        repeat(choice($.escape_sequence, $.quoted_content)),
+        field("quoted_end", '"')
+      ),
+
+    escape_sequence: ($) =>
+      token(
+        seq(
+          "\\",
+          choice(
+            // escapes for special characters
+            /[bdefnrstv\'\"\\]/,
+            // hexadecimal
+            /x[\da-fA-F]{2}/,
+            /x{[\da-fA-F]+}/,
+            // octal
+            /[0-7]{1,3}/,
+            // control sequences,
+            /\^[a-fA-F]/
+          )
+        )
+      ),
+
+    quoted_content: ($) => /([^\\\"\']+|[\\\"\'])/,
 
     // Used in typespecs:
     //     -type t :: [integer(), ...].

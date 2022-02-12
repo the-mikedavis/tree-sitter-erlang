@@ -62,6 +62,7 @@ numbers
 $a        %% erlang docs consider characters to be numbers
 $-
 $\n
+$÷        %% unicode allowed
 1
 100
 1_000_000
@@ -81,6 +82,8 @@ $\n
   (character)
   (character
     (escape_sequence))
+  (character)
+  (comment)
   (integer)
   (integer)
   (integer)
