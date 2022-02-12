@@ -381,8 +381,13 @@ macro declarations
 
 -define(MIN(X, Y), if X < Y -> X; true -> Y end).
 -define(STRING(X), ?UINT32((size(X))), (X)/binary).
+
 %% this is a funny/cool usage from the ssh test suite in OTP:
 -define(BAD_PASSWORD, "NOT-"?PASSWORD).
+
+-define(GOOD_FORMAT(Format),
+        Format =:= ?GOOD;
+        binary_part(Format, 0, 4) =:= <<"good">>).
 
 --------------------------------------------------------------------------------
 
@@ -432,7 +437,29 @@ macro declarations
       (string
         (quoted_content))
       (macro
-        (variable)))))
+        (variable))))
+  (attribute
+    (atom)
+    (arguments
+      (call
+        (variable)
+        (arguments
+          (variable)))
+      (guard
+        (binary_operator
+          (variable)
+          (macro
+            (variable)))
+        (binary_operator
+          (call
+            (atom)
+            (arguments
+              (variable)
+              (integer)
+              (integer)))
+          (bitstring
+            (string
+              (quoted_content))))))))
 
 ================================================================================
 macro declaration of a function clause
