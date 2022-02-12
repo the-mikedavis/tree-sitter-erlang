@@ -3,11 +3,9 @@ const MULT_OPS = ["/", "*", "div", "rem", "band", "and"];
 const ADD_OPS = ["+", "-", "bor", "bxor", "bsl", "bsr", "or", "xor"];
 const LIST_OPS = ["++", "--"];
 const COMP_OPS = ["==", "/=", "=<", "<", ">=", ">", "=:=", "=/="];
-
-const LEFT_ASSOC_BINARY_OPS = ["=>", ":="];
-
-const RIGHT_ASSOC_BINARY_OPS = ["!", "=", "++", "--", "||"];
+const DOUBLE_OPS = ["||", "::"];
 const UNARY_OPS = ["+", "-", "not", "bnot"];
+
 const PREC = {
   COMMENT: -1,
   PARENS_EXPR: -1,
@@ -23,7 +21,7 @@ const PREC = {
   MATCH_SEND: 55,
   CATCH: 50,
   BAR: 45,
-  DOUBLE_BAR: 35,
+  DOUBLE_OP: 35,
   ARROW: 30,
 };
 
@@ -187,7 +185,7 @@ module.exports = grammar({
         binaryOp($, PREC.ANDALSO, prec.left, "andalso"),
         binaryOp($, PREC.ORELSE, prec.left, "orelse"),
         binaryOp($, PREC.MATCH_SEND, prec.right, choice("=", "!")),
-        binaryOp($, PREC.DOUBLE_BAR, prec.right, "||"),
+        binaryOp($, PREC.DOUBLE_OP, prec.right, choice(...DOUBLE_OPS)),
         binaryOp($, PREC.BAR, prec.left, "|"),
         binaryOp($, PREC.ARROW, prec.left, choice("<-", "<=", "=>"))
       ),

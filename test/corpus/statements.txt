@@ -156,3 +156,23 @@ attributes
             (atom)
             (integer)))))
     (arguments)))
+
+================================================================================
+type declarations
+================================================================================
+
+-type arity() :: non_neg_integer().
+
+--------------------------------------------------------------------------------
+
+(source
+  (attribute
+    (atom)
+    (arguments
+      (binary_operator
+        (call
+          (atom)
+          (arguments))
+        (call
+          (atom)
+          (arguments))))))
