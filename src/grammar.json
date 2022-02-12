@@ -205,7 +205,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "_expression"
+                  "name": "_body"
                 },
                 {
                   "type": "ALIAS",

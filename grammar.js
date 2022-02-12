@@ -86,7 +86,7 @@ module.exports = grammar({
           // The second argument (the body) of a macro definition is allowed
           // some extra funky syntax. For example with _named_stab_clause,
           // you can use a macro to write functions.
-          choice($._expression, alias($._named_stab_clause, $.function))
+          choice($._body, alias($._named_stab_clause, $.function))
         )
       ),
 

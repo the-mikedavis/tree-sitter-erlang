@@ -380,6 +380,7 @@ macro declarations
 ================================================================================
 
 -define(MIN(X, Y), if X < Y -> X; true -> Y end).
+-define(STRING(X), ?UINT32((size(X))), (X)/binary).
 
 --------------------------------------------------------------------------------
 
@@ -402,7 +403,25 @@ macro declarations
         (clause
           (guard
             (atom))
-          (variable))))))
+          (variable)))))
+  (attribute
+    (atom)
+    (arguments
+      (call
+        (variable)
+        (arguments
+          (variable)))
+      (body
+        (macro
+          (variable)
+          (arguments
+            (call
+              (atom)
+              (arguments
+                (variable)))))
+        (binary_operator
+          (variable)
+          (atom))))))
 
 ================================================================================
 macro declaration of a function clause

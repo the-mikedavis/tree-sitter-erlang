@@ -154,6 +154,10 @@
           "named": true
         },
         {
+          "type": "body",
+          "named": true
+        },
+        {
           "type": "call",
           "named": true
         },
