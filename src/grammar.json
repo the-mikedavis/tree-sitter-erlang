@@ -25,8 +25,13 @@
           "name": "function"
         },
         {
-          "type": "SYMBOL",
-          "name": "spec"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_spec"
+          },
+          "named": true,
+          "value": "attribute"
         },
         {
           "type": "SEQ",
@@ -111,7 +116,7 @@
         }
       ]
     },
-    "spec": {
+    "_spec": {
       "type": "SEQ",
       "members": [
         {
@@ -119,8 +124,17 @@
           "value": "-"
         },
         {
-          "type": "STRING",
-          "value": "spec"
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "ALIAS",
+            "content": {
+              "type": "STRING",
+              "value": "spec"
+            },
+            "named": true,
+            "value": "atom"
+          }
         },
         {
           "type": "SEQ",

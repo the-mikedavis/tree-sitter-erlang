@@ -94,6 +94,32 @@
     }
   },
   {
+    "type": "attribute",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "atom",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "stab_clause",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "binary_operator",
     "named": true,
     "fields": {
@@ -1668,6 +1694,10 @@
           "named": true
         },
         {
+          "type": "attribute",
+          "named": true
+        },
+        {
           "type": "binary_operator",
           "named": true
         },
@@ -1720,10 +1750,6 @@
           "named": true
         },
         {
-          "type": "spec",
-          "named": true
-        },
-        {
           "type": "string",
           "named": true
         },
@@ -1733,21 +1759,6 @@
         },
         {
           "type": "variable",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "spec",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "stab_clause",
           "named": true
         }
       ]
@@ -2286,10 +2297,6 @@
   },
   {
     "type": "rem",
-    "named": false
-  },
-  {
-    "type": "spec",
     "named": false
   },
   {

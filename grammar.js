@@ -44,13 +44,14 @@ module.exports = grammar({
     source: ($) => repeat(choice($._statement, $._expression)),
 
     _statement: ($) =>
-      choice($.function, $.spec, seq(sep($._expression, ","), $._terminator)),
+      choice($.function, alias($._spec, $.attribute), seq(sep($._expression, ","), $._terminator)),
 
     _terminator: ($) => choice(".", "\n"),
 
     function: ($) => seq(sep($._named_stab_clause, ";"), $._terminator),
 
-    spec: ($) => seq("-", "spec", sep($.stab_clause, ";"), $._terminator),
+    _spec: ($) =>
+      seq("-", field("name", alias("spec", $.atom)), sep($.stab_clause, ";"), $._terminator),
 
     // attribute: ($) =>
     //   seq("-", field("name", $._atom), alias(optionalParens($._items), $.arguments), $._terminator),

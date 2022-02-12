@@ -97,7 +97,8 @@ specs
 --------------------------------------------------------------------------------
 
 (source
-  (spec
+  (attribute
+    (atom)
     (stab_clause
       (atom)
       (arguments
