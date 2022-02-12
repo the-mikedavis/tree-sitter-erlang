@@ -9,6 +9,7 @@ const DOUBLE_OPS = ["||", "::"];
 const PREC = {
   COMMENT: -1,
   PARENS_EXPR: -1,
+  MACRO: -1,
   COLON: 100,
   POUND: 95,
   UNARY: 90,
@@ -24,7 +25,6 @@ const PREC = {
   BAR: 45,
   DOUBLE_OP: 35,
   ARROW: 30,
-  MACRO: 1,
 };
 
 module.exports = grammar({

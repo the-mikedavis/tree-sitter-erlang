@@ -973,7 +973,7 @@
         },
         {
           "type": "PREC",
-          "value": 1,
+          "value": -1,
           "content": {
             "type": "SEQ",
             "members": [

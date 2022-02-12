@@ -48,12 +48,11 @@ fun () -> X end().
         (arguments)
         (variable)))
     (arguments))
-  (unary_operator
-    (macro
-      (atom))
-    (binary_operator
-      (variable)
-      (integer))))
+  (macro
+    (atom))
+  (binary_operator
+    (variable)
+    (integer)))
 
 ================================================================================
 blocks
@@ -270,6 +269,12 @@ catch
   error:{error,Reason}:Stacktrace -> Stacktrace
 end.
 
+try Expr of
+  _ -> ?MACRO
+catch
+  _:_ -> erlang:error(badarg)
+end.
+
 --------------------------------------------------------------------------------
 
 (source
@@ -319,7 +324,22 @@ end.
             (atom)
             (variable)))
         (variable))
-      (variable))))
+      (variable)))
+  (try
+    (variable)
+    (clause
+      (variable)
+      (macro
+        (variable)))
+    (clause
+      (binary_operator
+        (variable)
+        (variable))
+      (call
+        (atom)
+        (atom)
+        (arguments
+          (atom))))))
 
 ================================================================================
 unary operators
