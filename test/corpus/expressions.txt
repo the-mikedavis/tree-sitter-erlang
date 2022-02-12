@@ -113,7 +113,9 @@ if
 if
   X > Y -> X;
   X =< Y -> Y
-end
+end.
+
+if X =:= ok; Y =:= ok -> ok; true -> error end.
 
 --------------------------------------------------------------------------------
 
@@ -128,7 +130,19 @@ end
       (binary_operator
         (variable)
         (variable))
-      (variable))))
+      (variable)))
+  (if
+    (clause
+      (binary_operator
+        (variable)
+        (atom))
+      (binary_operator
+        (variable)
+        (atom))
+      (atom))
+    (clause
+      (atom)
+      (atom))))
 
 ================================================================================
 case
