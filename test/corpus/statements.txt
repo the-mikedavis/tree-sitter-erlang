@@ -356,6 +356,7 @@ type declarations
 -type base8() :: 0..7.
 -type base16() :: $0..$9 | $a..$f.
 -type days() :: 0..?DAYS.
+-type negative_range() :: -5..-1.
 -type my_fun() :: fun() | fun((atom()) -> term()) | atom().
 
 --------------------------------------------------------------------------------
@@ -444,6 +445,16 @@ type declarations
           (integer)
           (macro
             (variable))))))
+  (attribute
+    (atom)
+    (arguments
+      (binary_operator
+        (call
+          (atom)
+          (arguments))
+        (binary_operator
+          (integer)
+          (integer)))))
   (unary_operator
     (atom))
   (binary_operator

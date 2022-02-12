@@ -356,20 +356,16 @@ catch throw(bye).
 --------------------------------------------------------------------------------
 
 (source
-  (unary_operator
-    (integer))
-  (unary_operator
-    (float))
+  (integer)
+  (float)
   (unary_operator
     (atom))
   (binary_operator
-    (unary_operator
-      (integer))
+    (integer)
     (integer))
   (binary_operator
     (integer)
-    (unary_operator
-      (integer)))
+    (integer))
   (binary_operator
     (atom)
     (unary_operator
