@@ -87,6 +87,7 @@ module.exports = grammar({
         $.block,
         $.if,
         $.case,
+        $.receive,
         $._parenthesized_expression
       ),
 
@@ -200,23 +201,29 @@ module.exports = grammar({
     stab_clause: ($) => choice($._named_stab_clause, $._anonymous_stab_clause),
 
     _named_stab_clause: ($) =>
-      prec.left(
-        seq(
-          field("name", $._identifier),
-          $.arguments,
-          optional(seq("when", $.guard)),
-          "->",
-          $._body
-        )
+      seq(
+        field("name", $._identifier),
+        field("pattern", $.arguments),
+        optional(field("guard", seq("when", $.guard))),
+        "->",
+        field("body", $._body)
       ),
 
     _anonymous_stab_clause: ($) =>
-      prec.left(
-        seq($.arguments, optional(seq("when", $.guard)), "->", $._body)
+      seq(
+        field("pattern", $.arguments),
+        optional(field("guard", seq("when", $.guard))),
+        "->",
+        field("body", $._body)
       ),
 
-    _anonymous_stab_clause_no_parens: ($) =>
-      seq($._items, optional(seq("when", $.guard)), "->", $._body),
+    clause: ($) =>
+      seq(
+        field("pattern", $._items),
+        optional(field("guard", seq("when", $.guard))),
+        "->",
+        field("body", $._body)
+      ),
 
     guard: ($) => sep($._items, ";"),
 
@@ -247,18 +254,23 @@ module.exports = grammar({
 
     block: ($) => seq("begin", optional($._items), "end"),
 
-    if: ($) => seq("if", sep($.if_clause, ";"), "end"),
+    if: ($) => seq("if", sep(alias($._if_clause, $.clause), ";"), "end"),
 
-    if_clause: ($) => seq($._expression, "->", $._body),
+    _if_clause: ($) => seq($._expression, "->", $._body),
 
     case: ($) =>
       seq(
         "case",
         field("subject", $._expression),
         "of",
-        sep(alias($._anonymous_stab_clause_no_parens, $.case_clause), ";"),
+        sep($.clause, ";"),
         "end"
       ),
+
+    receive: ($) =>
+      seq("receive", optional(sep($.clause, ";")), optional($.after), "end"),
+
+    after: ($) => seq("after", $._expression, "->", $._body),
 
     // either an escape sequence or a printable ASCII character
     character: ($) => seq("$", choice($.escape_sequence, /[\x20-\x7f]/)),

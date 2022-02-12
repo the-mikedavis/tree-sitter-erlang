@@ -302,9 +302,10 @@ end
     (stab_clause
       (arguments
         (variable))
-      (binary_operator
-        (variable)
-        (integer))
+      (guard
+        (binary_operator
+          (variable)
+          (integer)))
       (variable))
     (stab_clause
       (arguments

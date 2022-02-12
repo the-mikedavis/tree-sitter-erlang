@@ -119,12 +119,12 @@ end
 
 (source
   (if
-    (if_clause
+    (clause
       (binary_operator
         (variable)
         (variable))
       (variable))
-    (if_clause
+    (clause
       (binary_operator
         (variable)
         (variable))
@@ -144,19 +144,65 @@ end
 (source
   (case
     (variable)
-    (case_clause
+    (clause
       (tuple
         (atom)
         (variable))
-      (call
-        (atom)
-        (arguments
-          (variable)))
+      (guard
+        (call
+          (atom)
+          (arguments
+            (variable))))
       (variable))
-    (case_clause
+    (clause
       (tuple
         (atom)
         (variable))
       (tuple
         (atom)
         (variable)))))
+
+================================================================================
+receive
+================================================================================
+
+receive
+  ok ->
+    ok;
+  timeout ->
+    error
+end.
+
+receive
+  ok ->
+    ok
+after
+  5_000 -> error
+end.
+
+receive
+after
+  0 -> ok
+end.
+
+--------------------------------------------------------------------------------
+
+(source
+  (receive
+    (clause
+      (atom)
+      (atom))
+    (clause
+      (atom)
+      (atom)))
+  (receive
+    (clause
+      (atom)
+      (atom))
+    (after
+      (integer)
+      (atom)))
+  (receive
+    (after
+      (integer)
+      (atom))))

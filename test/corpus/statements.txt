@@ -40,9 +40,10 @@ factorial(1) -> 0.
     (atom)
     (arguments
       (variable))
-    (binary_operator
-      (variable)
-      (integer))
+    (guard
+      (binary_operator
+        (variable)
+        (integer)))
     (binary_operator
       (variable)
       (call
