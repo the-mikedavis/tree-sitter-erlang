@@ -216,7 +216,8 @@ unary operators
 not true,
 -1 + 2,
 2 + -1,
-false or not true.
+false or not true,
+catch throw(bye).
 
 --------------------------------------------------------------------------------
 
@@ -238,7 +239,12 @@ false or not true.
   (binary_operator
     (atom)
     (unary_operator
-      (atom))))
+      (atom)))
+  (unary_operator
+    (call
+      (atom)
+      (arguments
+        (atom)))))
 
 ================================================================================
 macros

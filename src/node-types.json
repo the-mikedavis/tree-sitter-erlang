@@ -3180,6 +3180,10 @@
             "named": false
           },
           {
+            "type": "catch",
+            "named": false
+          },
+          {
             "type": "not",
             "named": false
           }
@@ -3385,6 +3389,10 @@
   },
   {
     "type": "case",
+    "named": false
+  },
+  {
+    "type": "catch",
     "named": false
   },
   {

@@ -188,11 +188,11 @@ module.exports = grammar({
         )
       ),
 
-    // todo: unary operators for catch, not, bnot, '-'
-    // and figure out what the erlang parser is doing with '#'
-
     unary_operator: ($) =>
-      choice(unaryOp($, PREC.UNARY, prec, choice(...UNARY_OPS))),
+      choice(
+        unaryOp($, PREC.UNARY, prec, choice(...UNARY_OPS)),
+        unaryOp($, PREC.CATCH, prec, "catch")
+      ),
 
     binary_operator: ($) =>
       choice(
