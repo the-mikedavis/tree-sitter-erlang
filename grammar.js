@@ -119,7 +119,7 @@ module.exports = grammar({
     quoted_atom: ($) =>
       seq(
         field("quoted_start", "'"),
-        $.quoted_content,
+        repeat(choice($.quoted_content, alias("\\'", $.escape_sequence))),
         field("quoted_end", "'")
       ),
 

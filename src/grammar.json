@@ -420,8 +420,25 @@
           }
         },
         {
-          "type": "SYMBOL",
-          "name": "quoted_content"
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "quoted_content"
+              },
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "STRING",
+                  "value": "\\'"
+                },
+                "named": true,
+                "value": "escape_sequence"
+              }
+            ]
+          }
         },
         {
           "type": "FIELD",

@@ -39,6 +39,7 @@ ok
 hello
 '%'      %% escaping '%'
 '123'
+'\''     %% this confusing atom is used in the compiler's scanner
 
 --------------------------------------------------------------------------------
 
@@ -49,7 +50,10 @@ hello
     (quoted_content))
   (comment)
   (quoted_atom
-    (quoted_content)))
+    (quoted_content))
+  (quoted_atom
+    (escape_sequence))
+  (comment))
 
 ================================================================================
 numbers
