@@ -85,6 +85,8 @@ module.exports = grammar({
         $.function_capture,
         $.call,
         $.block,
+        $.if,
+        $.case,
         $._parenthesized_expression
       ),
 
@@ -246,6 +248,27 @@ module.exports = grammar({
       ),
 
     block: ($) => seq("begin", optional($._items), "end"),
+
+    if: ($) => seq("if", sep($.if_clause, ";"), "end"),
+
+    if_clause: ($) => seq($._expression, "->", $._body),
+
+    case: ($) =>
+      seq(
+        "case",
+        field("subject", $._expression),
+        "of",
+        sep($.case_clause, ";"),
+        "end"
+      ),
+
+    case_clause: ($) =>
+      seq(
+        $._items,
+        optional(field("guard", seq("when", $._guard))),
+        "->",
+        $._body
+      ),
 
     // either an escape sequence or a printable ASCII character
     character: ($) => seq("$", choice($.escape_sequence, /[\x20-\x7f]/)),

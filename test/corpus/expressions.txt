@@ -105,3 +105,58 @@ comprehensions
         (integer)
         (integer)
         (integer)))))
+
+================================================================================
+if
+================================================================================
+
+if
+  X > Y -> X;
+  X =< Y -> Y
+end
+
+--------------------------------------------------------------------------------
+
+(source
+  (if
+    (if_clause
+      (binary_operator
+        (variable)
+        (variable))
+      (variable))
+    (if_clause
+      (binary_operator
+        (variable)
+        (variable))
+      (variable))))
+
+================================================================================
+case
+================================================================================
+
+case Var of
+  {ok, X} when is_integer(X) -> X;
+  {error, Reason} -> {error, Reason}
+end
+
+--------------------------------------------------------------------------------
+
+(source
+  (case
+    (variable)
+    (case_clause
+      (tuple
+        (atom)
+        (variable))
+      (call
+        (atom)
+        (arguments
+          (variable)))
+      (variable))
+    (case_clause
+      (tuple
+        (atom)
+        (variable))
+      (tuple
+        (atom)
+        (variable)))))
