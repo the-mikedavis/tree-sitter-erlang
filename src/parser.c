@@ -2239,11 +2239,11 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
     case 7:
       if (lookahead == '"') ADVANCE(172);
       if (lookahead == '%') ADVANCE(179);
+      if (lookahead == '\'') ADVANCE(176);
       if (lookahead == '\\') ADVANCE(180);
       if (('\t' <= lookahead && lookahead <= '\r') ||
           lookahead == ' ') ADVANCE(177);
-      if (lookahead != 0 &&
-          lookahead != '\'') ADVANCE(181);
+      if (lookahead != 0) ADVANCE(181);
       END_STATE();
     case 8:
       if (lookahead == '%') ADVANCE(275);
@@ -2260,12 +2260,12 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       END_STATE();
     case 9:
       if (lookahead == '%') ADVANCE(179);
-      if (lookahead == '\\') ADVANCE(176);
+      if (lookahead == '"' ||
+          lookahead == '\'' ||
+          lookahead == '\\') ADVANCE(176);
       if (('\t' <= lookahead && lookahead <= '\r') ||
           lookahead == ' ') ADVANCE(178);
-      if (lookahead != 0 &&
-          lookahead != '"' &&
-          lookahead != '\'') ADVANCE(181);
+      if (lookahead != 0) ADVANCE(181);
       END_STATE();
     case 10:
       if (lookahead == '-') ADVANCE(84);
@@ -3224,23 +3224,23 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       END_STATE();
     case 177:
       ACCEPT_TOKEN(sym_quoted_content);
+      if (lookahead == '"') ADVANCE(172);
       if (lookahead == '%') ADVANCE(179);
+      if (lookahead == '\'') ADVANCE(176);
       if (lookahead == '\\') ADVANCE(180);
       if (('\t' <= lookahead && lookahead <= '\r') ||
           lookahead == ' ') ADVANCE(177);
-      if (lookahead != 0 &&
-          lookahead != '"' &&
-          lookahead != '\'') ADVANCE(181);
+      if (lookahead != 0) ADVANCE(181);
       END_STATE();
     case 178:
       ACCEPT_TOKEN(sym_quoted_content);
       if (lookahead == '%') ADVANCE(179);
-      if (lookahead == '\\') ADVANCE(176);
+      if (lookahead == '"' ||
+          lookahead == '\'' ||
+          lookahead == '\\') ADVANCE(176);
       if (('\t' <= lookahead && lookahead <= '\r') ||
           lookahead == ' ') ADVANCE(178);
-      if (lookahead != 0 &&
-          lookahead != '"' &&
-          lookahead != '\'') ADVANCE(181);
+      if (lookahead != 0) ADVANCE(181);
       END_STATE();
     case 179:
       ACCEPT_TOKEN(sym_quoted_content);

@@ -158,7 +158,7 @@ module.exports = grammar({
         )
       ),
 
-    quoted_content: ($) => /([^\\\"\']+|\\)/,
+    quoted_content: ($) => /([^\\\"\']+|[\\\"\'])/,
 
     bitstring: ($) => seq("<<", optional($._items), ">>"),
     tuple: ($) => seq("{", optional($._items), "}"),

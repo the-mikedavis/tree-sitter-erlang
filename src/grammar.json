@@ -532,7 +532,7 @@
     },
     "quoted_content": {
       "type": "PATTERN",
-      "value": "([^\\\\\\\"\\']+|\\\\)"
+      "value": "([^\\\\\\\"\\']+|[\\\\\\\"\\'])"
     },
     "bitstring": {
       "type": "SEQ",

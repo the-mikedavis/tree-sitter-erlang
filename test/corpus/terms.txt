@@ -6,6 +6,7 @@ strings
 "hello, world!"
 "hello ""world"
 "hello, \"tree-sitter\"\n"
+"hello, 'tree-sitter'"
 
 --------------------------------------------------------------------------------
 
@@ -23,7 +24,12 @@ strings
     (escape_sequence)
     (quoted_content)
     (escape_sequence)
-    (escape_sequence)))
+    (escape_sequence))
+  (string
+    (quoted_content)
+    (quoted_content)
+    (quoted_content)
+    (quoted_content)))
 
 ================================================================================
 atoms
