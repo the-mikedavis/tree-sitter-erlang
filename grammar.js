@@ -368,15 +368,15 @@ module.exports = grammar({
         seq(
           "\\",
           choice(
-            // escapes for special characters
-            /[bdefnrstv\'\"\\%]/,
             // hexadecimal
             /x[\da-fA-F]{2}/,
             /x{[\da-fA-F]+}/,
             // octal
             /[0-7]{1,3}/,
             // control sequences,
-            /\^[a-zA-Z\[\]\^_\\]/
+            /\^[a-zA-Z\[\]\^_\\]/,
+            // characters
+            /[\x20-\x7f]/,
           )
         )
       ),

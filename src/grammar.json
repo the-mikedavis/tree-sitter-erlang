@@ -2642,10 +2642,6 @@
             "members": [
               {
                 "type": "PATTERN",
-                "value": "[bdefnrstv\\'\\\"\\\\%]"
-              },
-              {
-                "type": "PATTERN",
                 "value": "x[\\da-fA-F]{2}"
               },
               {
@@ -2659,6 +2655,10 @@
               {
                 "type": "PATTERN",
                 "value": "\\^[a-zA-Z\\[\\]\\^_\\\\]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\x20-\\x7f]"
               }
             ]
           }
