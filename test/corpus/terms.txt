@@ -226,6 +226,7 @@ maps
 #{}
 #{a => b, c => d}
 MyMap#{a => b}
+MyMap#{a := b}
 
 --------------------------------------------------------------------------------
 
@@ -236,6 +237,12 @@ MyMap#{a => b}
       (binary_operator
         (atom)
         (atom))
+      (binary_operator
+        (atom)
+        (atom))))
+  (map
+    (variable)
+    (map_content
       (binary_operator
         (atom)
         (atom))))

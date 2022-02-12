@@ -207,7 +207,7 @@ module.exports = grammar({
         binaryOp($, PREC.MATCH_SEND, prec.right, choice("=", "!")),
         binaryOp($, PREC.DOUBLE_OP, prec.right, choice(...DOUBLE_OPS)),
         binaryOp($, PREC.BAR, prec.left, "|"),
-        binaryOp($, PREC.ARROW, prec.left, choice("<-", "<=", "=>"))
+        binaryOp($, PREC.ARROW, prec.left, choice("<-", "<=", "=>", ":="))
       ),
 
     _literal: ($) =>
