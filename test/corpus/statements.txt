@@ -246,3 +246,33 @@ macro declarations
         (clause
           (atom)
           (variable))))))
+
+================================================================================
+record definitions
+================================================================================
+
+-record(person, {name = "a" :: string(), age = 0 :: non_neg_integer()}).
+
+--------------------------------------------------------------------------------
+
+(source
+  (attribute
+    (atom)
+    (arguments
+      (atom)
+      (tuple
+        (binary_operator
+          (binary_operator
+            (atom)
+            (string
+              (quoted_content)))
+          (call
+            (atom)
+            (arguments)))
+        (binary_operator
+          (binary_operator
+            (atom)
+            (integer))
+          (call
+            (atom)
+            (arguments)))))))
