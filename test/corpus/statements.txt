@@ -257,6 +257,8 @@ type declarations
                    | 0
                    | pos_integer().
 -type mylist() :: [integer(), ...].
+-type base8() :: 0..7.
+-type base16() :: 0..9 | $a..$f.
 
 --------------------------------------------------------------------------------
 
@@ -297,7 +299,31 @@ type declarations
         (list
           (call
             (atom)
-            (arguments)))))))
+            (arguments))))))
+  (attribute
+    (atom)
+    (arguments
+      (binary_operator
+        (call
+          (atom)
+          (arguments))
+        (binary_operator
+          (integer)
+          (integer)))))
+  (attribute
+    (atom)
+    (arguments
+      (binary_operator
+        (call
+          (atom)
+          (arguments))
+        (binary_operator
+          (binary_operator
+            (integer)
+            (integer))
+          (binary_operator
+            (character)
+            (character)))))))
 
 ================================================================================
 macro declarations

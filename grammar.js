@@ -19,6 +19,7 @@ const PREC = {
   ANDALSO: 65,
   ORELSE: 60,
   MATCH_SEND: 55,
+  RANGE: 51,
   CATCH: 50,
   BAR: 45,
   DOUBLE_OP: 35,
@@ -209,6 +210,7 @@ module.exports = grammar({
         binaryOp($, PREC.ANDALSO, prec.left, "andalso"),
         binaryOp($, PREC.ORELSE, prec.left, "orelse"),
         binaryOp($, PREC.MATCH_SEND, prec.right, choice("=", "!")),
+        binaryOp($, PREC.RANGE, prec.left, ".."),
         binaryOp($, PREC.DOUBLE_OP, prec.right, choice(...DOUBLE_OPS)),
         binaryOp($, PREC.BAR, prec.left, "|"),
         binaryOp($, PREC.ARROW, prec.left, choice("<-", "<=", "=>", ":="))
