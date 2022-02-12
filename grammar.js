@@ -336,7 +336,8 @@ module.exports = grammar({
 
     _atom: ($) => choice($.atom, $.quoted_atom),
 
-    atom: ($) => token(/[a-z][a-zA-Z0-9_@]*/),
+    // latin1 diacritics are allowed.
+    atom: ($) => token(/[a-z][a-zA-ZÀ-ÿ0-9_@]*/),
 
     quoted_atom: ($) =>
       seq(

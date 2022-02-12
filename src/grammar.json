@@ -2485,7 +2485,7 @@
       "type": "TOKEN",
       "content": {
         "type": "PATTERN",
-        "value": "[a-z][a-zA-Z0-9_@]*"
+        "value": "[a-z][a-zA-ZÀ-ÿ0-9_@]*"
       }
     },
     "quoted_atom": {

@@ -37,6 +37,7 @@ atoms
 
 ok
 hello
+félicien
 '%'      %% escaping '%'
 '123'
 '\''     %% these confusing atoms are used in Erlang scanners
@@ -46,6 +47,7 @@ hello
 --------------------------------------------------------------------------------
 
 (source
+  (atom)
   (atom)
   (atom)
   (quoted_atom
