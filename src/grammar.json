@@ -28,6 +28,15 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
+            "name": "_macro_declaration"
+          },
+          "named": true,
+          "value": "attribute"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
             "name": "_spec"
           },
           "named": true,
@@ -93,8 +102,17 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "_named_stab_clause"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_named_stab_clause"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "macro"
+                }
+              ]
             },
             {
               "type": "REPEAT",
@@ -106,8 +124,17 @@
                     "value": ";"
                   },
                   {
-                    "type": "SYMBOL",
-                    "name": "_named_stab_clause"
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "_named_stab_clause"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "macro"
+                      }
+                    ]
                   }
                 ]
               }
@@ -117,6 +144,85 @@
         {
           "type": "STRING",
           "value": "."
+        }
+      ]
+    },
+    "_macro_declaration": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "-"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "ALIAS",
+            "content": {
+              "type": "STRING",
+              "value": "define"
+            },
+            "named": true,
+            "value": "atom"
+          }
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_macro_arguments"
+          },
+          "named": true,
+          "value": "arguments"
+        },
+        {
+          "type": "STRING",
+          "value": "."
+        }
+      ]
+    },
+    "_macro_arguments": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_expression"
+            },
+            {
+              "type": "STRING",
+              "value": ","
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_expression"
+                },
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_named_stab_clause"
+                  },
+                  "named": true,
+                  "value": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ")"
         }
       ]
     },
@@ -2400,6 +2506,10 @@
   ],
   "conflicts": [
     [
+      "function",
+      "_identifier"
+    ],
+    [
       "function_type",
       "arguments"
     ],
@@ -2415,6 +2525,10 @@
     [
       "_literal",
       "_expression"
+    ],
+    [
+      "_named_stab_clause",
+      "_literal"
     ]
   ],
   "precedences": [],

@@ -170,6 +170,10 @@
           "named": true
         },
         {
+          "type": "function",
+          "named": true
+        },
+        {
           "type": "function_capture",
           "named": true
         },
@@ -1917,7 +1921,7 @@
       },
       "name": {
         "multiple": true,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "atom",
@@ -1939,7 +1943,7 @@
       },
       "pattern": {
         "multiple": true,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "arguments",
@@ -1947,6 +1951,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "macro",
+          "named": true
+        }
+      ]
     }
   },
   {

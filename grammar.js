@@ -32,6 +32,11 @@ module.exports = grammar({
   extras: ($) => [WHITE_SPACE, $.comment],
 
   conflicts: ($) => [
+    // This interestng case: "macro  •  '.'  …" should prefer function,
+    // since function is not allowed under _expresion, so _identifier
+    // should match with higher implicit precedence when the state stack
+    // has longer-matching candidates.
+    [$.function, $._identifier],
     // This case "'if'  'fun'  '('  ')'  •  '->'  …" is impossible syntax,
     // but it makes sense to group 'fun' with its arguments at a higher
     // precedence than letting the arguments win.
@@ -44,6 +49,9 @@ module.exports = grammar({
     // A literal needs to beat an expression so that calls may be recognized
     // in the case of "_parenthesized_expression  •  '('  …".
     [$._literal, $._expression],
+    // This case is needed explicitly for macros:
+    //     "'-'  'define'  '('  _expression  ','  _identifier  •  '('  …"
+    [$._named_stab_clause, $._literal],
   ],
 
   rules: {
@@ -52,6 +60,7 @@ module.exports = grammar({
     _statement: ($) =>
       choice(
         $.function,
+        alias($._macro_declaration, $.attribute),
         alias($._spec, $.attribute),
         $.attribute,
         seq(sep($._expression, ","), $._terminator)
@@ -59,7 +68,27 @@ module.exports = grammar({
 
     _terminator: ($) => choice(".", "\n"),
 
-    function: ($) => seq(sep($._named_stab_clause, ";"), "."),
+    function: ($) => seq(sep(choice($._named_stab_clause, $.macro), ";"), "."),
+
+    _macro_declaration: ($) =>
+      seq(
+        "-",
+        field("name", alias("define", $.atom)),
+        alias($._macro_arguments, $.arguments),
+        "."
+      ),
+
+    _macro_arguments: ($) =>
+      parens(
+        seq(
+          $._expression,
+          ",",
+          // The second argument (the body) of a macro definition is allowed
+          // some extra funky syntax. For example with _named_stab_clause,
+          // you can use a macro to write functions.
+          choice($._expression, alias($._named_stab_clause, $.function))
+        )
+      ),
 
     _spec: ($) =>
       seq(

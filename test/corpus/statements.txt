@@ -405,6 +405,60 @@ macro declarations
           (variable))))))
 
 ================================================================================
+macro declaration of a function clause
+================================================================================
+
+-define(allow(X), is_x_allowed(X) -> true).
+
+--------------------------------------------------------------------------------
+
+(source
+  (attribute
+    (atom)
+    (arguments
+      (call
+        (atom)
+        (arguments
+          (variable)))
+      (function
+        (atom)
+        (arguments
+          (variable))
+        (atom)))))
+
+================================================================================
+function declaration via macro
+================================================================================
+
+%% using a macro for writing function clauses
+?write_clause(x);
+?write_clause(y);
+?write_clause(z);
+defined_by_macro(_) -> error.
+
+--------------------------------------------------------------------------------
+
+(source
+  (comment)
+  (function
+    (macro
+      (atom)
+      (arguments
+        (atom)))
+    (macro
+      (atom)
+      (arguments
+        (atom)))
+    (macro
+      (atom)
+      (arguments
+        (atom)))
+    (atom)
+    (arguments
+      (variable))
+    (atom)))
+
+================================================================================
 record definitions
 ================================================================================
 
