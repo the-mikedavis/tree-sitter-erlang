@@ -44,7 +44,9 @@ module.exports = grammar({
     source: ($) => repeat(choice($._statement, $._expression)),
 
     _statement: ($) =>
-      choice($.function, seq(sep($._expression, ","), choice(".", "\n"))),
+      choice($.function, seq(sep($._expression, ","), $._terminator)),
+
+    _terminator: ($) => choice(".", "\n"),
 
     _expression: ($) =>
       choice(
@@ -172,7 +174,7 @@ module.exports = grammar({
 
     anonymous_function: ($) => seq("fun", sep($.stab_clause, ";"), "end"),
 
-    function: ($) => seq(sep($._named_stab_clause, ";"), "."),
+    function: ($) => seq(sep($._named_stab_clause, ";"), $._terminator),
 
     stab_clause: ($) => choice($._named_stab_clause, $._anonymous_stab_clause),
 
