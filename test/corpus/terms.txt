@@ -38,6 +38,7 @@ atoms
 ok
 hello
 félicien
+östen
 '%'      %% escaping '%'
 '123'
 '\''     %% these confusing atoms are used in Erlang scanners
@@ -47,6 +48,7 @@ félicien
 --------------------------------------------------------------------------------
 
 (source
+  (atom)
   (atom)
   (atom)
   (atom)
@@ -94,6 +96,7 @@ $\^[      %% ctrl+[
 0.1
 2_000.000_002
 1.0000000000000000e+00
+1.18575755E-316
 
 --------------------------------------------------------------------------------
 
@@ -133,6 +136,7 @@ $\^[      %% ctrl+[
   (integer)
   (integer)
   (integer)
+  (float)
   (float)
   (float)
   (float)

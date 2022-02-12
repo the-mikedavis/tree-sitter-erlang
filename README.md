@@ -16,7 +16,8 @@ on macros:
 > that a macro definition is a valid Erlang syntactic form.
 
 This grammar attempts to parse within `define` attributes with best-effort
-but some macro definitions may produce `(ERROR)` nodes.
+but some macro definitions and their resulting macros may produce `(ERROR)`
+nodes.
 
 ## Status
 

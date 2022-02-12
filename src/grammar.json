@@ -2470,7 +2470,7 @@
     },
     "float": {
       "type": "PATTERN",
-      "value": "[0-9][0-9_]*\\.[0-9_]+(e[+-]?[0-9]+)?"
+      "value": "[0-9][0-9_]*\\.[0-9_]+([eE][+-]?[0-9]+)?"
     },
     "_identifier": {
       "type": "CHOICE",
@@ -2506,7 +2506,7 @@
       "type": "TOKEN",
       "content": {
         "type": "PATTERN",
-        "value": "[a-z][a-zA-ZÀ-ÿ0-9_@]*"
+        "value": "[a-zà-öø-ÿ][a-zA-ZÀ-ÿ0-9_@]*"
       }
     },
     "quoted_atom": {

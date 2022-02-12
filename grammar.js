@@ -334,14 +334,14 @@ module.exports = grammar({
         /[1-3]?[0-9]#[0-9a-zA-Z_]+/
       ),
 
-    float: ($) => /[0-9][0-9_]*\.[0-9_]+(e[+-]?[0-9]+)?/,
+    float: ($) => /[0-9][0-9_]*\.[0-9_]+([eE][+-]?[0-9]+)?/,
 
     _identifier: ($) => choice($._atom, $.variable, $.macro),
 
     _atom: ($) => choice($.atom, $.quoted_atom),
 
     // latin1 diacritics are allowed.
-    atom: ($) => token(/[a-z][a-zA-ZÀ-ÿ0-9_@]*/),
+    atom: ($) => token(/[a-zà-öø-ÿ][a-zA-ZÀ-ÿ0-9_@]*/),
 
     quoted_atom: ($) =>
       seq(
