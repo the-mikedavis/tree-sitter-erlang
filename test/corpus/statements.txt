@@ -259,6 +259,7 @@ type declarations
 -type mylist() :: [integer(), ...].
 -type base8() :: 0..7.
 -type base16() :: 0..9 | $a..$f.
+-type my_fun() :: fun() | fun((atom()) -> term()) | atom().
 
 --------------------------------------------------------------------------------
 
@@ -323,7 +324,28 @@ type declarations
             (integer))
           (binary_operator
             (character)
-            (character)))))))
+            (character))))))
+  (attribute
+    (atom)
+    (arguments
+      (binary_operator
+        (call
+          (atom)
+          (arguments))
+        (binary_operator
+          (binary_operator
+            (function_type)
+            (function_type
+              (arguments
+                (call
+                  (atom)
+                  (arguments)))
+              (call
+                (atom)
+                (arguments))))
+          (call
+            (atom)
+            (arguments)))))))
 
 ================================================================================
 macro declarations

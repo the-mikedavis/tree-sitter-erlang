@@ -32,6 +32,10 @@ module.exports = grammar({
   extras: ($) => [WHITE_SPACE, $.comment],
 
   conflicts: ($) => [
+    // This case "'if'  'fun'  '('  ')'  •  '->'  …" is impossible syntax,
+    // but it makes sense to group 'fun' with its arguments at a higher
+    // precedence than letting the arguments win.
+    [$.function_type, $.arguments],
     // Handles a fight between _identifier and attribute caused by unary
     // operators: "'-'  _atom  •  '-'  …"
     [$.attribute, $._identifier],
@@ -92,6 +96,7 @@ module.exports = grammar({
         $.binary_operator,
         $.anonymous_function,
         $.function_capture,
+        $.function_type,
         $.call,
         $.block,
         $.if,
@@ -275,6 +280,9 @@ module.exports = grammar({
           field("arity", $._expression)
         )
       ),
+
+    function_type: ($) =>
+      seq("fun", parens(optional(seq($.arguments, "->", $._expression)))),
 
     block: ($) => seq("begin", optional($._items), "end"),
 
