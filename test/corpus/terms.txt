@@ -64,6 +64,9 @@ $-
 $\n
 $÷        %% unicode allowed
 $         %% space character
+$\^A      %% ctrl+A
+$\^G      %% ctrl+G
+$\^[      %% ctrl+[
 1
 100
 1_000_000
@@ -86,6 +89,15 @@ $         %% space character
   (character)
   (comment)
   (character)
+  (comment)
+  (character
+    (escape_sequence))
+  (comment)
+  (character
+    (escape_sequence))
+  (comment)
+  (character
+    (escape_sequence))
   (comment)
   (integer)
   (integer)

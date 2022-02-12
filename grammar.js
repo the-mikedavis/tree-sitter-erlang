@@ -374,7 +374,7 @@ module.exports = grammar({
             // octal
             /[0-7]{1,3}/,
             // control sequences,
-            /\^[a-fA-F]/
+            /\^[a-zA-Z\[\]\^_\\]/
           )
         )
       ),
