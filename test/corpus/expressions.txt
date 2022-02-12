@@ -206,3 +206,36 @@ end.
     (after
       (integer)
       (atom))))
+
+================================================================================
+unary operators
+================================================================================
+
+-1,
+-2.3e-3,
+not true,
+-1 + 2,
+2 + -1,
+false or not true.
+
+--------------------------------------------------------------------------------
+
+(source
+  (unary_operator
+    (integer))
+  (unary_operator
+    (float))
+  (unary_operator
+    (atom))
+  (binary_operator
+    (unary_operator
+      (integer))
+    (integer))
+  (binary_operator
+    (integer)
+    (unary_operator
+      (integer)))
+  (binary_operator
+    (atom)
+    (unary_operator
+      (atom))))

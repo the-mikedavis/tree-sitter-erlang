@@ -1,17 +1,17 @@
 const WHITE_SPACE = /[\r\n\t\f\v ]+/;
+const UNARY_OPS = ["+", "-", "not", "bnot"];
 const MULT_OPS = ["/", "*", "div", "rem", "band", "and"];
 const ADD_OPS = ["+", "-", "bor", "bxor", "bsl", "bsr", "or", "xor"];
 const LIST_OPS = ["++", "--"];
 const COMP_OPS = ["==", "/=", "=<", "<", ">=", ">", "=:=", "=/="];
 const DOUBLE_OPS = ["||", "::"];
-const UNARY_OPS = ["+", "-", "not", "bnot"];
 
 const PREC = {
   COMMENT: -1,
   PARENS_EXPR: -1,
   COLON: 100,
   POUND: 95,
-  PREFIX_OP: 90,
+  UNARY: 90,
   MULT_OP: 85,
   ADD_OP: 80,
   LIST_OP: 75,
@@ -31,6 +31,9 @@ module.exports = grammar({
   extras: ($) => [WHITE_SPACE, $.comment],
 
   conflicts: ($) => [
+    // Handles a fight between _identifier and attribute caused by unary
+    // operators: "'-'  _atom  •  '-'  …"
+    [$.attribute, $._identifier],
     // Handles the case "_identifier  •  '('  …":
     [$._named_stab_clause, $._literal, $._expression],
     // A literal needs to beat an expression so that calls may be recognized
@@ -80,6 +83,7 @@ module.exports = grammar({
         $.list,
         $.map,
         $.record,
+        $.unary_operator,
         $.binary_operator,
         $.anonymous_function,
         $.function_capture,
@@ -177,6 +181,9 @@ module.exports = grammar({
 
     // todo: unary operators for catch, not, bnot, '-'
     // and figure out what the erlang parser is doing with '#'
+
+    unary_operator: ($) =>
+      choice(unaryOp($, PREC.UNARY, prec, choice(...UNARY_OPS))),
 
     binary_operator: ($) =>
       choice(
@@ -311,6 +318,13 @@ function parens(rule) {
 
 function optionalParens(rule) {
   return choice(parens(rule), rule);
+}
+
+function unaryOp($, precedence, assoc, operator, operand = null) {
+  return assoc(
+    precedence,
+    seq(field("operator", operator), field("operand", operand || $._expression))
+  );
 }
 
 function binaryOp($, precedence, assoc, operator, left = null, right = null) {
