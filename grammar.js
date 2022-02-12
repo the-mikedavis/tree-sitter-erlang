@@ -68,7 +68,7 @@ module.exports = grammar({
       seq(
         "-",
         field("name", $._atom),
-        alias(optionalParens($._items), $.arguments),
+        choice($.arguments, alias($._items, $.arguments)),
         $._terminator
       ),
 
@@ -314,10 +314,6 @@ function sep1(rule, separator) {
 
 function parens(rule) {
   return seq("(", rule, ")");
-}
-
-function optionalParens(rule) {
-  return choice(parens(rule), rule);
 }
 
 function unaryOp($, precedence, assoc, operator, operand = null) {
