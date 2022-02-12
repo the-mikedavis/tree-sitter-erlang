@@ -201,7 +201,7 @@ module.exports = grammar({
 
     _guard: ($) => sep($._items, ";"),
 
-    arguments: ($) => parens($._items),
+    arguments: ($) => parens(optional($._items)),
 
     _body: ($) =>
       choice($._expression, alias(sep1($._expression, ","), $.body)),
