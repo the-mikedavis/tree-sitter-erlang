@@ -143,6 +143,16 @@ specs
 -spec ok_this(term()) -> {ok, term()}.
 -callback after(Reason :: atom()) -> ok.
 
+%% multiple clauses with 'when's
+%% https://github.com/erlang/otp/blob/9e381125bbd93dfa2f17d4954b54aead749bf012/lib/stdlib/src/c.erl#L1080-L1086
+-spec memory(Type) -> Size when
+               Type :: atom(),
+               Size :: non_neg_integer()
+          ; (Types) -> [{Type, Size}] when
+               Types :: [Type],
+               Type :: atom(),
+               Size :: non_neg_integer().
+
 --------------------------------------------------------------------------------
 
 (source
@@ -169,7 +179,49 @@ specs
           (call
             (atom)
             (arguments))))
-      (atom))))
+      (atom)))
+  (comment)
+  (comment)
+  (attribute
+    (atom)
+    (stab_clause
+      (atom)
+      (arguments
+        (variable))
+      (variable))
+    (guard
+      (binary_operator
+        (variable)
+        (call
+          (atom)
+          (arguments)))
+      (binary_operator
+        (variable)
+        (call
+          (atom)
+          (arguments))))
+    (stab_clause
+      (arguments
+        (variable))
+      (list
+        (tuple
+          (variable)
+          (variable))))
+    (guard
+      (binary_operator
+        (variable)
+        (list
+          (variable)))
+      (binary_operator
+        (variable)
+        (call
+          (atom)
+          (arguments)))
+      (binary_operator
+        (variable)
+        (call
+          (atom)
+          (arguments))))))
 
 ================================================================================
 spec with when clause

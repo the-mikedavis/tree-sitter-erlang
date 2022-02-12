@@ -91,7 +91,11 @@ module.exports = grammar({
           // The second argument (the body) of a macro definition is allowed
           // some extra funky syntax. For example with _named_stab_clause,
           // you can use a macro to write functions.
-          choice($._body, alias($._named_stab_clause, $.function), alias($._semicolon_separated_expressions, $.guard))
+          choice(
+            $._body,
+            alias($._named_stab_clause, $.function),
+            alias($._semicolon_separated_expressions, $.guard)
+          )
         )
       ),
 
@@ -101,8 +105,10 @@ module.exports = grammar({
       seq(
         "-",
         field("name", alias(choice("spec", "callback"), $.atom)),
-        sep($.stab_clause, ";"),
-        optional(seq("when", $.guard)),
+        sep(
+          seq($.stab_clause, optional(seq("when", alias($._items, $.guard)))),
+          ";"
+        ),
         "."
       ),
 
