@@ -120,6 +120,11 @@ attributes
 -include("records.hrl").
 -export([ok_this/1]).
 -dialyzer({nowarn_function, [ok_this/1]}).
+-ifdef(debug).
+-define(LOG(X), io:format("~80p~n", [X])).
+-else.
+-define(LOG(X), _ = X).
+-endif.
 
 --------------------------------------------------------------------------------
 
@@ -148,7 +153,40 @@ attributes
         (list
           (binary_operator
             (atom)
-            (integer)))))))
+            (integer))))))
+  (attribute
+    (atom)
+    (arguments
+      (atom)))
+  (attribute
+    (atom)
+    (arguments
+      (call
+        (variable)
+        (arguments
+          (variable)))
+      (call
+        (atom)
+        (atom)
+        (arguments
+          (string
+            (quoted_content))
+          (list
+            (variable))))))
+  (attribute
+    (atom))
+  (attribute
+    (atom)
+    (arguments
+      (call
+        (variable)
+        (arguments
+          (variable)))
+      (binary_operator
+        (variable)
+        (variable))))
+  (attribute
+    (atom)))
 
 ================================================================================
 type declarations

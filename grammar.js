@@ -68,7 +68,7 @@ module.exports = grammar({
       seq(
         "-",
         field("name", $._atom),
-        choice($.arguments, alias($._items, $.arguments)),
+        optional(choice($.arguments, alias($._items, $.arguments))),
         $._terminator
       ),
 
