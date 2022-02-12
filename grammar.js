@@ -25,6 +25,7 @@ const PREC = {
   BAR: 45,
   DOUBLE_OP: 35,
   ARROW: 30,
+  WHEN: 25,
 };
 
 module.exports = grammar({
@@ -112,12 +113,7 @@ module.exports = grammar({
       seq(
         "-",
         field("name", alias(choice("spec", "callback"), $.atom)),
-        optionalParens(
-          sep(
-            seq($.stab_clause, optional(seq("when", alias($._items, $.guard)))),
-            ";"
-          )
-        ),
+        optionalParens(sep($.stab_clause, ";")),
         "."
       ),
 
@@ -217,7 +213,8 @@ module.exports = grammar({
         ),
         binaryOp($, PREC.DOUBLE_OP, prec.right, choice(...DOUBLE_OPS)),
         binaryOp($, PREC.BAR, prec.left, "|"),
-        binaryOp($, PREC.ARROW, prec.left, choice("<-", "<=", "=>", ":="))
+        binaryOp($, PREC.ARROW, prec.left, choice("<-", "<=", "=>", ":=")),
+        binaryOp($, PREC.WHEN, prec.left, "when")
       ),
 
     _literal: ($) =>
@@ -245,12 +242,7 @@ module.exports = grammar({
       ),
 
     clause: ($) =>
-      seq(
-        field("pattern", $._items),
-        optional(field("guard", seq("when", $.guard))),
-        "->",
-        field("body", $._body)
-      ),
+      seq(field("pattern", $._items), "->", field("body", $._body)),
 
     guard: ($) => sep($._items, ";"),
 

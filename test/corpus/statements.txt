@@ -203,40 +203,42 @@ specs
       (atom)
       (arguments
         (variable))
-      (variable))
-    (guard
-      (binary_operator
-        (variable)
-        (call
-          (atom)
-          (arguments)))
-      (binary_operator
-        (variable)
-        (call
-          (atom)
-          (arguments))))
+      (body
+        (binary_operator
+          (variable)
+          (binary_operator
+            (variable)
+            (call
+              (atom)
+              (arguments))))
+        (binary_operator
+          (variable)
+          (call
+            (atom)
+            (arguments)))))
     (stab_clause
       (arguments
         (variable))
-      (list
-        (tuple
+      (body
+        (binary_operator
+          (list
+            (tuple
+              (variable)
+              (variable)))
+          (binary_operator
+            (variable)
+            (list
+              (variable))))
+        (binary_operator
           (variable)
-          (variable))))
-    (guard
-      (binary_operator
-        (variable)
-        (list
-          (variable)))
-      (binary_operator
-        (variable)
-        (call
-          (atom)
-          (arguments)))
-      (binary_operator
-        (variable)
-        (call
-          (atom)
-          (arguments))))))
+          (call
+            (atom)
+            (arguments)))
+        (binary_operator
+          (variable)
+          (call
+            (atom)
+            (arguments)))))))
 
 ================================================================================
 spec with when clause
@@ -254,13 +256,13 @@ spec with when clause
       (atom)
       (arguments
         (variable))
-      (variable))
-    (guard
       (binary_operator
         (variable)
-        (call
-          (atom)
-          (arguments))))))
+        (binary_operator
+          (variable)
+          (call
+            (atom)
+            (arguments)))))))
 
 ================================================================================
 attributes

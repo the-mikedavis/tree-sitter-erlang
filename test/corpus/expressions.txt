@@ -178,10 +178,10 @@ end
   (case
     (variable)
     (clause
-      (tuple
-        (atom)
-        (variable))
-      (guard
+      (binary_operator
+        (tuple
+          (atom)
+          (variable))
         (call
           (atom)
           (arguments
@@ -281,15 +281,15 @@ end.
   (try
     (variable)
     (clause
-      (variable)
-      (guard
+      (binary_operator
+        (variable)
         (variable))
       (atom)))
   (try
     (variable)
     (clause
-      (variable)
-      (guard
+      (binary_operator
+        (variable)
         (variable))
       (atom))
     (after)
@@ -300,8 +300,8 @@ end.
       (variable)
       (variable))
     (clause
-      (variable)
-      (guard
+      (binary_operator
+        (variable)
         (variable))
       (atom)))
   (try
@@ -386,6 +386,7 @@ macros
 
 ?MODULE,
 #?MODULE{},
+?assertMatch({foo, N} when N > 0, {foo, 1}),
 ?MIN(2, 3).
 
 --------------------------------------------------------------------------------
@@ -396,6 +397,19 @@ macros
   (record
     (macro
       (variable)))
+  (macro
+    (atom)
+    (arguments
+      (binary_operator
+        (tuple
+          (atom)
+          (variable))
+        (binary_operator
+          (variable)
+          (integer)))
+      (tuple
+        (atom)
+        (integer))))
   (macro
     (variable)
     (arguments
