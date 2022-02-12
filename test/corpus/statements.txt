@@ -141,6 +141,7 @@ specs
 ================================================================================
 
 -spec ok_this(term()) -> {ok, term()}.
+-spec(ok_this(term()) -> {ok, term()}). %% wrapping in parens is allowed.
 -callback after(Reason :: atom()) -> ok.
 
 %% multiple clauses with 'when's
@@ -169,6 +170,20 @@ specs
         (call
           (atom)
           (arguments)))))
+  (attribute
+    (atom)
+    (stab_clause
+      (atom)
+      (arguments
+        (call
+          (atom)
+          (arguments)))
+      (tuple
+        (atom)
+        (call
+          (atom)
+          (arguments)))))
+  (comment)
   (attribute
     (atom)
     (stab_clause
@@ -333,6 +348,7 @@ type declarations
 ================================================================================
 
 -type arity() :: non_neg_integer().
+-type(arity() :: non_neg_integer()). %% wrapping in parens is allowed.
 -type integer() :: neg_integer()
                    | 0
                    | pos_integer().
@@ -355,6 +371,17 @@ type declarations
         (call
           (atom)
           (arguments)))))
+  (attribute
+    (atom)
+    (arguments
+      (binary_operator
+        (call
+          (atom)
+          (arguments))
+        (call
+          (atom)
+          (arguments)))))
+  (comment)
   (attribute
     (atom)
     (arguments
@@ -417,27 +444,26 @@ type declarations
           (integer)
           (macro
             (variable))))))
-  (attribute
-    (atom)
-    (arguments
+  (unary_operator
+    (atom))
+  (binary_operator
+    (call
+      (atom)
+      (arguments))
+    (binary_operator
       (binary_operator
-        (call
-          (atom)
-          (arguments))
-        (binary_operator
-          (binary_operator
-            (function_type)
-            (function_type
-              (arguments
-                (call
-                  (atom)
-                  (arguments)))
-              (call
-                (atom)
-                (arguments))))
+        (function_type)
+        (function_type
+          (arguments
+            (call
+              (atom)
+              (arguments)))
           (call
             (atom)
-            (arguments)))))))
+            (arguments))))
+      (call
+        (atom)
+        (arguments)))))
 
 ================================================================================
 macro declarations
