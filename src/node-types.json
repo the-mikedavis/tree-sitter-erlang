@@ -276,6 +276,10 @@
           "named": true
         },
         {
+          "type": "guard",
+          "named": true
+        },
+        {
           "type": "stab_clause",
           "named": true
         }
@@ -586,10 +590,6 @@
           },
           {
             "type": "rem",
-            "named": false
-          },
-          {
-            "type": "when",
             "named": false
           },
           {
@@ -1551,6 +1551,20 @@
           {
             "type": "variable",
             "named": true
+          }
+        ]
+      },
+      "guard": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "guard",
+            "named": true
+          },
+          {
+            "type": "when",
+            "named": false
           }
         ]
       },
