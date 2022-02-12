@@ -64,6 +64,7 @@ module.exports = grammar({
     // macro definition:
     //     "'-'  'define'  '('  _expression  ','  _expression  •  ','  …"
     [$.body, $._body],
+    [$._semicolon_separated_expressions, $._body, $.body],
   ],
 
   rules: {
@@ -106,16 +107,22 @@ module.exports = grammar({
         )
       ),
 
-    _semicolon_separated_expressions: ($) => sep1($._expression, ";"),
+    _semicolon_separated_expressions: ($) => sep1(sep($._expression, ","), ";"),
 
     _spec: ($) =>
       seq(
         "-",
         field("name", alias(choice("spec", "callback"), $.atom)),
         optionalParens(
-          sep(
-            seq($.stab_clause, optional(seq("when", alias($._items, $.guard)))),
-            ";"
+          seq(
+            optional(prec(1, seq(field("module", $._identifier), ":"))),
+            sep(
+              seq(
+                $.stab_clause,
+                optional(seq("when", alias($._items, $.guard)))
+              ),
+              ";"
+            )
           )
         ),
         "."

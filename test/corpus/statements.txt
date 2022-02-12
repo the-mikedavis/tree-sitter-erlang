@@ -154,6 +154,12 @@ specs
                Type :: atom(),
                Size :: non_neg_integer().
 
+%% https://github.com/erlang/otp/blob/9e381125bbd93dfa2f17d4954b54aead749bf012/erts/preloaded/src/erlang.erl#L423-L428
+-spec erlang:adler32(Data) -> non_neg_integer() when
+      Data :: iodata().
+adler32(_Data) ->
+    erlang:nif_error(undefined).
+
 --------------------------------------------------------------------------------
 
 (source
@@ -236,7 +242,33 @@ specs
         (variable)
         (call
           (atom)
-          (arguments))))))
+          (arguments)))))
+  (comment)
+  (attribute
+    (atom)
+    (atom)
+    (stab_clause
+      (atom)
+      (arguments
+        (variable))
+      (call
+        (atom)
+        (arguments)))
+    (guard
+      (binary_operator
+        (variable)
+        (call
+          (atom)
+          (arguments)))))
+  (function
+    (atom)
+    (arguments
+      (variable))
+    (call
+      (atom)
+      (atom)
+      (arguments
+        (atom)))))
 
 ================================================================================
 spec with when clause
