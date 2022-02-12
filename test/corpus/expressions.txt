@@ -54,7 +54,8 @@ end
 comprehensions
 ================================================================================
 
-%% Comprehensions are parsed very simply by treating '||' as a binary operator.
+%% Comprehensions are parsed very simply by treating '||' as a (right-assoc)
+%% binary operator.
 %% We could structure this rule more and make syntax assertions about the
 %% generator(s) and qualifier(s) but I don't really see a point.
 [ X * 2 || X <- [1, 2, 3]]
@@ -66,31 +67,28 @@ comprehensions
   (comment)
   (comment)
   (comment)
+  (comment)
   (list
     (binary_operator
       (binary_operator
-        (variable)
-        (integer))
-      (binary_operator
-        (variable)
-        (list
-          (integer)
-          (integer)
-          (integer)))))
-  (bitstring
-    (binary_operator
-      (bitstring
         (binary_operator
           (variable)
-          (integer)))
+          (integer))
+        (variable))
+      (list
+        (integer)
+        (integer)
+        (integer))))
+  (bitstring
+    (binary_operator
       (binary_operator
         (bitstring
-          (variable))
+          (binary_operator
+            (variable)
+            (integer)))
         (bitstring
-          (integer)
-          (integer)
-          (integer))))))
-
-================================================================================
-function definitions
-================================================================================
+          (variable)))
+      (bitstring
+        (integer)
+        (integer)
+        (integer)))))

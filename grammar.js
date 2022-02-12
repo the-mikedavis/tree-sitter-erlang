@@ -1,54 +1,40 @@
 const WHITE_SPACE = /[\r\n\t\f\v ]+/;
-const LEFT_ASSOC_BINARY_OPS = [
-  "+",
-  "-",
-  "*",
-  "/",
-  "|",
-  "=>",
-  ":=",
-  "==",
-  ">=",
-  "<=",
-  ">",
-  "<",
-  "=:=",
-  "=/=",
-  ":",
-  "++",
-  "--",
-  "<-",
-  "andalso",
-  "orelse",
-  "div",
-  "rem",
-  "band",
-  "and",
-  "bor",
-  "bxor",
-  "bsl",
-  "bsr",
-  "or",
-  "xor",
-];
+const MULT_OPS = ["/", "*", "div", "rem", "band", "and"];
+const ADD_OPS = ["+", "-", "bor", "bxor", "bsl", "bsr", "or", "xor"];
+const LIST_OPS = ["++", "--"];
+const COMP_OPS = ["==", "/=", "=<", "<", ">=", ">", "=:=", "=/="];
+
+const LEFT_ASSOC_BINARY_OPS = ["=>", ":="];
+
 const RIGHT_ASSOC_BINARY_OPS = ["!", "=", "++", "--", "||"];
 const UNARY_OPS = ["+", "-", "not", "bnot"];
 const PREC = {
   COMMENT: -1,
-  RIGHT_BINARY_OP: 5,
-  RECORD: 10,
-  MAP: 10,
-  LEFT_BINARY_OP: 10,
-  CALL: 15,
-  ARGUMENTS: 15,
-  STAB_CLAUSE: 20,
-  QUALIFIED_FUNCTION: 20,
+  COLON: 100,
+  POUND: 95,
+  PREFIX_OP: 90,
+  MULT_OP: 85,
+  ADD_OP: 80,
+  LIST_OP: 75,
+  COMP_OP: 70,
+  ANDALSO: 65,
+  ORELSE: 60,
+  MATCH_SEND: 55,
+  CATCH: 50,
+  BAR: 45,
+  DOUBLE_BAR: 35,
+  ARROW: 30,
 };
 
 module.exports = grammar({
   name: "erlang",
 
   extras: ($) => [WHITE_SPACE, $.comment],
+
+  conflicts: ($) => [
+    [$._literal, $._identifier],
+    [$._literal, $._expression],
+  ],
 
   rules: {
     source: ($) => repeat(choice($._statement, $._expression)),
@@ -64,8 +50,7 @@ module.exports = grammar({
         $._identifier,
         $._strings,
         $.character,
-        $.integer,
-        $.float,
+        $._number,
         $.bitstring,
         $.tuple,
         $.list,
@@ -138,7 +123,7 @@ module.exports = grammar({
     list: ($) => seq("[", optional($._items), "]"),
     map: ($) =>
       prec(
-        PREC.MAP,
+        PREC.POUND,
         seq(
           optional($.variable),
           "#{",
@@ -148,7 +133,7 @@ module.exports = grammar({
       ),
     record: ($) =>
       prec.right(
-        PREC.RECORD,
+        PREC.POUND,
         seq(
           optional($.variable),
           "#",
@@ -162,35 +147,38 @@ module.exports = grammar({
         )
       ),
 
+    // todo: unary operators for catch, not, bnot, '-'
+    // and figure out what the erlang parser is doing with '#'
+
     binary_operator: ($) =>
       choice(
-        binaryOperator(
-          $,
-          PREC.LEFT_BINARY_OP,
-          prec.left,
-          choice(...LEFT_ASSOC_BINARY_OPS)
-        ),
-        binaryOperator(
-          $,
-          PREC.RIGHT_BINARY_OP,
-          prec.right,
-          choice(...RIGHT_ASSOC_BINARY_OPS)
-        )
+        binaryOp($, PREC.COLON, prec, ":", $._expression, $._literal),
+        binaryOp($, PREC.MULT_OP, prec.left, choice(...MULT_OPS)),
+        binaryOp($, PREC.ADD_OP, prec.left, choice(...ADD_OPS)),
+        binaryOp($, PREC.LIST_OP, prec.right, choice(...LIST_OPS)),
+        binaryOp($, PREC.COMP_OP, prec.left, choice(...COMP_OPS)),
+        binaryOp($, PREC.ANDALSO, prec.left, "andalso"),
+        binaryOp($, PREC.ORELSE, prec.left, "orelse"),
+        binaryOp($, PREC.MATCH_SEND, prec.right, choice("=", "!")),
+        binaryOp($, PREC.DOUBLE_BAR, prec.right, "||"),
+        binaryOp($, PREC.BAR, prec.left, "|"),
+        binaryOp($, PREC.ARROW, prec.left, choice("<-", "<=", "=>"))
+        // misc ops too?
       ),
+
+    _literal: ($) =>
+      choice($._number, $._identifier, $._parenthesized_expression),
 
     anonymous_function: ($) => seq("fun", sep1($.stab_clause, ";"), "end"),
 
     // function: ($) => prec.right(sep1($._named_stab_clause, ";")),
 
     stab_clause: ($) =>
-      prec(
-        PREC.STAB_CLAUSE,
-        choice($._named_stab_clause, $._anonymous_stab_clause)
-      ),
+      prec(0, choice($._named_stab_clause, $._anonymous_stab_clause)),
 
     _named_stab_clause: ($) =>
       prec.left(
-        PREC.STAB_CLAUSE,
+        0,
         seq(
           field("name", $._identifier),
           $.arguments,
@@ -202,7 +190,7 @@ module.exports = grammar({
 
     _anonymous_stab_clause: ($) =>
       prec.left(
-        PREC.STAB_CLAUSE,
+        0,
         seq(
           $.arguments,
           optional(field("guard", seq("when", $._guard))),
@@ -222,16 +210,11 @@ module.exports = grammar({
 
     _qualified_function: ($) =>
       prec(
-        PREC.QUALIFIED_FUNCTION,
-        seq(
-          field("module", $._expression),
-          ":",
-          field("function", $._expression)
-        )
+        0,
+        seq(field("module", $._literal), ":", field("function", $._literal))
       ),
 
-    _unqualified_function: ($) =>
-      prec(PREC.CALL, field("function", $._expression)),
+    _unqualified_function: ($) => prec(0, field("function", $._literal)),
 
     function_capture: ($) =>
       prec.left(
@@ -247,6 +230,8 @@ module.exports = grammar({
 
     // either an escape sequence or a printable ASCII character
     character: ($) => seq("$", choice($.escape_sequence, /[\x20-\x7f]/)),
+
+    _number: ($) => choice($.integer, $.float),
 
     integer: ($) =>
       choice(
@@ -276,13 +261,13 @@ function parens(rule) {
   return seq("(", rule, ")");
 }
 
-function binaryOperator($, precedence, assoc, operator) {
+function binaryOp($, precedence, assoc, operator, left = null, right = null) {
   return assoc(
     precedence,
     seq(
-      field("left", $._expression),
+      field("left", left || $._expression),
       field("operator", operator),
-      field("right", $._expression)
+      field("right", right || $._expression)
     )
   );
 }
