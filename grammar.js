@@ -332,7 +332,7 @@ module.exports = grammar({
     quoted_atom: ($) =>
       seq(
         field("quoted_start", "'"),
-        repeat(choice($.quoted_content, alias("\\'", $.escape_sequence))),
+        repeat(choice($.quoted_content, $.escape_sequence)),
         field("quoted_end", "'")
       ),
 
@@ -369,7 +369,7 @@ module.exports = grammar({
           "\\",
           choice(
             // escapes for special characters
-            /[bdefnrstv\'\"\\]/,
+            /[bdefnrstv\'\"\\%]/,
             // hexadecimal
             /x[\da-fA-F]{2}/,
             /x{[\da-fA-F]+}/,

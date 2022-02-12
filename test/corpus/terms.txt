@@ -39,7 +39,9 @@ ok
 hello
 '%'      %% escaping '%'
 '123'
-'\''     %% this confusing atom is used in the compiler's scanner
+'\''     %% these confusing atoms are used in Erlang scanners
+'\\'
+''
 
 --------------------------------------------------------------------------------
 
@@ -53,7 +55,10 @@ hello
     (quoted_content))
   (quoted_atom
     (escape_sequence))
-  (comment))
+  (comment)
+  (quoted_atom
+    (escape_sequence))
+  (quoted_atom))
 
 ================================================================================
 numbers
@@ -62,6 +67,13 @@ numbers
 $a        %% erlang docs consider characters to be numbers
 $-
 $\n
+$$
+$%
+$\%
+$^
+$`
+$~
+$&
 $÷        %% unicode allowed
 $         %% space character
 $\^A      %% ctrl+A
@@ -86,6 +98,14 @@ $\^[      %% ctrl+[
   (character)
   (character
     (escape_sequence))
+  (character)
+  (character)
+  (character
+    (escape_sequence))
+  (character)
+  (character)
+  (character)
+  (character)
   (character)
   (comment)
   (character)
