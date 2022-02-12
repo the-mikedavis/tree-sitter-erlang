@@ -123,11 +123,11 @@ module.exports = grammar({
         )
       ),
     record: ($) =>
+      prec(PREC.POUND, seq(optional($._literal), "#", $._record_body)),
+
+    _record_body: ($) =>
       prec.right(
-        PREC.POUND,
         seq(
-          optional($._literal),
-          "#",
           field("name", $._identifier),
           optional(
             choice(
@@ -147,6 +147,7 @@ module.exports = grammar({
     binary_operator: ($) =>
       choice(
         binaryOp($, PREC.COLON, prec.left, ":"),
+        binaryOp($, PREC.POUND, prec.left, "#", $._expression, $._record_body),
         binaryOp($, PREC.MULT_OP, prec.left, choice(...MULT_OPS)),
         binaryOp($, PREC.ADD_OP, prec.left, choice(...ADD_OPS)),
         binaryOp($, PREC.LIST_OP, prec.right, choice(...LIST_OPS)),

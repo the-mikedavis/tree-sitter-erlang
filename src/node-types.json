@@ -278,6 +278,32 @@
     "type": "binary_operator",
     "named": true,
     "fields": {
+      "field": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "atom",
+            "named": true
+          },
+          {
+            "type": "macro",
+            "named": true
+          },
+          {
+            "type": "quoted_atom",
+            "named": true
+          },
+          {
+            "type": "variable",
+            "named": true
+          }
+        ]
+      },
       "left": {
         "multiple": true,
         "required": false,
@@ -388,12 +414,38 @@
           }
         ]
       },
+      "name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "atom",
+            "named": true
+          },
+          {
+            "type": "macro",
+            "named": true
+          },
+          {
+            "type": "quoted_atom",
+            "named": true
+          },
+          {
+            "type": "variable",
+            "named": true
+          }
+        ]
+      },
       "operator": {
         "multiple": false,
         "required": true,
         "types": [
           {
             "type": "!",
+            "named": false
+          },
+          {
+            "type": "#",
             "named": false
           },
           {
@@ -555,6 +607,10 @@
             "named": false
           },
           {
+            "type": ".",
+            "named": false
+          },
+          {
             "type": "anonymous_function",
             "named": true
           },
@@ -631,6 +687,10 @@
             "named": true
           },
           {
+            "type": "record_content",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           },
@@ -649,6 +709,14 @@
           {
             "type": "variable",
             "named": true
+          },
+          {
+            "type": "{",
+            "named": false
+          },
+          {
+            "type": "}",
+            "named": false
           }
         ]
       }
