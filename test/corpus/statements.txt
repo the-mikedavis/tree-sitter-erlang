@@ -94,6 +94,7 @@ specs
 ================================================================================
 
 -spec ok_this(term()) -> {ok, term()}.
+-callback after(Reason :: atom()) -> ok.
 
 --------------------------------------------------------------------------------
 
@@ -110,7 +111,18 @@ specs
         (atom)
         (call
           (atom)
-          (arguments))))))
+          (arguments)))))
+  (attribute
+    (atom)
+    (stab_clause
+      (atom)
+      (arguments
+        (binary_operator
+          (variable)
+          (call
+            (atom)
+            (arguments))))
+      (atom))))
 
 ================================================================================
 attributes

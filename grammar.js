@@ -59,7 +59,7 @@ module.exports = grammar({
     _spec: ($) =>
       seq(
         "-",
-        field("name", alias("spec", $.atom)),
+        field("name", alias(choice("spec", "callback"), $.atom)),
         sep($.stab_clause, ";"),
         $._terminator
       ),

@@ -133,8 +133,17 @@
           "content": {
             "type": "ALIAS",
             "content": {
-              "type": "STRING",
-              "value": "spec"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "spec"
+                },
+                {
+                  "type": "STRING",
+                  "value": "callback"
+                }
+              ]
             },
             "named": true,
             "value": "atom"
