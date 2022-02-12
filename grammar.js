@@ -77,6 +77,7 @@ module.exports = grammar({
       choice(
         $._identifier,
         $._strings,
+        $._tripledot,
         $.character,
         $._number,
         $.bitstring,
@@ -317,6 +318,10 @@ module.exports = grammar({
       ),
 
     float: ($) => /[0-9][0-9_]*\.[0-9_]+(e-?[0-9]+)?/,
+
+    // Used in typespecs:
+    //     -type t :: [integer(), ...].
+    _tripledot: ($) => token("..."),
 
     comment: ($) =>
       seq(

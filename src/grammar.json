@@ -261,6 +261,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "_tripledot"
+        },
+        {
+          "type": "SYMBOL",
           "name": "character"
         },
         {
@@ -2210,6 +2214,13 @@
     "float": {
       "type": "PATTERN",
       "value": "[0-9][0-9_]*\\.[0-9_]+(e-?[0-9]+)?"
+    },
+    "_tripledot": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "..."
+      }
     },
     "comment": {
       "type": "SEQ",
