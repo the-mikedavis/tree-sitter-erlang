@@ -26,6 +26,10 @@ factorial(N) when N>0 ->
     N * factorial(N - 1);
 factorial(1) -> 0.
 
+do_effects(Effects) ->
+    Effects1 = do_effects1(Effects),
+    do_effects2(Effects1).
+
 --------------------------------------------------------------------------------
 
 (source
@@ -55,7 +59,22 @@ factorial(1) -> 0.
     (atom)
     (arguments
       (integer))
-    (integer)))
+    (integer))
+  (function
+    (atom)
+    (arguments
+      (variable))
+    (body
+      (binary_operator
+        (variable)
+        (call
+          (atom)
+          (arguments
+            (variable))))
+      (call
+        (atom)
+        (arguments
+          (variable))))))
 
 ================================================================================
 statement flexibility with newlines

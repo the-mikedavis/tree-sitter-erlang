@@ -258,8 +258,7 @@ end.
       (atom)))
   (try
     (body
-      (variable))
-    (body
+      (variable)
       (variable))
     (clause
       (variable)

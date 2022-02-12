@@ -340,8 +340,7 @@ end
           (variable)
           (binary_operator
             (variable)
-            (integer))))
-      (body
+            (integer)))
         (variable)))))
 
 ================================================================================
