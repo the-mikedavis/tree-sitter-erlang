@@ -44,9 +44,16 @@ module.exports = grammar({
     source: ($) => repeat(choice($._statement, $._expression)),
 
     _statement: ($) =>
-      choice($.function, seq(sep($._expression, ","), $._terminator)),
+      choice($.function, $.spec, seq(sep($._expression, ","), $._terminator)),
 
     _terminator: ($) => choice(".", "\n"),
+
+    function: ($) => seq(sep($._named_stab_clause, ";"), $._terminator),
+
+    spec: ($) => seq("-", "spec", sep($.stab_clause, ";"), $._terminator),
+
+    // attribute: ($) =>
+    //   seq("-", field("name", $._atom), alias(optionalParens($._items), $.arguments), $._terminator),
 
     _expression: ($) =>
       choice(
@@ -174,8 +181,6 @@ module.exports = grammar({
 
     anonymous_function: ($) => seq("fun", sep($.stab_clause, ";"), "end"),
 
-    function: ($) => seq(sep($._named_stab_clause, ";"), $._terminator),
-
     stab_clause: ($) => choice($._named_stab_clause, $._anonymous_stab_clause),
 
     _named_stab_clause: ($) =>
@@ -263,6 +268,10 @@ function sep1(rule, separator) {
 
 function parens(rule) {
   return seq("(", rule, ")");
+}
+
+function optionalParens(rule) {
+  return choice(parens(rule), rule);
 }
 
 function binaryOp($, precedence, assoc, operator, left = null, right = null) {

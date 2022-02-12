@@ -1720,6 +1720,10 @@
           "named": true
         },
         {
+          "type": "spec",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
@@ -1729,6 +1733,21 @@
         },
         {
           "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "spec",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "stab_clause",
           "named": true
         }
       ]
@@ -2267,6 +2286,10 @@
   },
   {
     "type": "rem",
+    "named": false
+  },
+  {
+    "type": "spec",
     "named": false
   },
   {
