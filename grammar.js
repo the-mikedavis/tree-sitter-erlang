@@ -59,7 +59,7 @@ module.exports = grammar({
 
     _terminator: ($) => choice(".", "\n"),
 
-    function: ($) => seq(sep($._named_stab_clause, ";"), $._terminator),
+    function: ($) => seq(sep($._named_stab_clause, ";"), "."),
 
     _spec: ($) =>
       seq(
