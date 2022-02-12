@@ -278,7 +278,7 @@ module.exports = grammar({
 
     if: ($) => seq("if", sep(alias($._if_clause, $.clause), ";"), "end"),
 
-    _if_clause: ($) => seq(sep($._expression, ";"), "->", $._body),
+    _if_clause: ($) => seq($.guard, "->", $._body),
 
     case: ($) =>
       seq(

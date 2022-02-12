@@ -318,12 +318,14 @@ macro declarations
           (variable)))
       (if
         (clause
-          (binary_operator
-            (variable)
-            (variable))
+          (guard
+            (binary_operator
+              (variable)
+              (variable)))
           (variable))
         (clause
-          (atom)
+          (guard
+            (atom))
           (variable))))))
 
 ================================================================================

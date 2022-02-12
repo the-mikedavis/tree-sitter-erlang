@@ -1596,6 +1596,10 @@
           "named": true
         },
         {
+          "type": "guard",
+          "named": true
+        },
+        {
           "type": "if",
           "named": true
         },
