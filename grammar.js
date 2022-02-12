@@ -59,6 +59,10 @@ module.exports = grammar({
     [$._identifier, $._strings],
     // "anonymous_function  •  '('  …" needs to interpreted as a call.
     [$.call, $._expression],
+    // This conflict allows us to parse a trailing comma ',' within a
+    // macro definition:
+    //     "'-'  'define'  '('  _expression  ','  _expression  •  ','  …"
+    [$.body, $._body],
   ],
 
   rules: {
@@ -94,7 +98,7 @@ module.exports = grammar({
           // some extra funky syntax. For example with _named_stab_clause,
           // you can use a macro to write functions.
           choice(
-            $._body,
+            seq($._body, optional(",")),
             alias($._named_stab_clause, $.function),
             alias($._semicolon_separated_expressions, $.guard)
           )
@@ -252,7 +256,7 @@ module.exports = grammar({
 
     _body: ($) => choice($._expression, $.body),
 
-    body: ($) => sep1($._expression, ","),
+    body: ($) => prec.right(sep1($._expression, ",")),
 
     _items: ($) => sep($._expression, ","),
 

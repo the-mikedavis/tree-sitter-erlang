@@ -557,6 +557,13 @@ macro declaration of a function clause
 
 -define(allow(X), is_x_allowed(X) -> true).
 
+%% This comes up throughout the OTP stdlib test suites.
+%% I'm not really sure it makes sense though, it never gets used.
+-define(line, put(line, ?LINE), ).
+
+%% Used to define a guard.
+-define(ASCII(CP1,CP2), CP1 < 256, CP2 < 256, CP1 =/= $\r).
+
 --------------------------------------------------------------------------------
 
 (source
@@ -571,7 +578,39 @@ macro declaration of a function clause
         (atom)
         (arguments
           (variable))
-        (atom)))))
+        (atom))))
+  (comment)
+  (comment)
+  (attribute
+    (atom)
+    (arguments
+      (atom)
+      (call
+        (atom)
+        (arguments
+          (atom)
+          (macro
+            (variable))))))
+  (comment)
+  (attribute
+    (atom)
+    (arguments
+      (call
+        (variable)
+        (arguments
+          (variable)
+          (variable)))
+      (body
+        (binary_operator
+          (variable)
+          (integer))
+        (binary_operator
+          (variable)
+          (integer))
+        (binary_operator
+          (variable)
+          (character
+            (escape_sequence)))))))
 
 ================================================================================
 assert.hrl macro declaration
