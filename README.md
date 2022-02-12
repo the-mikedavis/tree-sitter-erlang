@@ -11,4 +11,4 @@ See the [docs](./docs/README.md) for design and development information.
 It's somewhat complete so far. I'm currently hunting down bugs by parsing
 against well-known Erlang sources like the OTP codebase.
 
-Currently it has a 92% pass rate against the .erl/.hrl files in OTP.
+Currently it has a 96% pass rate against the .erl/.hrl files in OTP.
