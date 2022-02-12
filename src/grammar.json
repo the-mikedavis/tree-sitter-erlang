@@ -1245,7 +1245,7 @@
                 "name": "left",
                 "content": {
                   "type": "SYMBOL",
-                  "name": "_expression"
+                  "name": "integer"
                 }
               },
               {
@@ -1261,7 +1261,7 @@
                 "name": "right",
                 "content": {
                   "type": "SYMBOL",
-                  "name": "_expression"
+                  "name": "integer"
                 }
               }
             ]
