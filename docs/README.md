@@ -3,7 +3,7 @@
 This directory has some notes about the design and development of the
 grammar.
 
-# Design
+## Design
 
 This grammar diverges from prior works and the built-in Erlang parser.
 
