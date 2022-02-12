@@ -204,7 +204,7 @@ module.exports = grammar({
         seq(
           field("name", $._identifier),
           $.arguments,
-          optional(field("guard", seq("when", $._guard))),
+          optional(seq("when", $.guard)),
           "->",
           $._body
         )
@@ -212,15 +212,13 @@ module.exports = grammar({
 
     _anonymous_stab_clause: ($) =>
       prec.left(
-        seq(
-          $.arguments,
-          optional(field("guard", seq("when", $._guard))),
-          "->",
-          $._body
-        )
+        seq($.arguments, optional(seq("when", $.guard)), "->", $._body)
       ),
 
-    _guard: ($) => sep($._items, ";"),
+    _anonymous_stab_clause_no_parens: ($) =>
+      seq($._items, optional(seq("when", $.guard)), "->", $._body),
+
+    guard: ($) => sep($._items, ";"),
 
     arguments: ($) => parens(optional($._items)),
 
@@ -258,16 +256,8 @@ module.exports = grammar({
         "case",
         field("subject", $._expression),
         "of",
-        sep($.case_clause, ";"),
+        sep(alias($._anonymous_stab_clause_no_parens, $.case_clause), ";"),
         "end"
-      ),
-
-    case_clause: ($) =>
-      seq(
-        $._items,
-        optional(field("guard", seq("when", $._guard))),
-        "->",
-        $._body
       ),
 
     // either an escape sequence or a printable ASCII character
