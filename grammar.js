@@ -189,7 +189,14 @@ module.exports = grammar({
         binaryOp($, PREC.ANDALSO, prec.left, "andalso"),
         binaryOp($, PREC.ORELSE, prec.left, "orelse"),
         binaryOp($, PREC.MATCH_SEND, prec.right, choice("=", "!")),
-        binaryOp($, PREC.RANGE, prec.left, "..", $.integer, $.integer),
+        binaryOp(
+          $,
+          PREC.RANGE,
+          prec.left,
+          "..",
+          choice($.integer, $.character),
+          choice($.integer, $.character)
+        ),
         binaryOp($, PREC.DOUBLE_OP, prec.right, choice(...DOUBLE_OPS)),
         binaryOp($, PREC.BAR, prec.left, "|"),
         binaryOp($, PREC.ARROW, prec.left, choice("<-", "<=", "=>", ":="))

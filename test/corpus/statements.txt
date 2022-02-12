@@ -286,7 +286,7 @@ type declarations
                    | pos_integer().
 -type mylist() :: [integer(), ...].
 -type base8() :: 0..7.
--type base16() :: 0..9 | 10..16.
+-type base16() :: $0..$9 | $a..$f.
 -type my_fun() :: fun() | fun((atom()) -> term()) | atom().
 
 --------------------------------------------------------------------------------
@@ -348,11 +348,11 @@ type declarations
           (arguments))
         (binary_operator
           (binary_operator
-            (integer)
-            (integer))
+            (character)
+            (character))
           (binary_operator
-            (integer)
-            (integer))))))
+            (character)
+            (character))))))
   (attribute
     (atom)
     (arguments
