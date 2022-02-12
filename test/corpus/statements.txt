@@ -180,6 +180,7 @@ attributes
 -else.
 -define(LOG(X), _ = X).
 -endif.
+-if(?DEBUG).
 
 --------------------------------------------------------------------------------
 
@@ -241,7 +242,11 @@ attributes
         (variable)
         (variable))))
   (attribute
-    (atom)))
+    (atom))
+  (attribute
+    (arguments
+      (macro
+        (variable)))))
 
 ================================================================================
 type declarations

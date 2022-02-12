@@ -68,7 +68,9 @@ module.exports = grammar({
     attribute: ($) =>
       seq(
         "-",
-        field("name", $._atom),
+        // 'if' is used later in a rule, we use a choice here with the
+        // literal value to force precedence.
+        field("name", choice("if", $._atom)),
         optional(choice($.arguments, alias($._items, $.arguments))),
         "."
       ),

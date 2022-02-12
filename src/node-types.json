@@ -237,6 +237,10 @@
             "named": true
           },
           {
+            "type": "if",
+            "named": false
+          },
+          {
             "type": "quoted_atom",
             "named": true
           }
