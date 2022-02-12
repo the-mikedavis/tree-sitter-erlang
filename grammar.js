@@ -36,7 +36,7 @@ module.exports = grammar({
     // since function is not allowed under _expresion, so _identifier
     // should match with higher implicit precedence when the state stack
     // has longer-matching candidates.
-    [$.function, $._identifier],
+    [$.function, $._identifier, $._strings],
     // This case "'if'  'fun'  '('  ')'  •  '->'  …" is impossible syntax,
     // but it makes sense to group 'fun' with its arguments at a higher
     // precedence than letting the arguments win.
@@ -52,6 +52,11 @@ module.exports = grammar({
     // This case is needed explicitly for macros:
     //     "'-'  'define'  '('  _expression  ','  _identifier  •  '('  …"
     [$._named_stab_clause, $._literal],
+    // This case "macro  •  ','  …" pops up because strings can be placed
+    // right next to one another to perform concatenation, and macros can
+    // contain strings. We prefer _identifier so not every macro looks like
+    // a string
+    [$._identifier, $._strings],
   ],
 
   rules: {
@@ -332,7 +337,7 @@ module.exports = grammar({
     // Note that we don't combined these strings: each string gets its own
     // node. I believe this will behave more predictably for anyone using
     // tree-sitter for motion (within an editor for example).
-    _strings: ($) => prec.right(repeat1($.string)),
+    _strings: ($) => prec.right(repeat1(choice($.string, $.macro))),
 
     string: ($) =>
       seq(

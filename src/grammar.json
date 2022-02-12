@@ -2376,8 +2376,17 @@
       "content": {
         "type": "REPEAT1",
         "content": {
-          "type": "SYMBOL",
-          "name": "string"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "string"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "macro"
+            }
+          ]
         }
       }
     },
@@ -2507,7 +2516,8 @@
   "conflicts": [
     [
       "function",
-      "_identifier"
+      "_identifier",
+      "_strings"
     ],
     [
       "function_type",
@@ -2529,6 +2539,10 @@
     [
       "_named_stab_clause",
       "_literal"
+    ],
+    [
+      "_identifier",
+      "_strings"
     ]
   ],
   "precedences": [],
