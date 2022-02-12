@@ -110,3 +110,49 @@ specs
         (call
           (atom)
           (arguments))))))
+
+================================================================================
+attributes
+================================================================================
+
+-module(ok).
+-include("records.hrl").
+-export([ok_this/1]).
+-dialyzer({nowarn_function, [ok_this/1]}).
+
+--------------------------------------------------------------------------------
+
+(source
+  (attribute
+    (atom)
+    (arguments)
+    (arguments
+      (atom))
+    (arguments))
+  (attribute
+    (atom)
+    (arguments)
+    (arguments
+      (string
+        (quoted_content)))
+    (arguments))
+  (attribute
+    (atom)
+    (arguments)
+    (arguments
+      (list
+        (binary_operator
+          (atom)
+          (integer))))
+    (arguments))
+  (attribute
+    (atom)
+    (arguments)
+    (arguments
+      (tuple
+        (atom)
+        (list
+          (binary_operator
+            (atom)
+            (integer)))))
+    (arguments)))

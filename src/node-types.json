@@ -104,6 +104,10 @@
           {
             "type": "atom",
             "named": true
+          },
+          {
+            "type": "quoted_atom",
+            "named": true
           }
         ]
       }
@@ -112,6 +116,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "arguments",
+          "named": true
+        },
         {
           "type": "stab_clause",
           "named": true
