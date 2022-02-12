@@ -1061,7 +1061,7 @@
     "fields": {
       "function": {
         "multiple": true,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "(",
@@ -1281,9 +1281,13 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "anonymous_function",
+          "named": true
+        },
         {
           "type": "arguments",
           "named": true

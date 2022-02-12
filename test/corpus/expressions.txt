@@ -6,7 +6,9 @@ self()
 hd([a])
 tl([a])
 maps:get(date,DateTime)
-(fun (X) -> X end)(1)
+(fun (X) -> X end)(1).
+%% believe it or not this is valid:
+fun () -> X end().
 
 --------------------------------------------------------------------------------
 
@@ -37,7 +39,14 @@ maps:get(date,DateTime)
           (variable))
         (variable)))
     (arguments
-      (integer))))
+      (integer)))
+  (comment)
+  (call
+    (anonymous_function
+      (stab_clause
+        (arguments)
+        (variable)))
+    (arguments)))
 
 ================================================================================
 blocks

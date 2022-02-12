@@ -1903,6 +1903,10 @@
             {
               "type": "SYMBOL",
               "name": "_unqualified_function"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "anonymous_function"
             }
           ]
         },
@@ -2744,6 +2748,10 @@
     [
       "_identifier",
       "_strings"
+    ],
+    [
+      "call",
+      "_expression"
     ]
   ],
   "precedences": [],

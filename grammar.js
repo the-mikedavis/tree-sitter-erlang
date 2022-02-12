@@ -57,6 +57,8 @@ module.exports = grammar({
     // contain strings. We prefer _identifier so not every macro looks like
     // a string
     [$._identifier, $._strings],
+    // "anonymous_function  •  '('  …" needs to interpreted as a call.
+    [$.call, $._expression],
   ],
 
   rules: {
@@ -255,7 +257,14 @@ module.exports = grammar({
     _items: ($) => sep($._expression, ","),
 
     call: ($) =>
-      seq(choice($._qualified_function, $._unqualified_function), $.arguments),
+      seq(
+        choice(
+          $._qualified_function,
+          $._unqualified_function,
+          $.anonymous_function
+        ),
+        $.arguments
+      ),
 
     _qualified_function: ($) =>
       seq(field("module", $._literal), ":", field("function", $._literal)),
@@ -376,7 +385,7 @@ module.exports = grammar({
             // control sequences,
             /\^[a-zA-Z\[\]\^_\\]/,
             // characters
-            /[\x20-\x7f]/,
+            /[\x20-\x7f]/
           )
         )
       ),
