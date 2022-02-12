@@ -1279,6 +1279,10 @@
                     {
                       "type": "SYMBOL",
                       "name": "character"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "_identifier"
                     }
                   ]
                 }
@@ -1304,6 +1308,10 @@
                     {
                       "type": "SYMBOL",
                       "name": "character"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "_identifier"
                     }
                   ]
                 }

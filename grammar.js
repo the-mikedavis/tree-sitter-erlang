@@ -202,8 +202,8 @@ module.exports = grammar({
           PREC.RANGE,
           prec.left,
           "..",
-          choice($.integer, $.character),
-          choice($.integer, $.character)
+          choice($.integer, $.character, $._identifier),
+          choice($.integer, $.character, $._identifier)
         ),
         binaryOp($, PREC.DOUBLE_OP, prec.right, choice(...DOUBLE_OPS)),
         binaryOp($, PREC.BAR, prec.left, "|"),
