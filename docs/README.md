@@ -10,13 +10,19 @@ This grammar diverges from prior works and the built-in Erlang parser.
 [AbstractMachinesLab](https://github.com/AbstractMachinesLab) has a
 [grammar](https://github.com/AbstractMachinesLab/tree-sitter-erlang)
 which is stays true to the built-in Erlang parser. It's
-not very complete in its current form (about a 8% pass rate
+not very complete in its current form (about a 8% pass rate[^1]
 on the OTP codebase) but it does cover much of the syntax. Working on a
 [fork](https://github.com/AbstractMachinesLab/tree-sitter-erlang/compare/AbstractMachinesLab:9d5fd0c...the-mikedavis:78a5aed)
 I was able to boost it to 82% but the fixes convinced me that the existing
-rules[^1] have some composability problems. Consider
+rules[^2] have some composability problems. Consider:
 
-[^1]: Rules primarily implemented in the Erlang parser (not trying to throw shade :)
+[^1]: The calculation is "number of files parsed with no error over number of files
+      parsed with some error". Note that this metric is very pessimistic and it
+      punishes the AbstractMachinesLab grammar for missing common features like
+      macro definitions. It's currently the only metric available from
+      tree-sitter-cli though.
+
+[^2]: Rules primarily implemented in the Erlang parser (not trying to throw shade :)
 
 ```erl
 #my_record{a = b}
