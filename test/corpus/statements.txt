@@ -205,6 +205,9 @@ type declarations
 ================================================================================
 
 -type arity() :: non_neg_integer().
+-type integer() :: neg_integer()
+                   | 0
+                   | pos_integer().
 
 --------------------------------------------------------------------------------
 
@@ -218,7 +221,23 @@ type declarations
           (arguments))
         (call
           (atom)
-          (arguments))))))
+          (arguments)))))
+  (attribute
+    (atom)
+    (arguments
+      (binary_operator
+        (call
+          (atom)
+          (arguments))
+        (binary_operator
+          (binary_operator
+            (call
+              (atom)
+              (arguments))
+            (integer))
+          (call
+            (atom)
+            (arguments)))))))
 
 ================================================================================
 macro declarations

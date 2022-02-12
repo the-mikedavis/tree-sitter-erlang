@@ -175,8 +175,8 @@
           ]
         },
         {
-          "type": "SYMBOL",
-          "name": "_terminator"
+          "type": "STRING",
+          "value": "."
         }
       ]
     },
@@ -222,8 +222,8 @@
           ]
         },
         {
-          "type": "SYMBOL",
-          "name": "_terminator"
+          "type": "STRING",
+          "value": "."
         }
       ]
     },
