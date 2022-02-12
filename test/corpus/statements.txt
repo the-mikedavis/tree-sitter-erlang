@@ -32,3 +32,35 @@ ok_this(Term) -> {ok, Term}.
     (tuple
       (atom)
       (variable))))
+
+================================================================================
+statement flexibility with newlines
+================================================================================
+
+%% Without the newline choice in the statement rule, the second call would
+%% be misparsed.
+hd([a]),
+tl([a])
+maps:get(date,DateTime).
+
+--------------------------------------------------------------------------------
+
+(source
+  (comment)
+  (comment)
+  (call
+    (atom)
+    (arguments
+      (list
+        (atom))))
+  (call
+    (atom)
+    (arguments
+      (list
+        (atom))))
+  (call
+    (atom)
+    (atom)
+    (arguments
+      (atom)
+      (variable))))

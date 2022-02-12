@@ -43,7 +43,8 @@ module.exports = grammar({
   rules: {
     source: ($) => repeat(choice($._statement, $._expression)),
 
-    _statement: ($) => choice($.function, seq(sep($._expression, ","), ".")),
+    _statement: ($) =>
+      choice($.function, seq(sep($._expression, ","), choice(".", "\n"))),
 
     _expression: ($) =>
       choice(
