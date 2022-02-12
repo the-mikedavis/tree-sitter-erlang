@@ -254,7 +254,8 @@ module.exports = grammar({
       ),
 
     // an escape sequence, printable ASCII character, or unicode
-    character: ($) => seq("$", choice($.escape_sequence, /[^\\]/)),
+    character: ($) =>
+      seq("$", choice($.escape_sequence, token.immediate(/[^\\]/))),
 
     _number: ($) => choice($.integer, $.float),
 

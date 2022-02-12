@@ -2049,8 +2049,11 @@
               "name": "escape_sequence"
             },
             {
-              "type": "PATTERN",
-              "value": "[^\\\\]"
+              "type": "IMMEDIATE_TOKEN",
+              "content": {
+                "type": "PATTERN",
+                "value": "[^\\\\]"
+              }
             }
           ]
         }
