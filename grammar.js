@@ -33,7 +33,8 @@ module.exports = grammar({
   extras: ($) => [WHITE_SPACE, $.comment],
 
   conflicts: ($) => [
-    [$._literal, $._identifier],
+    // A literal needs to beat an expression so that calls may be recognized
+    // in the case of "_parenthesized_expression  •  '('  …".
     [$._literal, $._expression],
   ],
 

@@ -1430,10 +1430,6 @@
   "conflicts": [
     [
       "_literal",
-      "_identifier"
-    ],
-    [
-      "_literal",
       "_expression"
     ]
   ],
