@@ -3963,6 +3963,10 @@
             "named": false
           },
           {
+            "type": "macro",
+            "named": true
+          },
+          {
             "type": "not",
             "named": false
           }

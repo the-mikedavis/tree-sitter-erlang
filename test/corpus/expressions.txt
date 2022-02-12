@@ -9,6 +9,7 @@ maps:get(date,DateTime)
 (fun (X) -> X end)(1).
 %% believe it or not this is valid:
 fun () -> X end().
+?line X = 2.
 
 --------------------------------------------------------------------------------
 
@@ -46,7 +47,13 @@ fun () -> X end().
       (stab_clause
         (arguments)
         (variable)))
-    (arguments)))
+    (arguments))
+  (unary_operator
+    (macro
+      (atom))
+    (binary_operator
+      (variable)
+      (integer))))
 
 ================================================================================
 blocks

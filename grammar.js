@@ -24,6 +24,7 @@ const PREC = {
   BAR: 45,
   DOUBLE_OP: 35,
   ARROW: 30,
+  MACRO: 1,
 };
 
 module.exports = grammar({
@@ -191,7 +192,8 @@ module.exports = grammar({
     unary_operator: ($) =>
       choice(
         unaryOp($, PREC.UNARY, prec, choice(...UNARY_OPS)),
-        unaryOp($, PREC.CATCH, prec, "catch")
+        unaryOp($, PREC.CATCH, prec, "catch"),
+        unaryOp($, PREC.MACRO, prec, $.macro)
       ),
 
     binary_operator: ($) =>
