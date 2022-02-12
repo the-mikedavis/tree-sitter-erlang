@@ -255,6 +255,7 @@ records
 #function
 MyFunction#function{entry = 1}
 #function.entry     %% syntax for the element's index in the tuple
+Name = (Mod#mod.name)#literal.val
 
 --------------------------------------------------------------------------------
 
@@ -279,7 +280,16 @@ MyFunction#function{entry = 1}
   (record
     (atom)
     (atom))
-  (comment))
+  (comment)
+  (binary_operator
+    (variable)
+    (record
+      (record
+        (variable)
+        (atom)
+        (atom))
+      (atom)
+      (atom))))
 
 ================================================================================
 functions

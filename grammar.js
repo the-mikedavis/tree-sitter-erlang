@@ -167,7 +167,7 @@ module.exports = grammar({
       prec(
         PREC.POUND,
         seq(
-          optional($.variable),
+          optional($._literal),
           "#{",
           optional(alias($._items, $.map_content)),
           "}"
@@ -177,7 +177,7 @@ module.exports = grammar({
       prec.right(
         PREC.POUND,
         seq(
-          optional($.variable),
+          optional($._literal),
           "#",
           field("name", $._identifier),
           optional(

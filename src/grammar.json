@@ -620,7 +620,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "variable"
+                "name": "_literal"
               },
               {
                 "type": "BLANK"
@@ -666,7 +666,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "variable"
+                "name": "_literal"
               },
               {
                 "type": "BLANK"
