@@ -33,6 +33,8 @@ module.exports = grammar({
   extras: ($) => [WHITE_SPACE, $.comment],
 
   conflicts: ($) => [
+    // Handles the case "_identifier  •  '('  …":
+    [$._named_stab_clause, $._literal, $._expression],
     // A literal needs to beat an expression so that calls may be recognized
     // in the case of "_parenthesized_expression  •  '('  …".
     [$._literal, $._expression],
@@ -41,11 +43,7 @@ module.exports = grammar({
   rules: {
     source: ($) => repeat(choice($._statement, $._expression)),
 
-    _statement: ($) =>
-      choice(
-        // $.function,
-        seq($._expression, ".")
-      ),
+    _statement: ($) => choice($.function, seq(sep($._expression, ","), ".")),
 
     _expression: ($) =>
       choice(
@@ -166,7 +164,6 @@ module.exports = grammar({
         binaryOp($, PREC.DOUBLE_BAR, prec.right, "||"),
         binaryOp($, PREC.BAR, prec.left, "|"),
         binaryOp($, PREC.ARROW, prec.left, choice("<-", "<=", "=>"))
-        // misc ops too?
       ),
 
     _literal: ($) =>
@@ -174,7 +171,7 @@ module.exports = grammar({
 
     anonymous_function: ($) => seq("fun", sep($.stab_clause, ";"), "end"),
 
-    // function: ($) => prec.right(sep($._named_stab_clause, ";")),
+    function: ($) => seq(sep($._named_stab_clause, ";"), "."),
 
     stab_clause: ($) => choice($._named_stab_clause, $._anonymous_stab_clause),
 
