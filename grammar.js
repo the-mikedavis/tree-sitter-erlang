@@ -352,6 +352,7 @@ module.exports = grammar({
       prec.right(
         seq(
           "?",
+          optional(token.immediate("?")),
           field("name", choice($._atom, $.variable)),
           optional(field("arguments", $.arguments))
         )

@@ -574,6 +574,100 @@ macro declaration of a function clause
         (atom)))))
 
 ================================================================================
+assert.hrl macro declaration
+================================================================================
+
+%% https://github.com/erlang/otp/blob/9e381125bbd93dfa2f17d4954b54aead749bf012/lib/stdlib/include/assert.hrl#L59-L76
+-define(assert(BoolExpr),
+        begin
+        ((fun () ->
+            X__T = is_process_alive(self()),  % cheap source of truth
+            case (BoolExpr) of
+                X__T -> ok;
+                X__V -> erlang:error({assert,
+                                     [{module, ?MODULE},
+                                      {line, ?LINE},
+                                      {expression, (??BoolExpr)},
+                                      {expected, true},
+                                      case not X__T of
+                                          X__V -> {value, false};
+                                          _ -> {not_boolean, X__V}
+                                      end]})
+            end
+          end)())
+        end).
+
+--------------------------------------------------------------------------------
+
+(source
+  (comment)
+  (attribute
+    (atom)
+    (arguments
+      (call
+        (atom)
+        (arguments
+          (variable)))
+      (block
+        (call
+          (anonymous_function
+            (stab_clause
+              (arguments)
+              (body
+                (binary_operator
+                  (variable)
+                  (call
+                    (atom)
+                    (arguments
+                      (call
+                        (atom)
+                        (arguments)))))
+                (comment)
+                (case
+                  (variable)
+                  (clause
+                    (variable)
+                    (atom))
+                  (clause
+                    (variable)
+                    (call
+                      (atom)
+                      (atom)
+                      (arguments
+                        (tuple
+                          (atom)
+                          (list
+                            (tuple
+                              (atom)
+                              (macro
+                                (variable)))
+                            (tuple
+                              (atom)
+                              (macro
+                                (variable)))
+                            (tuple
+                              (atom)
+                              (macro
+                                (variable)))
+                            (tuple
+                              (atom)
+                              (atom))
+                            (case
+                              (unary_operator
+                                (variable))
+                              (clause
+                                (variable)
+                                (tuple
+                                  (atom)
+                                  (atom)))
+                              (clause
+                                (variable)
+                                (tuple
+                                  (atom)
+                                  (variable)))))))))))))
+          (arguments))))))
+
+================================================================================
 function declaration via macro
 ================================================================================
 
