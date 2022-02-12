@@ -487,26 +487,27 @@ type declarations
         (binary_operator
           (integer)
           (integer)))))
-  (unary_operator
-    (atom))
-  (binary_operator
-    (call
-      (atom)
-      (arguments))
-    (binary_operator
+  (attribute
+    (atom)
+    (arguments
       (binary_operator
-        (function_type)
-        (function_type
-          (arguments
-            (call
-              (atom)
-              (arguments)))
+        (call
+          (atom)
+          (arguments))
+        (binary_operator
+          (binary_operator
+            (function_type)
+            (function_type
+              (arguments
+                (call
+                  (atom)
+                  (arguments)))
+              (call
+                (atom)
+                (arguments))))
           (call
             (atom)
-            (arguments))))
-      (call
-        (atom)
-        (arguments)))))
+            (arguments)))))))
 
 ================================================================================
 macro declarations

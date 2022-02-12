@@ -48,11 +48,12 @@ fun () -> X end().
         (arguments)
         (variable)))
     (arguments))
-  (macro
-    (atom))
-  (binary_operator
-    (variable)
-    (integer)))
+  (unary_operator
+    (macro
+      (atom))
+    (binary_operator
+      (variable)
+      (integer))))
 
 ================================================================================
 blocks

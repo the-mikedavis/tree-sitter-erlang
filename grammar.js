@@ -68,27 +68,29 @@ module.exports = grammar({
   ],
 
   rules: {
-    source: ($) => repeat(choice($._statement, $._expression)),
+    source: ($) =>
+      repeat(choice($._statement, seq(sep($._expression, ","), $._terminator))),
 
     _statement: ($) =>
-      choice(
-        $.function,
-        alias($._macro_declaration, $.attribute),
-        alias($._spec, $.attribute),
-        $.attribute,
-        seq(sep($._expression, ","), $._terminator)
+      seq(
+        choice(
+          $.function,
+          alias($._macro_declaration, $.attribute),
+          alias($._spec, $.attribute),
+          $.attribute
+        ),
+        "."
       ),
 
     _terminator: ($) => choice(".", "\n"),
 
-    function: ($) => seq(sep(choice($._named_stab_clause, $.macro), ";"), "."),
+    function: ($) => sep(choice($._named_stab_clause, $.macro), ";"),
 
     _macro_declaration: ($) =>
       seq(
         "-",
         field("name", alias("define", $.atom)),
-        alias($._macro_arguments, $.arguments),
-        "."
+        alias($._macro_arguments, $.arguments)
       ),
 
     _macro_arguments: ($) =>
@@ -124,8 +126,7 @@ module.exports = grammar({
               ";"
             )
           )
-        ),
-        "."
+        )
       ),
 
     attribute: ($) =>
@@ -134,8 +135,7 @@ module.exports = grammar({
         // 'if' is used later in a rule, we use a choice here with the
         // literal value to force precedence.
         field("name", choice("if", $._atom)),
-        optional(choice($.arguments, alias($._items, $.arguments))),
-        "."
+        optional(choice($.arguments, alias($._items, $.arguments)))
       ),
 
     _expression: ($) =>
