@@ -330,7 +330,7 @@ module.exports = grammar({
         /[1-3]?[0-9]#[0-9a-zA-Z_]+/
       ),
 
-    float: ($) => /[0-9][0-9_]*\.[0-9_]+(e-?[0-9]+)?/,
+    float: ($) => /[0-9][0-9_]*\.[0-9_]+(e[+-]?[0-9]+)?/,
 
     _identifier: ($) => choice($._atom, $.variable, $.macro),
 
