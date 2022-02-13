@@ -523,6 +523,13 @@ macro declarations
         Format =:= ?GOOD;
         binary_part(Format, 0, 4) =:= <<"good">>).
 
+%% This comes up throughout the OTP stdlib test suites.
+%% I'm not really sure it makes sense though, it never gets used.
+-define(line, put(line, ?LINE), ).
+
+%% Used to define a guard.
+-define(ASCII(CP1,CP2), CP1 < 256, CP2 < 256, CP1 =/= $\r).
+
 --------------------------------------------------------------------------------
 
 (source
@@ -579,7 +586,7 @@ macro declarations
         (variable)
         (arguments
           (variable)))
-      (guard
+      (body
         (binary_operator
           (variable)
           (macro
@@ -593,36 +600,7 @@ macro declarations
               (integer)))
           (bitstring
             (string
-              (quoted_content))))))))
-
-================================================================================
-macro declaration of a function clause
-================================================================================
-
--define(allow(X), is_x_allowed(X) -> true).
-
-%% This comes up throughout the OTP stdlib test suites.
-%% I'm not really sure it makes sense though, it never gets used.
--define(line, put(line, ?LINE), ).
-
-%% Used to define a guard.
--define(ASCII(CP1,CP2), CP1 < 256, CP2 < 256, CP1 =/= $\r).
-
---------------------------------------------------------------------------------
-
-(source
-  (attribute
-    (atom)
-    (arguments
-      (call
-        (atom)
-        (arguments
-          (variable)))
-      (function
-        (atom)
-        (arguments
-          (variable))
-        (atom))))
+              (quoted_content)))))))
   (comment)
   (comment)
   (attribute
@@ -655,6 +633,50 @@ macro declaration of a function clause
           (variable)
           (character
             (escape_sequence)))))))
+
+================================================================================
+macro declaration of a function clause
+================================================================================
+
+-define(allow(X), is_x_allowed(X) -> true).
+
+-define(allow(X, Y), is_x_allowed(X) -> true;
+                     is_x_allowed(Y) -> true).
+
+--------------------------------------------------------------------------------
+
+(source
+  (attribute
+    (atom)
+    (arguments
+      (call
+        (atom)
+        (arguments
+          (variable)))
+      (function
+        (atom)
+        (arguments
+          (variable))
+        (atom))))
+  (attribute
+    (atom)
+    (arguments
+      (call
+        (atom)
+        (arguments
+          (variable)
+          (variable)))
+      (body
+        (function
+          (atom)
+          (arguments
+            (variable))
+          (atom))
+        (function
+          (atom)
+          (arguments
+            (variable))
+          (atom))))))
 
 ================================================================================
 assert.hrl macro declaration

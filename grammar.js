@@ -84,7 +84,7 @@ module.exports = grammar({
 
     _terminator: ($) => choice(".", "\n"),
 
-    function: ($) => sep(choice($._named_stab_clause, $.macro), ";"),
+    function: ($) => prec.left(sep(choice($._named_stab_clause, $.macro), ";")),
 
     _macro_declaration: ($) =>
       seq(
@@ -104,12 +104,13 @@ module.exports = grammar({
           choice(
             seq($._body, optional(",")),
             alias($._named_stab_clause, $.function),
-            alias($._semicolon_separated_expressions, $.guard)
+            alias($._semicolon_separated_expressions, $.body)
           )
         )
       ),
 
-    _semicolon_separated_expressions: ($) => sep1(sep($._expression, ","), ";"),
+    _semicolon_separated_expressions: ($) =>
+      sep1(choice(sep($._expression, ","), $.function), ";"),
 
     _spec: ($) =>
       seq(

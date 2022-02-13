@@ -186,10 +186,6 @@
           "named": true
         },
         {
-          "type": "guard",
-          "named": true
-        },
-        {
           "type": "if",
           "named": true
         },
@@ -1012,6 +1008,10 @@
         },
         {
           "type": "float",
+          "named": true
+        },
+        {
+          "type": "function",
           "named": true
         },
         {
