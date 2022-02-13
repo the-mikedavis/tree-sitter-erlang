@@ -285,6 +285,7 @@ module.exports = grammar({
           $._unqualified_function,
           $.anonymous_function,
           $.list,
+          $.tuple,
           $.unary_operator,
           $.try
         ),
@@ -356,7 +357,7 @@ module.exports = grammar({
         // base#value syntax
         // Note that this is slightly permissive, you can only use up to
         // base 36 in reality.
-        /[+-]?[1-3]?[0-9]#[0-9a-zA-Z_]+/
+        /[+-]?[0-3]?[0-9]#[0-9a-zA-Z_]+/
       ),
 
     float: ($) => /[+-]?[0-9][0-9_]*\.[0-9_]+([eE][+-]?[0-9]+)?/,

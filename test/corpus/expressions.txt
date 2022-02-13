@@ -10,6 +10,7 @@ maps:get(date,DateTime)
 %% believe it or not these are valid:
 fun () -> X end().
 [ X || X <- Y ]().
+{erlang,apply}(src,dest).
 catch 42().
 ?line X = 2.
 try
@@ -66,6 +67,13 @@ end(0).
           (variable))
         (variable)))
     (arguments))
+  (call
+    (tuple
+      (atom)
+      (atom))
+    (arguments
+      (atom)
+      (atom)))
   (unary_operator
     (call
       (integer)

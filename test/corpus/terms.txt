@@ -89,6 +89,7 @@ $\^[      %% ctrl+[
 100
 1_000_000
 2#101101
+02#00011110
 16#deadbeef
 1.01
 2.3e3
@@ -132,6 +133,7 @@ $\^[      %% ctrl+[
   (character
     (escape_sequence))
   (comment)
+  (integer)
   (integer)
   (integer)
   (integer)
