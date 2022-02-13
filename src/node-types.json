@@ -1331,6 +1331,10 @@
           "named": true
         },
         {
+          "type": "try",
+          "named": true
+        },
+        {
           "type": "unary_operator",
           "named": true
         }

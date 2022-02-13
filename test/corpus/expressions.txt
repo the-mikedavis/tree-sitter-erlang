@@ -12,6 +12,14 @@ fun () -> X end().
 [ X || X <- Y ]().
 catch 42().
 ?line X = 2.
+try
+    error
+catch
+    Reason ->
+        error
+after
+    After
+end(0).
 
 --------------------------------------------------------------------------------
 
@@ -67,6 +75,17 @@ catch 42().
       (atom))
     (binary_operator
       (variable)
+      (integer)))
+  (call
+    (try
+      (atom)
+      (clause
+        (variable)
+        (atom))
+      (after)
+      (after
+        (variable)))
+    (arguments
       (integer))))
 
 ================================================================================
