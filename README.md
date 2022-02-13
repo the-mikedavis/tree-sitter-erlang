@@ -21,7 +21,14 @@ nodes.
 
 ## Status
 
-It's somewhat complete so far. I'm currently hunting down bugs by parsing
-against well-known Erlang sources like the OTP codebase.
+It's pretty complete, despite the above caveat. As for stats:
 
-Currently it has a 97% pass rate against the .erl/.hrl files in OTP.
+- it has a 99.58% pass rate against the .erl/.hrl files in the OTP codebase[^1].
+- it parses an average 2000 line file in ~15ms on good hardware[^2].
+
+[^1]: The remaining files that exhibit errors are either not truly Erlang
+      or use preprocessor directives with blatantly invalid syntax. This
+      can be measured with
+      `tree-sitter parse --quiet --stat path/to/otp/**.{erl,hrl}`.
+[^2]: Note that tree-sitter grammars can be used to parse syntax
+      _incrementally_ (as you type) which can take less than a millisecond.
