@@ -16,6 +16,27 @@
   name: (atom) @keyword
   (arguments
     .
+    (atom) @type
+    [
+      (tuple (atom) @property)
+      (tuple
+        (binary_operator
+          left: (atom) @property
+          operator: "="))
+      (tuple
+        (binary_operator
+          left:
+            (binary_operator
+              left: (atom) @property
+              operator: "=")
+          operator: "::"))
+      ])
+ (#eq? @keyword "record"))
+
+(attribute
+  name: (atom) @keyword
+  (arguments
+    .
     [
       (atom) @keyword.directive
       (variable) @keyword.directive
@@ -39,18 +60,6 @@
 (function_capture function: (atom) @function)
 
 ; Records
-(tuple
-  (binary_operator
-    left: (atom) @property
-    operator: "="))
-
-(tuple
-  (binary_operator
-    left:
-      (binary_operator
-        left: (atom) @property
-        operator: "=")
-    operator: "::"))
 
 (record_content
   (binary_operator
@@ -58,6 +67,7 @@
     operator: "="))
 
 (record field: (atom) @property)
+(record name: (atom) @type)
 
 ; Keywords
 ((attribute name: (atom) @keyword)

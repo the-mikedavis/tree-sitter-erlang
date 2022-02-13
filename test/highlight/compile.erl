@@ -399,7 +399,7 @@ format_error_reason(Class, Reason, Stack) ->
 
 %% The compile state record.
 -record(compile, {filename="" :: file:filename(),
-%        ^ string.special.symbol
+%        ^ type
 %                  ^ property
           dir=""      :: file:filename(),
 %          ^ property

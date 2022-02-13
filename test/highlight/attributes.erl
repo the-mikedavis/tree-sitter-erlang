@@ -86,3 +86,12 @@
 %                ^ string.special.symbol
 -endif.
 % ^ keyword
+
+-record(person, {name,
+% ^ keyword
+%         ^ type
+%                 ^ property
+                 email_address="",
+%                 ^ property
+                 phone=1 :: integer()}).
+%                 ^ property
