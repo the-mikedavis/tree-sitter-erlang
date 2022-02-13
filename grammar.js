@@ -62,8 +62,9 @@ module.exports = grammar({
     [$.call, $._expression],
     // This conflict allows us to parse a trailing comma ',' within a
     // macro definition:
-    //     "'-'  'define'  '('  _expression  ','  _expression  •  ','  …"
+    //     '-'  'define'  '('  _expression  ','  _expression  •  ','  …
     [$.body, $._body],
+    // same:
     [$._semicolon_separated_expressions, $._body, $.body],
   ],
 
