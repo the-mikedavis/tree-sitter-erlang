@@ -89,6 +89,43 @@ end(0).
       (integer))))
 
 ================================================================================
+case embedded in a function call
+================================================================================
+
+%% https://github.com/erlang/otp/blob/9e381125bbd93dfa2f17d4954b54aead749bf012/lib/kernel/test/inet_sockopt_SUITE.erl#L617-L621
+ipv6_v6only_open(Module, Opts) ->
+    Module:case Module of
+           gen_tcp -> listen;
+             _ -> open
+           end(0, [inet6|Opts]).
+
+--------------------------------------------------------------------------------
+
+(source
+  (comment)
+  (function
+    (atom)
+    (arguments
+      (variable)
+      (variable))
+    (call
+      (variable)
+      (case
+        (variable)
+        (clause
+          (atom)
+          (atom))
+        (clause
+          (variable)
+          (atom)))
+      (arguments
+        (integer)
+        (list
+          (binary_operator
+            (atom)
+            (variable)))))))
+
+================================================================================
 blocks
 ================================================================================
 

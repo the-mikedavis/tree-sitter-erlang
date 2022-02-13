@@ -2189,8 +2189,21 @@
           "type": "FIELD",
           "name": "function",
           "content": {
-            "type": "SYMBOL",
-            "name": "_literal"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_literal"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "case"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "if"
+              }
+            ]
           }
         }
       ]

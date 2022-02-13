@@ -286,13 +286,17 @@ module.exports = grammar({
           $.anonymous_function,
           $.list,
           $.unary_operator,
-          $.try,
+          $.try
         ),
         $.arguments
       ),
 
     _qualified_function: ($) =>
-      seq(field("module", $._literal), ":", field("function", $._literal)),
+      seq(
+        field("module", $._literal),
+        ":",
+        field("function", choice($._literal, $.case, $.if))
+      ),
 
     _unqualified_function: ($) => field("function", $._literal),
 
