@@ -30,5 +30,5 @@ It's pretty complete, despite the above caveat. As for stats:
       or use preprocessor directives with blatantly invalid syntax. This
       can be measured with
       `tree-sitter parse --quiet --stat path/to/otp/**.{erl,hrl}`.
-[^2]: Note that tree-sitter grammars can be used to parse syntax
-      _incrementally_ (as you type) which can take less than a millisecond.
+[^2]: Tree-sitter grammars can be used to parse syntax _incrementally_
+      (as you type) which can take less than a millisecond.
