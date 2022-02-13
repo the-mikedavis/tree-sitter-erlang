@@ -2153,6 +2153,10 @@
             {
               "type": "SYMBOL",
               "name": "list"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "unary_operator"
             }
           ]
         },

@@ -284,7 +284,8 @@ module.exports = grammar({
           $._qualified_function,
           $._unqualified_function,
           $.anonymous_function,
-          $.list
+          $.list,
+          $.unary_operator
         ),
         $.arguments
       ),

@@ -7,10 +7,10 @@ hd([a])
 tl([a])
 maps:get(date,DateTime)
 (fun (X) -> X end)(1).
-%% believe it or not this is valid:
+%% believe it or not these are valid:
 fun () -> X end().
-%% and this too for some reason:
 [ X || X <- Y ]().
+catch 42().
 ?line X = 2.
 
 --------------------------------------------------------------------------------
@@ -50,7 +50,6 @@ fun () -> X end().
         (arguments)
         (variable)))
     (arguments))
-  (comment)
   (call
     (list
       (binary_operator
@@ -59,6 +58,10 @@ fun () -> X end().
           (variable))
         (variable)))
     (arguments))
+  (unary_operator
+    (call
+      (integer)
+      (arguments)))
   (unary_operator
     (macro
       (atom))
