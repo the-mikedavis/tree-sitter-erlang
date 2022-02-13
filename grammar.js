@@ -146,7 +146,7 @@ module.exports = grammar({
       choice(
         $._identifier,
         $._strings,
-        $._tripledot,
+        $.tripledot,
         $.character,
         $._number,
         $.bitstring,
@@ -426,7 +426,7 @@ module.exports = grammar({
 
     // Used in typespecs:
     //     -type t :: [integer(), ...].
-    _tripledot: ($) => token("..."),
+    tripledot: ($) => "...",
 
     comment: ($) =>
       seq(

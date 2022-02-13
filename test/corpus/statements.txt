@@ -441,7 +441,8 @@ type declarations
         (list
           (call
             (atom)
-            (arguments))))))
+            (arguments))
+          (tripledot)))))
   (attribute
     (atom)
     (arguments

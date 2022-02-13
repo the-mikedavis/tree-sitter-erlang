@@ -689,7 +689,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_tripledot"
+          "name": "tripledot"
         },
         {
           "type": "SYMBOL",
@@ -2959,12 +2959,9 @@
       "type": "PATTERN",
       "value": "([^\\\\\\\"\\']+|[\\\\\\\"\\'])"
     },
-    "_tripledot": {
-      "type": "TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "..."
-      }
+    "tripledot": {
+      "type": "STRING",
+      "value": "..."
     },
     "comment": {
       "type": "SEQ",

@@ -92,6 +92,10 @@
           "named": true
         },
         {
+          "type": "tripledot",
+          "named": true
+        },
+        {
           "type": "try",
           "named": true
         },
@@ -222,6 +226,10 @@
           "named": true
         },
         {
+          "type": "tripledot",
+          "named": true
+        },
+        {
           "type": "try",
           "named": true
         },
@@ -336,7 +344,7 @@
       },
       "left": {
         "multiple": true,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "(",
@@ -424,6 +432,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "tripledot",
             "named": true
           },
           {
@@ -634,7 +646,7 @@
       },
       "right": {
         "multiple": true,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "(",
@@ -734,6 +746,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "tripledot",
             "named": true
           },
           {
@@ -853,6 +869,10 @@
           "named": true
         },
         {
+          "type": "tripledot",
+          "named": true
+        },
+        {
           "type": "try",
           "named": true
         },
@@ -957,6 +977,10 @@
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "tripledot",
           "named": true
         },
         {
@@ -1068,6 +1092,10 @@
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "tripledot",
           "named": true
         },
         {
@@ -1186,6 +1214,10 @@
             "named": true
           },
           {
+            "type": "tripledot",
+            "named": true
+          },
+          {
             "type": "try",
             "named": true
           },
@@ -1296,6 +1328,10 @@
             "named": true
           },
           {
+            "type": "tripledot",
+            "named": true
+          },
+          {
             "type": "try",
             "named": true
           },
@@ -1351,7 +1387,7 @@
     "fields": {
       "subject": {
         "multiple": true,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "(",
@@ -1439,6 +1475,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "tripledot",
             "named": true
           },
           {
@@ -1587,6 +1627,10 @@
             "named": true
           },
           {
+            "type": "tripledot",
+            "named": true
+          },
+          {
             "type": "try",
             "named": true
           },
@@ -1715,6 +1759,10 @@
             "named": true
           },
           {
+            "type": "tripledot",
+            "named": true
+          },
+          {
             "type": "try",
             "named": true
           },
@@ -1823,6 +1871,10 @@
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "tripledot",
           "named": true
         },
         {
@@ -1950,6 +2002,10 @@
             "named": true
           },
           {
+            "type": "tripledot",
+            "named": true
+          },
+          {
             "type": "try",
             "named": true
           },
@@ -2031,7 +2087,7 @@
     "fields": {
       "arity": {
         "multiple": true,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "(",
@@ -2119,6 +2175,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "tripledot",
             "named": true
           },
           {
@@ -2232,6 +2292,10 @@
             "named": true
           },
           {
+            "type": "tripledot",
+            "named": true
+          },
+          {
             "type": "try",
             "named": true
           },
@@ -2339,6 +2403,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "tripledot",
             "named": true
           },
           {
@@ -2454,6 +2522,10 @@
           "named": true
         },
         {
+          "type": "tripledot",
+          "named": true
+        },
+        {
           "type": "try",
           "named": true
         },
@@ -2558,6 +2630,10 @@
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "tripledot",
           "named": true
         },
         {
@@ -2685,6 +2761,10 @@
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "tripledot",
           "named": true
         },
         {
@@ -2841,6 +2921,10 @@
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "tripledot",
           "named": true
         },
         {
@@ -3063,6 +3147,10 @@
           "named": true
         },
         {
+          "type": "tripledot",
+          "named": true
+        },
+        {
           "type": "try",
           "named": true
         },
@@ -3167,6 +3255,10 @@
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "tripledot",
           "named": true
         },
         {
@@ -3285,6 +3377,10 @@
           "named": true
         },
         {
+          "type": "tripledot",
+          "named": true
+        },
+        {
           "type": "try",
           "named": true
         },
@@ -3309,7 +3405,7 @@
     "fields": {
       "body": {
         "multiple": true,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "(",
@@ -3401,6 +3497,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "tripledot",
             "named": true
           },
           {
@@ -3561,7 +3661,7 @@
       },
       "subject": {
         "multiple": true,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "(",
@@ -3653,6 +3753,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "tripledot",
             "named": true
           },
           {
@@ -3764,6 +3868,10 @@
           "named": true
         },
         {
+          "type": "tripledot",
+          "named": true
+        },
+        {
           "type": "try",
           "named": true
         },
@@ -3788,7 +3896,7 @@
     "fields": {
       "operand": {
         "multiple": true,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "(",
@@ -3876,6 +3984,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "tripledot",
             "named": true
           },
           {
@@ -4187,6 +4299,10 @@
   {
     "type": "rem",
     "named": false
+  },
+  {
+    "type": "tripledot",
+    "named": true
   },
   {
     "type": "try",
