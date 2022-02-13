@@ -499,6 +499,10 @@
             "named": false
           },
           {
+            "type": "->",
+            "named": false
+          },
+          {
             "type": "..",
             "named": false
           },
@@ -608,6 +612,10 @@
           },
           {
             "type": "rem",
+            "named": false
+          },
+          {
+            "type": "when",
             "named": false
           },
           {

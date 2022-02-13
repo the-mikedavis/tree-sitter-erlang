@@ -7,9 +7,11 @@ const COMP_OPS = ["==", "/=", "=<", "<", ">=", ">", "=:=", "=/="];
 const DOUBLE_OPS = ["||", "::"];
 
 const PREC = {
+  MACRO_ARROW: -3,
+  MACRO: -2,
+  MACRO_WHEN: -1,
   COMMENT: -1,
   PARENS_EXPR: -1,
-  MACRO: -1,
   COLON: 100,
   POUND: 95,
   UNARY: 90,
@@ -226,7 +228,9 @@ module.exports = grammar({
         ),
         binaryOp($, PREC.DOUBLE_OP, prec.right, choice(...DOUBLE_OPS)),
         binaryOp($, PREC.BAR, prec.left, "|"),
-        binaryOp($, PREC.ARROW, prec.left, choice("<-", "<=", "=>", ":="))
+        binaryOp($, PREC.ARROW, prec.left, choice("<-", "<=", "=>", ":=")),
+        binaryOp($, PREC.MACRO_ARROW, prec.right, "->"),
+        binaryOp($, PREC.MACRO_WHEN, prec.left, "when")
       ),
 
     _literal: ($) =>

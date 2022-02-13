@@ -385,6 +385,14 @@ macros
 #?MODULE{},
 ?MIN(2, 3).
 
+?MODULE() ->
+    ok.
+
+?assertMatch({foo, N} when N > 0, {foo, 1}).
+%% testing precedence against the unaries:
+?assertMatch(not {foo, N} when N > 0, {foo, 1}).
+?assertMatch(?NOT {foo, N} when N > 0, {foo, 1}).
+
 --------------------------------------------------------------------------------
 
 (source
@@ -397,4 +405,54 @@ macros
     (variable)
     (arguments
       (integer)
-      (integer))))
+      (integer)))
+  (binary_operator
+    (macro
+      (variable)
+      (arguments))
+    (atom))
+  (macro
+    (atom)
+    (arguments
+      (binary_operator
+        (tuple
+          (atom)
+          (variable))
+        (binary_operator
+          (variable)
+          (integer)))
+      (tuple
+        (atom)
+        (integer))))
+  (comment)
+  (macro
+    (atom)
+    (arguments
+      (binary_operator
+        (unary_operator
+          (tuple
+            (atom)
+            (variable)))
+        (binary_operator
+          (variable)
+          (integer)))
+      (tuple
+        (atom)
+        (integer))))
+  (function
+    (macro
+      (atom)
+      (arguments
+        (unary_operator
+          (macro
+            (variable))
+          (binary_operator
+            (tuple
+              (atom)
+              (variable))
+            (binary_operator
+              (variable)
+              (integer))))
+        (tuple
+          (atom)
+          (integer))))))
