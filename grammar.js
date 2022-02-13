@@ -174,16 +174,12 @@ module.exports = grammar({
     bitstring: ($) => seq("<<", optional($._items), ">>"),
     tuple: ($) => seq("{", optional($._items), "}"),
     list: ($) => seq("[", optional($._items), "]"),
-    map: ($) =>
-      prec(
-        PREC.POUND,
-        seq(
-          optional($._literal),
-          "#{",
-          optional(alias($._items, $.map_content)),
-          "}"
-        )
-      ),
+
+    map: ($) => prec(PREC.POUND, seq("#", $._map_body)),
+
+    _map_body: ($) =>
+      prec.right(seq("{", optional(alias($._items, $.map_content)), "}")),
+
     record: ($) =>
       prec(PREC.POUND, seq(optional($._literal), "#", $._record_body)),
 
@@ -210,7 +206,14 @@ module.exports = grammar({
     binary_operator: ($) =>
       choice(
         binaryOp($, PREC.COLON, prec.left, ":"),
-        binaryOp($, PREC.POUND, prec.left, "#", $._expression, $._record_body),
+        binaryOp(
+          $,
+          PREC.POUND,
+          prec.left,
+          "#",
+          $._expression,
+          choice($._record_body, $._map_body)
+        ),
         binaryOp($, PREC.MULT_OP, prec.left, choice(...MULT_OPS)),
         binaryOp($, PREC.ADD_OP, prec.left, choice(...ADD_OPS)),
         binaryOp($, PREC.LIST_OP, prec.right, choice(...LIST_OPS)),

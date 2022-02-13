@@ -298,13 +298,13 @@ MyMap#{a := b}
       (binary_operator
         (atom)
         (atom))))
-  (map
+  (binary_operator
     (variable)
     (map_content
       (binary_operator
         (atom)
         (atom))))
-  (map
+  (binary_operator
     (variable)
     (map_content
       (binary_operator
