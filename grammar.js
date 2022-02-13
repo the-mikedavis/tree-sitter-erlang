@@ -283,7 +283,8 @@ module.exports = grammar({
         choice(
           $._qualified_function,
           $._unqualified_function,
-          $.anonymous_function
+          $.anonymous_function,
+          $.list
         ),
         $.arguments
       ),

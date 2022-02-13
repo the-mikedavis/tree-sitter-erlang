@@ -9,6 +9,8 @@ maps:get(date,DateTime)
 (fun (X) -> X end)(1).
 %% believe it or not this is valid:
 fun () -> X end().
+%% and this too for some reason:
+[ X || X <- Y ]().
 ?line X = 2.
 
 --------------------------------------------------------------------------------
@@ -46,6 +48,15 @@ fun () -> X end().
     (anonymous_function
       (stab_clause
         (arguments)
+        (variable)))
+    (arguments))
+  (comment)
+  (call
+    (list
+      (binary_operator
+        (binary_operator
+          (variable)
+          (variable))
         (variable)))
     (arguments))
   (unary_operator

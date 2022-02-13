@@ -1325,6 +1325,10 @@
         {
           "type": "arguments",
           "named": true
+        },
+        {
+          "type": "list",
+          "named": true
         }
       ]
     }

@@ -2149,6 +2149,10 @@
             {
               "type": "SYMBOL",
               "name": "anonymous_function"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "list"
             }
           ]
         },
