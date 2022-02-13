@@ -6,9 +6,9 @@ An Erlang grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter).
 
 See the [docs](./docs/README.md) for design and development information.
 
-<img src="./docs/example.png" width="500"/>
+<img src="./docs/example.png" width="700"/>
 
-<sup>_Shown: an [excerpt](https://github.com/rabbitmq/khepri/blob/9fbf7ec827bbf38c81a5bc69a128eec4bde3cdf9/src/khepri_fun.erl#L1142-L1155) from [rabbitmq/khepri](https://github.com/rabbitmq/khepri) using this grammar in the [Helix](https://github.com/helix-editor/helix) editor._</sup>
+<sup>_Above: an [excerpt](https://github.com/rabbitmq/khepri/blob/9fbf7ec827bbf38c81a5bc69a128eec4bde3cdf9/src/khepri_fun.erl#L1142-L1155) from [rabbitmq/khepri](https://github.com/rabbitmq/khepri) using this grammar in the [Helix](https://github.com/helix-editor/helix) editor._</sup>
 
 ## Caveat
 
