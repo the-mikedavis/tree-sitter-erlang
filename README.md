@@ -25,7 +25,7 @@ nodes.
 
 ## Status
 
-It's pretty complete, despite the above caveat. It has a 99.58% pass rate
+It's pretty complete despite the above caveat. It has a 99.58% pass rate
 against the .erl/.hrl files in the OTP codebase[^1]. Try it out on the online
 [playground](https://the-mikedavis.github.io/tree-sitter-erlang/).
 
