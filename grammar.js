@@ -1,4 +1,4 @@
-const WHITE_SPACE = /[\r\n\t\f\v\xA0 ]+/;
+const WHITE_SPACE = /[\x01-\x20\x80-\xA0]+/;
 const UNARY_OPS = ["+", "-", "not", "bnot"];
 const MULT_OPS = ["/", "*", "div", "rem", "band", "and"];
 const ADD_OPS = ["+", "-", "bor", "bxor", "bsl", "bsr", "or", "xor"];
