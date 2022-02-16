@@ -22,7 +22,7 @@
       (tuple
         (binary_operator
           left: (atom) @property
-          operator: "="))
+          operator: ["=" "::"]))
       (tuple
         (binary_operator
           left:

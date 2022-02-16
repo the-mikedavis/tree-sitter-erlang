@@ -93,5 +93,8 @@
 %                 ^ property
                  email_address="",
 %                 ^ property
+%                               ^ string
+                 ssn :: string(),
+%                 ^ property
                  phone=1 :: integer()}).
 %                 ^ property
