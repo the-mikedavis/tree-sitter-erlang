@@ -51,6 +51,10 @@
   module: (atom) @module
  (#eq? @keyword "spec"))
 
+(attribute
+  name: (atom) @keyword
+ (#eq? @keyword "compile"))
+
 ; Functions
 (function name: (atom) @function)
 (call module: (atom) @module)

@@ -98,3 +98,8 @@
 %                 ^ property
                  phone=1 :: integer()}).
 %                 ^ property
+
+-compile({no_auto_import,[min/2]}).
+% ^ keyword
+%          % ^ string.special.symbol
+%                          ^ function
