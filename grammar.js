@@ -22,6 +22,7 @@ const PREC = {
   ANDALSO: 65,
   ORELSE: 60,
   MATCH_SEND: 55,
+  MAYBE_MATCH: 53,
   RANGE: 51,
   CATCH: 50,
   BAR: 45,
@@ -165,6 +166,7 @@ module.exports = grammar({
         $.case,
         $.receive,
         $.try,
+        $.maybe,
         $._parenthesized_expression
       ),
 
@@ -221,6 +223,7 @@ module.exports = grammar({
         binaryOp($, PREC.ANDALSO, prec.left, "andalso"),
         binaryOp($, PREC.ORELSE, prec.left, "orelse"),
         binaryOp($, PREC.MATCH_SEND, prec.right, choice("=", "!")),
+        binaryOp($, PREC.MAYBE_MATCH, prec.right, "?="),
         binaryOp(
           $,
           PREC.RANGE,
@@ -341,6 +344,15 @@ module.exports = grammar({
         optional(field("of", seq("of", sep($.clause, ";")))),
         optional(field("catch", seq("catch", sep($.clause, ";")))),
         optional(field("after", alias(seq("after", $._body), $.after))),
+        "end"
+      ),
+
+    // EEP49 (OTP25)
+    maybe: ($) =>
+      seq(
+        "maybe",
+        $._body,
+        optional(field("else", seq("else", sep($.clause, ";")))),
         "end"
       ),
 

@@ -552,3 +552,95 @@ pound operator
       (binary_operator
         (atom)
         (atom)))))
+
+================================================================================
+maybe block (EEP49)
+================================================================================
+
+%% source: https://www.erlang.org/eeps/eep-0049#specification
+
+maybe
+    Foo = bar(),            % normal exprs still allowed
+    {ok, X} ?= f(Foo),
+    [H|T] ?= g([1,2,3])
+else
+    {error, Y} ->
+        {ok, "default"};
+    {ok, _Term} ->
+        {error, "unexpected wrapper"}
+end
+
+
+--------------------------------------------------------------------------------
+
+(source
+  (comment)
+  (maybe
+    (body
+      (binary_operator
+        (variable)
+        (call
+          (atom)
+          (arguments)))
+      (comment)
+      (binary_operator
+        (tuple
+          (atom)
+          (variable))
+        (call
+          (atom)
+          (arguments
+            (variable))))
+      (binary_operator
+        (list
+          (binary_operator
+            (variable)
+            (variable)))
+        (call
+          (atom)
+          (arguments
+            (list
+              (integer)
+              (integer)
+              (integer))))))
+    (clause
+      (tuple
+        (atom)
+        (variable))
+      (tuple
+        (atom)
+        (string
+          (quoted_content))))
+    (clause
+      (tuple
+        (atom)
+        (variable))
+      (tuple
+        (atom)
+        (string
+          (quoted_content))))))
+
+================================================================================
+maybe block (EEP49) associativity
+================================================================================
+
+%% > the ?= operator should have associativity rules lower than =
+maybe
+    X = [H|T] ?= exp()
+end
+
+--------------------------------------------------------------------------------
+
+(source
+  (comment)
+  (maybe
+    (binary_operator
+      (binary_operator
+        (variable)
+        (list
+          (binary_operator
+            (variable)
+            (variable))))
+      (call
+        (atom)
+        (arguments)))))
