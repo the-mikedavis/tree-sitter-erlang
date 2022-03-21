@@ -90,7 +90,6 @@ end(0).
       (clause
         (variable)
         (atom))
-      (after)
       (after
         (variable)))
     (arguments
@@ -371,7 +370,6 @@ end.
       (guard
         (variable))
       (atom))
-    (after)
     (after
       (atom)))
   (try

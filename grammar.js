@@ -336,6 +336,7 @@ module.exports = grammar({
       seq("receive", optional(sep($.clause, ";")), optional($.after), "end"),
 
     after: ($) => seq("after", $._expression, "->", $._body),
+    _body_after: ($) => seq("after", $._body),
 
     try: ($) =>
       seq(
@@ -343,7 +344,7 @@ module.exports = grammar({
         field("subject", $._body),
         optional(field("of", seq("of", sep($.clause, ";")))),
         optional(field("catch", seq("catch", sep($.clause, ";")))),
-        optional(field("after", alias(seq("after", $._body), $.after))),
+        optional(field("after", alias($._body_after, $.after))),
         "end"
       ),
 

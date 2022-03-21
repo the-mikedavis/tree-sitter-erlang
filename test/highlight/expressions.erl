@@ -8,3 +8,16 @@ maybe
     %%         ^ operator
 end
 %% <- keyword
+
+begin
+    %% <- keyword
+    try
+    %% <- keyword
+        raising_call(a)
+    after
+    %% <- keyword
+        ok
+    end
+    %% <- keyword
+end.
+%% <- keyword

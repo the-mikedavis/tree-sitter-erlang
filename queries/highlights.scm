@@ -79,7 +79,7 @@
   @keyword
   "^(define|export|export_type|include|include_lib|ifdef|ifndef|if|elif|else|endif|vsn|on_load|behaviour|record|file|type|opaque|spec)$"))
 
-["case" "fun" "if" "of" "when" "end" "receive" "try" "catch" "after" "maybe"] @keyword
+["case" "fun" "if" "of" "when" "end" "receive" "try" "catch" "after" "maybe" "begin"] @keyword
 
 ; Operators
 (binary_operator

@@ -2561,6 +2561,19 @@
         }
       ]
     },
+    "_body_after": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "after"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_body"
+        }
+      ]
+    },
     "try": {
       "type": "SEQ",
       "members": [
@@ -2677,17 +2690,8 @@
               "content": {
                 "type": "ALIAS",
                 "content": {
-                  "type": "SEQ",
-                  "members": [
-                    {
-                      "type": "STRING",
-                      "value": "after"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "_body"
-                    }
-                  ]
+                  "type": "SYMBOL",
+                  "name": "_body_after"
                 },
                 "named": true,
                 "value": "after"
