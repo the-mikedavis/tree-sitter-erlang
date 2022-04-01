@@ -48,6 +48,12 @@
 
 (attribute
   name: (atom) @keyword
+  (arguments
+    (_) @keyword.directive)
+ (#eq? @keyword "ifdef"))
+
+(attribute
+  name: (atom) @keyword
   module: (atom) @module
  (#eq? @keyword "spec"))
 

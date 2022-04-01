@@ -68,7 +68,10 @@
 
 -ifdef(debug).
 % ^ keyword
-%       ^ string.special.symbol
+%       ^ keyword.directive
+-ifdef(TEST).
+% ^ keyword
+%       ^ keyword.directive
 -define(LOG(X), io:format("~80~n", [X])).
 % ^ keyword
 %        ^ keyword.directive
