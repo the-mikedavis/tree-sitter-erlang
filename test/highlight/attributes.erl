@@ -106,3 +106,27 @@
 % ^ keyword
 %          % ^ string.special.symbol
 %                          ^ function
+
+-include("file.hrl").
+% ^ keyword
+
+-file("myfile.erl").
+% ^ keyword
+
+-callback name(Arguments) -> Result.
+% ^ keyword
+%          ^ function
+
+-ifndef(TEST).
+% ^ keyword
+%        ^ keyword.directive
+
+-behaviour(gen_server).
+% ^ keyword
+-behavior(gen_server).
+% ^ keyword
+
+-dialyzer({nowarn_function, [compile/1]}).
+% ^ keyword
+%           ^ string.special.symbol
+%                             ^ function

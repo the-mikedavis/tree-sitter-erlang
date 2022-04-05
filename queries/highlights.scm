@@ -50,12 +50,12 @@
   name: (atom) @keyword
   (arguments
     (_) @keyword.directive)
- (#eq? @keyword "ifdef"))
+ (#match? @keyword "ifn?def"))
 
 (attribute
   name: (atom) @keyword
   module: (atom) @module
- (#eq? @keyword "spec"))
+ (#match? @keyword "(spec|callback)"))
 
 (attribute
   name: (atom) @keyword
@@ -80,10 +80,7 @@
 (record name: (atom) @type)
 
 ; Keywords
-((attribute name: (atom) @keyword)
- (#match?
-  @keyword
-  "^(define|export|export_type|include|include_lib|ifdef|ifndef|if|elif|else|endif|vsn|on_load|behaviour|record|file|type|opaque|spec)$"))
+(attribute name: (atom) @keyword)
 
 ["case" "fun" "if" "of" "when" "end" "receive" "try" "catch" "after" "maybe" "begin"] @keyword
 
