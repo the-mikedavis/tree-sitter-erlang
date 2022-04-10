@@ -643,7 +643,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "_atom"
+                "name": "atom"
               }
             ]
           }
@@ -2831,7 +2831,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_atom"
+          "name": "atom"
         },
         {
           "type": "SYMBOL",
@@ -2843,27 +2843,27 @@
         }
       ]
     },
-    "_atom": {
+    "atom": {
       "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "atom"
+          "name": "_atom"
         },
         {
           "type": "SYMBOL",
-          "name": "quoted_atom"
+          "name": "_quoted_atom"
         }
       ]
     },
-    "atom": {
+    "_atom": {
       "type": "TOKEN",
       "content": {
         "type": "PATTERN",
         "value": "[a-zà-öø-ÿ][a-zA-ZÀ-ÿ0-9_@]*"
       }
     },
-    "quoted_atom": {
+    "_quoted_atom": {
       "type": "SEQ",
       "members": [
         {
@@ -2937,7 +2937,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "_atom"
+                  "name": "atom"
                 },
                 {
                   "type": "SYMBOL",

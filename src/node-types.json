@@ -80,10 +80,6 @@
           "named": true
         },
         {
-          "type": "quoted_atom",
-          "named": true
-        },
-        {
           "type": "receive",
           "named": true
         },
@@ -218,10 +214,6 @@
           "named": true
         },
         {
-          "type": "quoted_atom",
-          "named": true
-        },
-        {
           "type": "receive",
           "named": true
         },
@@ -257,6 +249,46 @@
     }
   },
   {
+    "type": "atom",
+    "named": true,
+    "fields": {
+      "quoted_end": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "'",
+            "named": false
+          }
+        ]
+      },
+      "quoted_start": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "'",
+            "named": false
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "escape_sequence",
+          "named": true
+        },
+        {
+          "type": "quoted_content",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "attribute",
     "named": true,
     "fields": {
@@ -270,10 +302,6 @@
           },
           {
             "type": "macro",
-            "named": true
-          },
-          {
-            "type": "quoted_atom",
             "named": true
           },
           {
@@ -293,10 +321,6 @@
           {
             "type": "if",
             "named": false
-          },
-          {
-            "type": "quoted_atom",
-            "named": true
           }
         ]
       }
@@ -338,10 +362,6 @@
           },
           {
             "type": "macro",
-            "named": true
-          },
-          {
-            "type": "quoted_atom",
             "named": true
           },
           {
@@ -431,10 +451,6 @@
             "named": true
           },
           {
-            "type": "quoted_atom",
-            "named": true
-          },
-          {
             "type": "receive",
             "named": true
           },
@@ -478,10 +494,6 @@
           },
           {
             "type": "macro",
-            "named": true
-          },
-          {
-            "type": "quoted_atom",
             "named": true
           },
           {
@@ -749,10 +761,6 @@
             "named": true
           },
           {
-            "type": "quoted_atom",
-            "named": true
-          },
-          {
             "type": "receive",
             "named": true
           },
@@ -877,10 +885,6 @@
           "named": true
         },
         {
-          "type": "quoted_atom",
-          "named": true
-        },
-        {
           "type": "receive",
           "named": true
         },
@@ -989,10 +993,6 @@
         },
         {
           "type": "maybe",
-          "named": true
-        },
-        {
-          "type": "quoted_atom",
           "named": true
         },
         {
@@ -1108,10 +1108,6 @@
         },
         {
           "type": "maybe",
-          "named": true
-        },
-        {
-          "type": "quoted_atom",
           "named": true
         },
         {
@@ -1234,10 +1230,6 @@
             "named": true
           },
           {
-            "type": "quoted_atom",
-            "named": true
-          },
-          {
             "type": "receive",
             "named": true
           },
@@ -1349,10 +1341,6 @@
           },
           {
             "type": "maybe",
-            "named": true
-          },
-          {
-            "type": "quoted_atom",
             "named": true
           },
           {
@@ -1506,10 +1494,6 @@
             "named": true
           },
           {
-            "type": "quoted_atom",
-            "named": true
-          },
-          {
             "type": "receive",
             "named": true
           },
@@ -1659,10 +1643,6 @@
             "named": true
           },
           {
-            "type": "quoted_atom",
-            "named": true
-          },
-          {
             "type": "receive",
             "named": true
           },
@@ -1795,10 +1775,6 @@
             "named": true
           },
           {
-            "type": "quoted_atom",
-            "named": true
-          },
-          {
             "type": "receive",
             "named": true
           },
@@ -1911,10 +1887,6 @@
         },
         {
           "type": "maybe",
-          "named": true
-        },
-        {
-          "type": "quoted_atom",
           "named": true
         },
         {
@@ -2046,10 +2018,6 @@
             "named": true
           },
           {
-            "type": "quoted_atom",
-            "named": true
-          },
-          {
             "type": "receive",
             "named": true
           },
@@ -2107,10 +2075,6 @@
           },
           {
             "type": "macro",
-            "named": true
-          },
-          {
-            "type": "quoted_atom",
             "named": true
           },
           {
@@ -2223,10 +2187,6 @@
           },
           {
             "type": "maybe",
-            "named": true
-          },
-          {
-            "type": "quoted_atom",
             "named": true
           },
           {
@@ -2344,10 +2304,6 @@
             "named": true
           },
           {
-            "type": "quoted_atom",
-            "named": true
-          },
-          {
             "type": "receive",
             "named": true
           },
@@ -2459,10 +2415,6 @@
           },
           {
             "type": "maybe",
-            "named": true
-          },
-          {
-            "type": "quoted_atom",
             "named": true
           },
           {
@@ -2582,10 +2534,6 @@
           "named": true
         },
         {
-          "type": "quoted_atom",
-          "named": true
-        },
-        {
           "type": "receive",
           "named": true
         },
@@ -2694,10 +2642,6 @@
         },
         {
           "type": "maybe",
-          "named": true
-        },
-        {
-          "type": "quoted_atom",
           "named": true
         },
         {
@@ -2832,10 +2776,6 @@
           "named": true
         },
         {
-          "type": "quoted_atom",
-          "named": true
-        },
-        {
           "type": "receive",
           "named": true
         },
@@ -2890,10 +2830,6 @@
         "types": [
           {
             "type": "atom",
-            "named": true
-          },
-          {
-            "type": "quoted_atom",
             "named": true
           },
           {
@@ -2993,10 +2929,6 @@
         },
         {
           "type": "maybe",
-          "named": true
-        },
-        {
-          "type": "quoted_atom",
           "named": true
         },
         {
@@ -3134,10 +3066,6 @@
           "named": true
         },
         {
-          "type": "quoted_atom",
-          "named": true
-        },
-        {
           "type": "receive",
           "named": true
         },
@@ -3167,46 +3095,6 @@
         },
         {
           "type": "variable",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "quoted_atom",
-    "named": true,
-    "fields": {
-      "quoted_end": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "'",
-            "named": false
-          }
-        ]
-      },
-      "quoted_start": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "'",
-            "named": false
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "escape_sequence",
-          "named": true
-        },
-        {
-          "type": "quoted_content",
           "named": true
         }
       ]
@@ -3252,10 +3140,6 @@
             "named": true
           },
           {
-            "type": "quoted_atom",
-            "named": true
-          },
-          {
             "type": "variable",
             "named": true
           }
@@ -3271,10 +3155,6 @@
           },
           {
             "type": "macro",
-            "named": true
-          },
-          {
-            "type": "quoted_atom",
             "named": true
           },
           {
@@ -3354,10 +3234,6 @@
         },
         {
           "type": "maybe",
-          "named": true
-        },
-        {
-          "type": "quoted_atom",
           "named": true
         },
         {
@@ -3473,10 +3349,6 @@
         },
         {
           "type": "maybe",
-          "named": true
-        },
-        {
-          "type": "quoted_atom",
           "named": true
         },
         {
@@ -3596,10 +3468,6 @@
         },
         {
           "type": "maybe",
-          "named": true
-        },
-        {
-          "type": "quoted_atom",
           "named": true
         },
         {
@@ -3726,10 +3594,6 @@
             "named": true
           },
           {
-            "type": "quoted_atom",
-            "named": true
-          },
-          {
             "type": "receive",
             "named": true
           },
@@ -3787,10 +3651,6 @@
           },
           {
             "type": "macro",
-            "named": true
-          },
-          {
-            "type": "quoted_atom",
             "named": true
           },
           {
@@ -3986,10 +3846,6 @@
             "named": true
           },
           {
-            "type": "quoted_atom",
-            "named": true
-          },
-          {
             "type": "receive",
             "named": true
           },
@@ -4099,10 +3955,6 @@
         },
         {
           "type": "maybe",
-          "named": true
-        },
-        {
-          "type": "quoted_atom",
           "named": true
         },
         {
@@ -4222,10 +4074,6 @@
           },
           {
             "type": "maybe",
-            "named": true
-          },
-          {
-            "type": "quoted_atom",
             "named": true
           },
           {
@@ -4465,10 +4313,6 @@
   {
     "type": "andalso",
     "named": false
-  },
-  {
-    "type": "atom",
-    "named": true
   },
   {
     "type": "band",
