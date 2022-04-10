@@ -52,17 +52,17 @@ félicien
   (atom)
   (atom)
   (atom)
-  (quoted_atom
+  (atom
     (quoted_content))
   (comment)
-  (quoted_atom
+  (atom
     (quoted_content))
-  (quoted_atom
+  (atom
     (escape_sequence))
   (comment)
-  (quoted_atom
+  (atom
     (escape_sequence))
-  (quoted_atom))
+  (atom))
 
 ================================================================================
 numbers

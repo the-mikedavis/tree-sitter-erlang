@@ -6,6 +6,10 @@
 %           ^ punctuation.bracket
 %            ^ punctuation.delimiter
 
+-module('lru').
+% ^ keyword
+%        ^ module
+
 -export([a_func/1,another_func/2]).
 % ^ keyword
 %       ^ punctuation.bracket

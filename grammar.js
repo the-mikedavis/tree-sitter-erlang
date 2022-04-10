@@ -139,7 +139,7 @@ module.exports = grammar({
         "-",
         // 'if' is used later in a rule, we use a choice here with the
         // literal value to force precedence.
-        field("name", choice("if", $._atom)),
+        field("name", choice("if", $.atom)),
         optional(choice($.arguments, alias($._items, $.arguments)))
       ),
 
@@ -375,14 +375,14 @@ module.exports = grammar({
 
     float: ($) => /[+-]?[0-9][0-9_]*\.[0-9_]+([eE][+-]?[0-9]+)?/,
 
-    _identifier: ($) => choice($._atom, $.variable, $.macro),
+    _identifier: ($) => choice($.atom, $.variable, $.macro),
 
-    _atom: ($) => choice($.atom, $.quoted_atom),
+    atom: ($) => choice($._atom, $._quoted_atom),
 
     // latin1 diacritics are allowed.
-    atom: ($) => token(/[a-zà-öø-ÿ][a-zA-ZÀ-ÿ0-9_@]*/),
+    _atom: ($) => token(/[a-zà-öø-ÿ][a-zA-ZÀ-ÿ0-9_@]*/),
 
-    quoted_atom: ($) =>
+    _quoted_atom: ($) =>
       seq(
         field("quoted_start", "'"),
         repeat(choice($.quoted_content, $.escape_sequence)),
@@ -396,7 +396,7 @@ module.exports = grammar({
         seq(
           "?",
           optional(token.immediate("?")),
-          field("name", choice($._atom, $.variable)),
+          field("name", choice($.atom, $.variable)),
           optional(field("arguments", $.arguments))
         )
       ),

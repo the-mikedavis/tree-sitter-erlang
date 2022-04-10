@@ -109,10 +109,7 @@
 
 ; Basic types
 (variable) @variable
-[
-  (atom)
-  (quoted_atom)
-] @string.special.symbol
+(atom) @string.special.symbol
 (string) @string
 (character) @constant
 
