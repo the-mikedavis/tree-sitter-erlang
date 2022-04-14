@@ -21,3 +21,11 @@ begin
     %% <- keyword
 end.
 %% <- keyword
+
+?assertMatch({ok, _}, start())
+%% <- keyword.directive
+%% ^ keyword.directive
+
+?_assertEqual(a, a)
+%% <- keyword.directive
+%% ^ keyword.directive
