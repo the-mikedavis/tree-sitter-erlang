@@ -33,3 +33,8 @@ against the .erl/.hrl files in the OTP codebase[^1]. Try it out on the online
       or use preprocessor directives with blatantly invalid syntax. This
       can be measured with
       `tree-sitter parse --quiet --stat path/to/otp/**.{erl,hrl}`.
+
+## License
+
+This project is licensed under the Apache-2.0 license. Any files under
+the `queries/` directory are licensed under the BSD 0-clause license.
