@@ -18,6 +18,7 @@
     .
     (atom) @type
     [
+      (tuple)
       (tuple (atom) @property)
       (tuple
         (binary_operator
@@ -30,7 +31,7 @@
               left: (atom) @property
               operator: "=")
           operator: "::"))
-      ])
+    ])
  (#eq? @keyword "record"))
 
 (attribute

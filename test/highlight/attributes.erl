@@ -134,3 +134,7 @@
 % ^ keyword
 %           ^ string.special.symbol
 %                             ^ function
+
+-record(garbage_collection, {}).
+%% ^ keyword
+%%       ^ type
