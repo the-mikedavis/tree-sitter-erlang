@@ -594,7 +594,7 @@ comp_ret_ok(Code, #compile{warnings=Warn0,module=Mod,options=Opts}=St) ->
             Warn = messages_per_file(Warn1),
             report_warnings(St#compile{warnings = Warn}),
             Ret1 = case member(binary, Opts) andalso
-%                                             ^ operator
+%                                             ^ keyword.operator
                not member(no_code_generation, Opts) of
 %               ^ operator
                        true -> [Code];
@@ -623,7 +623,7 @@ not_werror(St) -> not werror(St).
 werror(#compile{options=Opts,warnings=Ws}) ->
     Ws =/= [] andalso member(warnings_as_errors, Opts).
 %       ^ operator
-%               ^ operator
+%               ^ keyword.operator
 
 %% messages_per_file([{File,[Message]}]) -> [{File,[Message]}]
 messages_per_file(Ms) ->
@@ -1601,7 +1601,7 @@ test_core_inliner(#compile{options=Opts}) ->
 
 test_any_inliner(St) ->
     test_old_inliner(St) orelse test_core_inliner(St).
-%                          ^ operator
+%                          ^ keyword.operator
 
 core_old_inliner(Code0, #compile{options=Opts}=St) ->
     {ok,Code} = sys_core_inline:module(Code0, Opts),

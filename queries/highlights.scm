@@ -91,6 +91,9 @@
   operator: "/"
   right: (integer) @number)
 
+(binary_operator
+  operator: ["orelse" "andalso"] @keyword.operator)
+
 (binary_operator operator: _ @operator)
 (unary_operator operator: _ @operator)
 ["/" ":" "#" "->"] @operator
