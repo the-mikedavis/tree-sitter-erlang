@@ -17,7 +17,7 @@ jobs:
       - name: Install Node
         uses: actions/setup-node@v2
         with:
-          node-version: "14.x"
+          node-version: "16.x"
 
       - name: Cache npm dependencies
         uses: actions/cache@v2
@@ -37,8 +37,8 @@ jobs:
 
       - name: Commit generated parser files
         run: |
-          git config --local user.email "$(git log --format='%ae' HEAD^!)"
-          git config --local user.name "$(git log --format='%an' HEAD^!)"
+          git config --global user.email "$(git log --format='%ae' HEAD^!)"
+          git config --global user.name "$(git log --format='%an' HEAD^!)"
           git add src
           git commit -m "Generate parser" || true
           git push
