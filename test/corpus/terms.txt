@@ -12,7 +12,8 @@ strings
 
 (source
   (string)
-  (comment)
+  (comment
+    (comment_content))
   (string
     (quoted_content))
   (string
@@ -54,12 +55,14 @@ félicien
   (atom)
   (atom
     (quoted_content))
-  (comment)
+  (comment
+    (comment_content))
   (atom
     (quoted_content))
   (atom
     (escape_sequence))
-  (comment)
+  (comment
+    (comment_content))
   (atom
     (escape_sequence))
   (atom))
@@ -104,7 +107,8 @@ $\^[      %% ctrl+[
 
 (source
   (character)
-  (comment)
+  (comment
+    (comment_content))
   (character)
   (character
     (escape_sequence))
@@ -121,18 +125,23 @@ $\^[      %% ctrl+[
   (character)
   (character)
   (character)
-  (comment)
+  (comment
+    (comment_content))
   (character)
-  (comment)
+  (comment
+    (comment_content))
   (character
     (escape_sequence))
-  (comment)
+  (comment
+    (comment_content))
   (character
     (escape_sequence))
-  (comment)
+  (comment
+    (comment_content))
   (character
     (escape_sequence))
-  (comment)
+  (comment
+    (comment_content))
   (integer)
   (integer)
   (integer)
@@ -349,7 +358,8 @@ Mod#mod.name#literal.val.
   (record
     (atom)
     (atom))
-  (comment)
+  (comment
+    (comment_content))
   (atom)
   (binary_operator
     (variable)

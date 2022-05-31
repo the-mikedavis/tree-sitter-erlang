@@ -3094,12 +3094,13 @@
           }
         },
         {
-          "type": "FIELD",
-          "name": "comment_content",
+          "type": "ALIAS",
           "content": {
             "type": "PATTERN",
-            "value": ".*"
-          }
+            "value": "[^\\r\\n]*"
+          },
+          "named": true,
+          "value": "comment_content"
         }
       ]
     }

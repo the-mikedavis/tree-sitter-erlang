@@ -52,7 +52,8 @@ end(0).
         (variable)))
     (arguments
       (integer)))
-  (comment)
+  (comment
+    (comment_content))
   (call
     (anonymous_function
       (stab_clause
@@ -96,7 +97,7 @@ end(0).
       (integer))))
 
 ================================================================================
-function call with no terminator newline
+local function call with no terminator newline
 ================================================================================
 min(A, B)
 --------------------------------------------------------------------------------
@@ -107,6 +108,21 @@ min(A, B)
     (arguments
       (variable)
       (variable))))
+
+================================================================================
+remote function call with no terminator newline
+================================================================================
+erlang:min(A, B)
+--------------------------------------------------------------------------------
+
+(source
+  (binary_operator
+    (atom)
+    (call
+      (atom)
+      (arguments
+        (variable)
+        (variable)))))
 
 ================================================================================
 case embedded in a function call
@@ -122,7 +138,8 @@ ipv6_v6only_open(Module, Opts) ->
 --------------------------------------------------------------------------------
 
 (source
-  (comment)
+  (comment
+    (comment_content))
   (function
     (atom)
     (arguments
@@ -183,10 +200,14 @@ comprehensions
 --------------------------------------------------------------------------------
 
 (source
-  (comment)
-  (comment)
-  (comment)
-  (comment)
+  (comment
+    (comment_content))
+  (comment
+    (comment_content))
+  (comment
+    (comment_content))
+  (comment
+    (comment_content))
   (list
     (binary_operator
       (binary_operator
@@ -513,7 +534,8 @@ macros
       (tuple
         (atom)
         (integer))))
-  (comment)
+  (comment
+    (comment_content))
   (macro
     (atom)
     (arguments
@@ -556,7 +578,8 @@ pound operator
 --------------------------------------------------------------------------------
 
 (source
-  (comment)
+  (comment
+    (comment_content))
   (binary_operator
     (bitstring)
     (map_content
@@ -585,7 +608,8 @@ end
 --------------------------------------------------------------------------------
 
 (source
-  (comment)
+  (comment
+    (comment_content))
   (maybe
     (body
       (binary_operator
@@ -593,7 +617,8 @@ end
         (call
           (atom)
           (arguments)))
-      (comment)
+      (comment
+        (comment_content))
       (binary_operator
         (tuple
           (atom)
@@ -643,7 +668,8 @@ end
 --------------------------------------------------------------------------------
 
 (source
-  (comment)
+  (comment
+    (comment_content))
   (maybe
     (binary_operator
       (binary_operator

@@ -117,8 +117,10 @@ maps:get(date,DateTime).
 --------------------------------------------------------------------------------
 
 (source
-  (comment)
-  (comment)
+  (comment
+    (comment_content))
+  (comment
+    (comment_content))
   (call
     (atom)
     (arguments
@@ -189,7 +191,8 @@ adler32(_Data) ->
         (call
           (atom)
           (arguments)))))
-  (comment)
+  (comment
+    (comment_content))
   (attribute
     (atom)
     (stab_clause
@@ -201,8 +204,10 @@ adler32(_Data) ->
             (atom)
             (arguments))))
       (atom)))
-  (comment)
-  (comment)
+  (comment
+    (comment_content))
+  (comment
+    (comment_content))
   (attribute
     (atom)
     (stab_clause
@@ -243,7 +248,8 @@ adler32(_Data) ->
         (call
           (atom)
           (arguments)))))
-  (comment)
+  (comment
+    (comment_content))
   (attribute
     (atom)
     (atom)
@@ -414,7 +420,8 @@ type declarations
         (call
           (atom)
           (arguments)))))
-  (comment)
+  (comment
+    (comment_content))
   (attribute
     (atom)
     (arguments
@@ -571,7 +578,8 @@ macro declarations
         (binary_operator
           (variable)
           (atom)))))
-  (comment)
+  (comment
+    (comment_content))
   (attribute
     (atom)
     (arguments
@@ -602,8 +610,10 @@ macro declarations
           (bitstring
             (string
               (quoted_content)))))))
-  (comment)
-  (comment)
+  (comment
+    (comment_content))
+  (comment
+    (comment_content))
   (attribute
     (atom)
     (arguments
@@ -614,7 +624,8 @@ macro declarations
           (atom)
           (macro
             (variable))))))
-  (comment)
+  (comment
+    (comment_content))
   (attribute
     (atom)
     (arguments
@@ -706,7 +717,8 @@ assert.hrl macro declaration
 --------------------------------------------------------------------------------
 
 (source
-  (comment)
+  (comment
+    (comment_content))
   (attribute
     (atom)
     (arguments
@@ -728,7 +740,8 @@ assert.hrl macro declaration
                       (call
                         (atom)
                         (arguments)))))
-                (comment)
+                (comment
+                  (comment_content))
                 (case
                   (variable)
                   (clause
@@ -786,7 +799,8 @@ defined_by_macro(_) -> error.
 --------------------------------------------------------------------------------
 
 (source
-  (comment)
+  (comment
+    (comment_content))
   (function
     (macro
       (atom)

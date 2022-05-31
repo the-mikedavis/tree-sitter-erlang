@@ -1,5 +1,4 @@
 -module(main).
-% <- punctuation.delimiter
 % ^ keyword
 %      ^ punctuation.bracket
 %        ^ module

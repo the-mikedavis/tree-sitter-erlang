@@ -449,7 +449,7 @@ module.exports = grammar({
     comment: ($) =>
       seq(
         prec(PREC.COMMENT, token(repeat1("%"))),
-        field("comment_content", /.*/)
+        alias(/[^\r\n]*/, $.comment_content)
       ),
   },
 });

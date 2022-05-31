@@ -1,6 +1,6 @@
 %% https://www.erlang.org/eeps/eep-0049#specification
 maybe
-    %% <- keyword
+%%^ keyword
     X = [H|T] ?= exp()
     %%^ operator
     %%    ^ operator
@@ -10,7 +10,7 @@ end
 %% <- keyword
 
 begin
-    %% <- keyword
+%%^ keyword
     try
     %% <- keyword
         raising_call(a)
