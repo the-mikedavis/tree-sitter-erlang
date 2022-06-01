@@ -119,8 +119,13 @@
             "type": "CHOICE",
             "members": [
               {
-                "type": "SYMBOL",
-                "name": "_named_stab_clause"
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_named_stab_clause"
+                },
+                "named": true,
+                "value": "function_clause"
               },
               {
                 "type": "SYMBOL",
@@ -141,8 +146,13 @@
                   "type": "CHOICE",
                   "members": [
                     {
-                      "type": "SYMBOL",
-                      "name": "_named_stab_clause"
+                      "type": "ALIAS",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "_named_stab_clause"
+                      },
+                      "named": true,
+                      "value": "function_clause"
                     },
                     {
                       "type": "SYMBOL",
