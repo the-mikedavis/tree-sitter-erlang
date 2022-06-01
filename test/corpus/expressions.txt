@@ -141,26 +141,27 @@ ipv6_v6only_open(Module, Opts) ->
   (comment
     (comment_content))
   (function
-    (atom)
-    (arguments
-      (variable)
-      (variable))
-    (call
-      (variable)
-      (case
-        (variable)
-        (clause
-          (atom)
-          (atom))
-        (clause
-          (variable)
-          (atom)))
+    (function_clause
+      (atom)
       (arguments
-        (integer)
-        (list
-          (binary_operator
+        (variable)
+        (variable))
+      (call
+        (variable)
+        (case
+          (variable)
+          (clause
             (atom)
-            (variable)))))))
+            (atom))
+          (clause
+            (variable)
+            (atom)))
+        (arguments
+          (integer)
+          (list
+            (binary_operator
+              (atom)
+              (variable))))))))
 
 ================================================================================
 blocks

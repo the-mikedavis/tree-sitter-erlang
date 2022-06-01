@@ -63,7 +63,7 @@
  (#eq? @keyword "compile"))
 
 ; Functions
-(function name: (atom) @function)
+(function_clause name: (atom) @function)
 (call module: (atom) @module)
 (call function: (atom) @function)
 (stab_clause name: (atom) @function)

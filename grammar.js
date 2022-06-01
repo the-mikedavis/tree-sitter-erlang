@@ -93,7 +93,13 @@ module.exports = grammar({
 
     _terminator: ($) => choice(".", "\n"),
 
-    function: ($) => prec.left(sep(choice($._named_stab_clause, $.macro), ";")),
+    function: ($) =>
+      prec.left(
+        sep(
+          choice(alias($._named_stab_clause, $.function_clause), $.macro),
+          ";"
+        )
+      ),
 
     _macro_declaration: ($) =>
       seq(

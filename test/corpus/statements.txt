@@ -39,70 +39,76 @@ dupe(Term) -> {Term, Term}.
 
 (source
   (function
-    (atom)
-    (arguments
-      (variable))
-    (tuple
+    (function_clause
       (atom)
-      (variable)))
-  (function
-    (atom)
-    (arguments
-      (variable))
-    (guard
-      (binary_operator
-        (variable)
-        (integer)))
-    (binary_operator
-      (variable)
-      (call
+      (arguments
+        (variable))
+      (tuple
         (atom)
-        (arguments
-          (binary_operator
-            (variable)
-            (integer)))))
-    (atom)
-    (arguments
-      (integer))
-    (integer))
+        (variable))))
   (function
-    (atom)
-    (arguments
-      (variable))
-    (body
+    (function_clause
+      (atom)
+      (arguments
+        (variable))
+      (guard
+        (binary_operator
+          (variable)
+          (integer)))
       (binary_operator
         (variable)
         (call
           (atom)
           (arguments
-            (variable))))
-      (call
-        (atom)
-        (arguments
-          (variable)))))
+            (binary_operator
+              (variable)
+              (integer))))))
+    (function_clause
+      (atom)
+      (arguments
+        (integer))
+      (integer)))
   (function
-    (atom)
-    (arguments
-      (variable))
-    (guard
-      (call
-        (atom)
-        (arguments
-          (variable))))
-    (binary_operator
-      (list
+    (function_clause
+      (atom)
+      (arguments
+        (variable))
+      (body
         (binary_operator
+          (variable)
+          (call
+            (atom)
+            (arguments
+              (variable))))
+        (call
+          (atom)
+          (arguments
+            (variable))))))
+  (function
+    (function_clause
+      (atom)
+      (arguments
+        (variable))
+      (guard
+        (call
+          (atom)
+          (arguments
+            (variable))))
+      (binary_operator
+        (list
           (binary_operator
-            (variable)
-            (variable))
-          (variable)))
-      (variable))
-    (atom)
-    (arguments
-      (variable))
-    (tuple
-      (variable)
-      (variable))))
+            (binary_operator
+              (variable)
+              (variable))
+            (variable)))
+        (variable)))
+    (function_clause
+      (atom)
+      (arguments
+        (variable))
+      (tuple
+        (variable)
+        (variable)))))
 
 ================================================================================
 statement flexibility with newlines
@@ -267,14 +273,15 @@ adler32(_Data) ->
           (atom)
           (arguments)))))
   (function
-    (atom)
-    (arguments
-      (variable))
-    (call
-      (atom)
+    (function_clause
       (atom)
       (arguments
-        (atom)))))
+        (variable))
+      (call
+        (atom)
+        (atom)
+        (arguments
+          (atom))))))
 
 ================================================================================
 spec with when clause
@@ -680,15 +687,17 @@ macro declaration of a function clause
           (variable)))
       (body
         (function
-          (atom)
-          (arguments
-            (variable))
-          (atom))
+          (function_clause
+            (atom)
+            (arguments
+              (variable))
+            (atom)))
         (function
-          (atom)
-          (arguments
-            (variable))
-          (atom))))))
+          (function_clause
+            (atom)
+            (arguments
+              (variable))
+            (atom)))))))
 
 ================================================================================
 assert.hrl macro declaration
@@ -814,10 +823,11 @@ defined_by_macro(_) -> error.
       (atom)
       (arguments
         (atom)))
-    (atom)
-    (arguments
-      (variable))
-    (atom)))
+    (function_clause
+      (atom)
+      (arguments
+        (variable))
+      (atom))))
 
 ================================================================================
 record definitions
