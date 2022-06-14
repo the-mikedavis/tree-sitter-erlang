@@ -52,7 +52,7 @@
 
 -define(SUB_PASS_TIMES, compile__sub_pass_times).
 % ^ keyword
-%        ^ keyword.directive
+%        ^ constant
 %                        ^ string.special.symbol
 
 %%----------------------------------------------------------------------
@@ -120,7 +120,7 @@ file(File, Opts) when is_list(Opts) ->
 file(File, Opt) ->
     file(File, [Opt|?DEFAULT_OPTIONS]).
 %                  ^ operator
-%                     ^ keyword.directive
+%                     ^ constant
 
 -spec forms(abstract_code()) -> comp_ret().
 

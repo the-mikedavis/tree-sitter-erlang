@@ -39,8 +39,8 @@
   (arguments
     .
     [
-      (atom) @keyword.directive
-      (variable) @keyword.directive
+      (atom) @constant
+      (variable) @constant
       (call
         function:
           [(variable) (atom)] @keyword.directive)
@@ -103,6 +103,11 @@
 (comment) @comment
 
 ; Macros
+(macro
+  "?"+ @constant
+  name: (_) @constant
+  !arguments)
+
 (macro
   "?"+ @keyword.directive
   name: (_) @keyword.directive)
