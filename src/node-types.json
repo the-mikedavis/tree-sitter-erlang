@@ -749,6 +749,10 @@
             "named": true
           },
           {
+            "type": "map_update",
+            "named": true
+          },
+          {
             "type": "maybe",
             "named": true
           },
@@ -2825,6 +2829,21 @@
         },
         {
           "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "map_update",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "map_content",
           "named": true
         }
       ]

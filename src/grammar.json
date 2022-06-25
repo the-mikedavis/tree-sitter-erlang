@@ -939,6 +939,10 @@
         ]
       }
     },
+    "map_update": {
+      "type": "SYMBOL",
+      "name": "_map_body"
+    },
     "record": {
       "type": "PREC",
       "value": 95,
@@ -1211,13 +1215,8 @@
                       "name": "_record_body"
                     },
                     {
-                      "type": "ALIAS",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "_map_body"
-                      },
-                      "named": true,
-                      "value": "map"
+                      "type": "SYMBOL",
+                      "name": "map_update"
                     }
                   ]
                 }
