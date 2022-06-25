@@ -51,7 +51,7 @@ module.exports = grammar({
     // Handles the case "_identifier  •  '('  …":
     [$._named_stab_clause, $._literal, $._expression],
     // A literal needs to beat an expression so that calls may be recognized
-    // in the case of "_parenthesized_expression  •  '('  …".
+    // in the case of "parenthesized_expression  •  '('  …".
     [$._literal, $._expression],
     // This case is needed explicitly for macros:
     //     "'-'  'define'  '('  _expression  ','  _identifier  •  '('  …"
@@ -178,10 +178,10 @@ module.exports = grammar({
         $.receive,
         $.try,
         $.maybe,
-        $._parenthesized_expression
+        $.parenthesized_expression
       ),
 
-    _parenthesized_expression: ($) =>
+    parenthesized_expression: ($) =>
       prec(PREC.PARENS_EXPR, parens($._expression)),
 
     bitstring: ($) => seq("<<", optional($._items), ">>"),
@@ -225,7 +225,7 @@ module.exports = grammar({
           prec.left,
           "#",
           $._expression,
-          choice($._record_body, $._map_body)
+          choice($._record_body, alias($._map_body, $.map))
         ),
         binaryOp($, PREC.MULT_OP, prec.left, choice(...MULT_OPS)),
         binaryOp($, PREC.ADD_OP, prec.left, choice(...ADD_OPS)),
@@ -251,7 +251,7 @@ module.exports = grammar({
       ),
 
     _literal: ($) =>
-      choice($._number, $._identifier, $._parenthesized_expression),
+      choice($._number, $._identifier, $.parenthesized_expression),
 
     anonymous_function: ($) => seq("fun", sep($.stab_clause, ";"), "end"),
 
