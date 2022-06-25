@@ -788,11 +788,11 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_parenthesized_expression"
+          "name": "parenthesized_expression"
         }
       ]
     },
-    "_parenthesized_expression": {
+    "parenthesized_expression": {
       "type": "PREC",
       "value": -1,
       "content": {
@@ -1211,8 +1211,13 @@
                       "name": "_record_body"
                     },
                     {
-                      "type": "SYMBOL",
-                      "name": "_map_body"
+                      "type": "ALIAS",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "_map_body"
+                      },
+                      "named": true,
+                      "value": "map"
                     }
                   ]
                 }
@@ -1858,7 +1863,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_parenthesized_expression"
+          "name": "parenthesized_expression"
         }
       ]
     },

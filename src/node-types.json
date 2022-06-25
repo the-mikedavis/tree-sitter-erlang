@@ -80,6 +80,10 @@
           "named": true
         },
         {
+          "type": "parenthesized_expression",
+          "named": true
+        },
+        {
           "type": "receive",
           "named": true
         },
@@ -211,6 +215,10 @@
         },
         {
           "type": "maybe",
+          "named": true
+        },
+        {
+          "type": "parenthesized_expression",
           "named": true
         },
         {
@@ -375,14 +383,6 @@
         "required": true,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
             "type": "anonymous_function",
             "named": true
           },
@@ -448,6 +448,10 @@
           },
           {
             "type": "maybe",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
             "named": true
           },
           {
@@ -677,14 +681,6 @@
         "required": true,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
             "type": ".",
             "named": false
           },
@@ -753,11 +749,11 @@
             "named": true
           },
           {
-            "type": "map_content",
+            "type": "maybe",
             "named": true
           },
           {
-            "type": "maybe",
+            "type": "parenthesized_expression",
             "named": true
           },
           {
@@ -885,6 +881,10 @@
           "named": true
         },
         {
+          "type": "parenthesized_expression",
+          "named": true
+        },
+        {
           "type": "receive",
           "named": true
         },
@@ -993,6 +993,10 @@
         },
         {
           "type": "maybe",
+          "named": true
+        },
+        {
+          "type": "parenthesized_expression",
           "named": true
         },
         {
@@ -1111,6 +1115,10 @@
           "named": true
         },
         {
+          "type": "parenthesized_expression",
+          "named": true
+        },
+        {
           "type": "receive",
           "named": true
         },
@@ -1150,39 +1158,11 @@
     "named": true,
     "fields": {
       "function": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": "anonymous_function",
-            "named": true
-          },
-          {
             "type": "atom",
-            "named": true
-          },
-          {
-            "type": "binary_operator",
-            "named": true
-          },
-          {
-            "type": "bitstring",
-            "named": true
-          },
-          {
-            "type": "block",
-            "named": true
-          },
-          {
-            "type": "call",
             "named": true
           },
           {
@@ -1190,19 +1170,7 @@
             "named": true
           },
           {
-            "type": "character",
-            "named": true
-          },
-          {
             "type": "float",
-            "named": true
-          },
-          {
-            "type": "function_capture",
-            "named": true
-          },
-          {
-            "type": "function_type",
             "named": true
           },
           {
@@ -1214,47 +1182,11 @@
             "named": true
           },
           {
-            "type": "list",
-            "named": true
-          },
-          {
             "type": "macro",
             "named": true
           },
           {
-            "type": "map",
-            "named": true
-          },
-          {
-            "type": "maybe",
-            "named": true
-          },
-          {
-            "type": "receive",
-            "named": true
-          },
-          {
-            "type": "record",
-            "named": true
-          },
-          {
-            "type": "string",
-            "named": true
-          },
-          {
-            "type": "tripledot",
-            "named": true
-          },
-          {
-            "type": "try",
-            "named": true
-          },
-          {
-            "type": "tuple",
-            "named": true
-          },
-          {
-            "type": "unary_operator",
+            "type": "parenthesized_expression",
             "named": true
           },
           {
@@ -1264,47 +1196,11 @@
         ]
       },
       "module": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": "anonymous_function",
-            "named": true
-          },
-          {
             "type": "atom",
-            "named": true
-          },
-          {
-            "type": "binary_operator",
-            "named": true
-          },
-          {
-            "type": "bitstring",
-            "named": true
-          },
-          {
-            "type": "block",
-            "named": true
-          },
-          {
-            "type": "call",
-            "named": true
-          },
-          {
-            "type": "case",
-            "named": true
-          },
-          {
-            "type": "character",
             "named": true
           },
           {
@@ -1312,23 +1208,7 @@
             "named": true
           },
           {
-            "type": "function_capture",
-            "named": true
-          },
-          {
-            "type": "function_type",
-            "named": true
-          },
-          {
-            "type": "if",
-            "named": true
-          },
-          {
             "type": "integer",
-            "named": true
-          },
-          {
-            "type": "list",
             "named": true
           },
           {
@@ -1336,39 +1216,7 @@
             "named": true
           },
           {
-            "type": "map",
-            "named": true
-          },
-          {
-            "type": "maybe",
-            "named": true
-          },
-          {
-            "type": "receive",
-            "named": true
-          },
-          {
-            "type": "record",
-            "named": true
-          },
-          {
-            "type": "string",
-            "named": true
-          },
-          {
-            "type": "tripledot",
-            "named": true
-          },
-          {
-            "type": "try",
-            "named": true
-          },
-          {
-            "type": "tuple",
-            "named": true
-          },
-          {
-            "type": "unary_operator",
+            "type": "parenthesized_expression",
             "named": true
           },
           {
@@ -1418,14 +1266,6 @@
         "required": true,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
             "type": "anonymous_function",
             "named": true
           },
@@ -1491,6 +1331,10 @@
           },
           {
             "type": "maybe",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
             "named": true
           },
           {
@@ -1562,14 +1406,6 @@
         "multiple": true,
         "required": false,
         "types": [
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
           {
             "type": "anonymous_function",
             "named": true
@@ -1643,6 +1479,10 @@
             "named": true
           },
           {
+            "type": "parenthesized_expression",
+            "named": true
+          },
+          {
             "type": "receive",
             "named": true
           },
@@ -1694,14 +1534,6 @@
         "multiple": true,
         "required": false,
         "types": [
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
           {
             "type": ",",
             "named": false
@@ -1772,6 +1604,10 @@
           },
           {
             "type": "maybe",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
             "named": true
           },
           {
@@ -1890,6 +1726,10 @@
           "named": true
         },
         {
+          "type": "parenthesized_expression",
+          "named": true
+        },
+        {
           "type": "receive",
           "named": true
         },
@@ -1947,14 +1787,6 @@
         "multiple": true,
         "required": false,
         "types": [
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
           {
             "type": "anonymous_function",
             "named": true
@@ -2025,6 +1857,10 @@
           },
           {
             "type": "maybe",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
             "named": true
           },
           {
@@ -2128,14 +1964,6 @@
         "required": true,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
             "type": "anonymous_function",
             "named": true
           },
@@ -2201,6 +2029,10 @@
           },
           {
             "type": "maybe",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
             "named": true
           },
           {
@@ -2238,39 +2070,11 @@
         ]
       },
       "function": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": "anonymous_function",
-            "named": true
-          },
-          {
             "type": "atom",
-            "named": true
-          },
-          {
-            "type": "binary_operator",
-            "named": true
-          },
-          {
-            "type": "bitstring",
-            "named": true
-          },
-          {
-            "type": "block",
-            "named": true
-          },
-          {
-            "type": "call",
             "named": true
           },
           {
@@ -2278,19 +2082,7 @@
             "named": true
           },
           {
-            "type": "character",
-            "named": true
-          },
-          {
             "type": "float",
-            "named": true
-          },
-          {
-            "type": "function_capture",
-            "named": true
-          },
-          {
-            "type": "function_type",
             "named": true
           },
           {
@@ -2302,47 +2094,11 @@
             "named": true
           },
           {
-            "type": "list",
-            "named": true
-          },
-          {
             "type": "macro",
             "named": true
           },
           {
-            "type": "map",
-            "named": true
-          },
-          {
-            "type": "maybe",
-            "named": true
-          },
-          {
-            "type": "receive",
-            "named": true
-          },
-          {
-            "type": "record",
-            "named": true
-          },
-          {
-            "type": "string",
-            "named": true
-          },
-          {
-            "type": "tripledot",
-            "named": true
-          },
-          {
-            "type": "try",
-            "named": true
-          },
-          {
-            "type": "tuple",
-            "named": true
-          },
-          {
-            "type": "unary_operator",
+            "type": "parenthesized_expression",
             "named": true
           },
           {
@@ -2352,47 +2108,11 @@
         ]
       },
       "module": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": "anonymous_function",
-            "named": true
-          },
-          {
             "type": "atom",
-            "named": true
-          },
-          {
-            "type": "binary_operator",
-            "named": true
-          },
-          {
-            "type": "bitstring",
-            "named": true
-          },
-          {
-            "type": "block",
-            "named": true
-          },
-          {
-            "type": "call",
-            "named": true
-          },
-          {
-            "type": "case",
-            "named": true
-          },
-          {
-            "type": "character",
             "named": true
           },
           {
@@ -2400,23 +2120,7 @@
             "named": true
           },
           {
-            "type": "function_capture",
-            "named": true
-          },
-          {
-            "type": "function_type",
-            "named": true
-          },
-          {
-            "type": "if",
-            "named": true
-          },
-          {
             "type": "integer",
-            "named": true
-          },
-          {
-            "type": "list",
             "named": true
           },
           {
@@ -2424,39 +2128,7 @@
             "named": true
           },
           {
-            "type": "map",
-            "named": true
-          },
-          {
-            "type": "maybe",
-            "named": true
-          },
-          {
-            "type": "receive",
-            "named": true
-          },
-          {
-            "type": "record",
-            "named": true
-          },
-          {
-            "type": "string",
-            "named": true
-          },
-          {
-            "type": "tripledot",
-            "named": true
-          },
-          {
-            "type": "try",
-            "named": true
-          },
-          {
-            "type": "tuple",
-            "named": true
-          },
-          {
-            "type": "unary_operator",
+            "type": "parenthesized_expression",
             "named": true
           },
           {
@@ -2475,14 +2147,6 @@
         "multiple": true,
         "required": true,
         "types": [
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
           {
             "type": "anonymous_function",
             "named": true
@@ -2553,6 +2217,10 @@
           },
           {
             "type": "maybe",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
             "named": true
           },
           {
@@ -2714,6 +2382,10 @@
           "named": true
         },
         {
+          "type": "parenthesized_expression",
+          "named": true
+        },
+        {
           "type": "receive",
           "named": true
         },
@@ -2822,6 +2494,10 @@
         },
         {
           "type": "maybe",
+          "named": true
+        },
+        {
+          "type": "parenthesized_expression",
           "named": true
         },
         {
@@ -2953,6 +2629,10 @@
         },
         {
           "type": "maybe",
+          "named": true
+        },
+        {
+          "type": "parenthesized_expression",
           "named": true
         },
         {
@@ -3112,6 +2792,10 @@
           "named": true
         },
         {
+          "type": "parenthesized_expression",
+          "named": true
+        },
+        {
           "type": "receive",
           "named": true
         },
@@ -3246,6 +2930,125 @@
           "named": true
         },
         {
+          "type": "parenthesized_expression",
+          "named": true
+        },
+        {
+          "type": "receive",
+          "named": true
+        },
+        {
+          "type": "record",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "tripledot",
+          "named": true
+        },
+        {
+          "type": "try",
+          "named": true
+        },
+        {
+          "type": "tuple",
+          "named": true
+        },
+        {
+          "type": "unary_operator",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parenthesized_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "anonymous_function",
+          "named": true
+        },
+        {
+          "type": "atom",
+          "named": true
+        },
+        {
+          "type": "binary_operator",
+          "named": true
+        },
+        {
+          "type": "bitstring",
+          "named": true
+        },
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "call",
+          "named": true
+        },
+        {
+          "type": "case",
+          "named": true
+        },
+        {
+          "type": "character",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "function_capture",
+          "named": true
+        },
+        {
+          "type": "function_type",
+          "named": true
+        },
+        {
+          "type": "if",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "macro",
+          "named": true
+        },
+        {
+          "type": "map",
+          "named": true
+        },
+        {
+          "type": "maybe",
+          "named": true
+        },
+        {
+          "type": "parenthesized_expression",
+          "named": true
+        },
+        {
           "type": "receive",
           "named": true
         },
@@ -3349,35 +3152,7 @@
       "required": false,
       "types": [
         {
-          "type": "anonymous_function",
-          "named": true
-        },
-        {
           "type": "atom",
-          "named": true
-        },
-        {
-          "type": "binary_operator",
-          "named": true
-        },
-        {
-          "type": "bitstring",
-          "named": true
-        },
-        {
-          "type": "block",
-          "named": true
-        },
-        {
-          "type": "call",
-          "named": true
-        },
-        {
-          "type": "case",
-          "named": true
-        },
-        {
-          "type": "character",
           "named": true
         },
         {
@@ -3385,23 +3160,7 @@
           "named": true
         },
         {
-          "type": "function_capture",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "if",
-          "named": true
-        },
-        {
           "type": "integer",
-          "named": true
-        },
-        {
-          "type": "list",
           "named": true
         },
         {
@@ -3409,43 +3168,11 @@
           "named": true
         },
         {
-          "type": "map",
-          "named": true
-        },
-        {
-          "type": "maybe",
-          "named": true
-        },
-        {
-          "type": "receive",
-          "named": true
-        },
-        {
-          "type": "record",
+          "type": "parenthesized_expression",
           "named": true
         },
         {
           "type": "record_content",
-          "named": true
-        },
-        {
-          "type": "string",
-          "named": true
-        },
-        {
-          "type": "tripledot",
-          "named": true
-        },
-        {
-          "type": "try",
-          "named": true
-        },
-        {
-          "type": "tuple",
-          "named": true
-        },
-        {
-          "type": "unary_operator",
           "named": true
         },
         {
@@ -3529,6 +3256,10 @@
         },
         {
           "type": "maybe",
+          "named": true
+        },
+        {
+          "type": "parenthesized_expression",
           "named": true
         },
         {
@@ -3651,6 +3382,10 @@
           "named": true
         },
         {
+          "type": "parenthesized_expression",
+          "named": true
+        },
+        {
           "type": "receive",
           "named": true
         },
@@ -3693,14 +3428,6 @@
         "multiple": true,
         "required": true,
         "types": [
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
           {
             "type": "anonymous_function",
             "named": true
@@ -3771,6 +3498,10 @@
           },
           {
             "type": "maybe",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
             "named": true
           },
           {
@@ -3946,14 +3677,6 @@
         "required": true,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
             "type": "anonymous_function",
             "named": true
           },
@@ -4023,6 +3746,10 @@
           },
           {
             "type": "maybe",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
             "named": true
           },
           {
@@ -4138,6 +3865,10 @@
           "named": true
         },
         {
+          "type": "parenthesized_expression",
+          "named": true
+        },
+        {
           "type": "receive",
           "named": true
         },
@@ -4180,14 +3911,6 @@
         "multiple": true,
         "required": true,
         "types": [
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
           {
             "type": "anonymous_function",
             "named": true
@@ -4254,6 +3977,10 @@
           },
           {
             "type": "maybe",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
             "named": true
           },
           {
