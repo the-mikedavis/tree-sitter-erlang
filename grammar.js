@@ -193,6 +193,10 @@ module.exports = grammar({
     _map_body: ($) =>
       prec.right(seq("{", optional(alias($._items, $.map_content)), "}")),
 
+    // right-hand side of a map update expression, like
+    //     MyMap#{a => b}
+    map_update: ($) => $._map_body,
+
     record: ($) =>
       prec(PREC.POUND, seq(optional($._literal), "#", $._record_body)),
 
@@ -225,7 +229,7 @@ module.exports = grammar({
           prec.left,
           "#",
           $._expression,
-          choice($._record_body, alias($._map_body, $.map))
+          choice($._record_body, $.map_update)
         ),
         binaryOp($, PREC.MULT_OP, prec.left, choice(...MULT_OPS)),
         binaryOp($, PREC.ADD_OP, prec.left, choice(...ADD_OPS)),

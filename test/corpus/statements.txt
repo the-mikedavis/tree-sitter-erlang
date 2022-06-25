@@ -578,12 +578,14 @@ macro declarations
         (macro
           (variable)
           (arguments
-            (call
-              (atom)
-              (arguments
-                (variable)))))
+            (parenthesized_expression
+              (call
+                (atom)
+                (arguments
+                  (variable))))))
         (binary_operator
-          (variable)
+          (parenthesized_expression
+            (variable))
           (atom)))))
   (comment
     (comment_content))
@@ -736,64 +738,68 @@ assert.hrl macro declaration
         (arguments
           (variable)))
       (block
-        (call
-          (anonymous_function
-            (stab_clause
-              (arguments)
-              (body
-                (binary_operator
-                  (variable)
-                  (call
-                    (atom)
-                    (arguments
+        (parenthesized_expression
+          (call
+            (parenthesized_expression
+              (anonymous_function
+                (stab_clause
+                  (arguments)
+                  (body
+                    (binary_operator
+                      (variable)
                       (call
                         (atom)
-                        (arguments)))))
-                (comment
-                  (comment_content))
-                (case
-                  (variable)
-                  (clause
-                    (variable)
-                    (atom))
-                  (clause
-                    (variable)
-                    (call
-                      (atom)
-                      (atom)
-                      (arguments
-                        (tuple
+                        (arguments
+                          (call
+                            (atom)
+                            (arguments)))))
+                    (comment
+                      (comment_content))
+                    (case
+                      (parenthesized_expression
+                        (variable))
+                      (clause
+                        (variable)
+                        (atom))
+                      (clause
+                        (variable)
+                        (call
                           (atom)
-                          (list
+                          (atom)
+                          (arguments
                             (tuple
                               (atom)
-                              (macro
-                                (variable)))
-                            (tuple
-                              (atom)
-                              (macro
-                                (variable)))
-                            (tuple
-                              (atom)
-                              (macro
-                                (variable)))
-                            (tuple
-                              (atom)
-                              (atom))
-                            (case
-                              (unary_operator
-                                (variable))
-                              (clause
-                                (variable)
+                              (list
                                 (tuple
                                   (atom)
-                                  (atom)))
-                              (clause
-                                (variable)
+                                  (macro
+                                    (variable)))
                                 (tuple
                                   (atom)
-                                  (variable)))))))))))))
-          (arguments))))))
+                                  (macro
+                                    (variable)))
+                                (tuple
+                                  (atom)
+                                  (parenthesized_expression
+                                    (macro
+                                      (variable))))
+                                (tuple
+                                  (atom)
+                                  (atom))
+                                (case
+                                  (unary_operator
+                                    (variable))
+                                  (clause
+                                    (variable)
+                                    (tuple
+                                      (atom)
+                                      (atom)))
+                                  (clause
+                                    (variable)
+                                    (tuple
+                                      (atom)
+                                      (variable))))))))))))))
+            (arguments)))))))
 
 ================================================================================
 function declaration via macro

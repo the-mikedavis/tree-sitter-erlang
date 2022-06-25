@@ -45,11 +45,12 @@ end(0).
       (atom)
       (variable)))
   (call
-    (anonymous_function
-      (stab_clause
-        (arguments
-          (variable))
-        (variable)))
+    (parenthesized_expression
+      (anonymous_function
+        (stab_clause
+          (arguments
+            (variable))
+          (variable))))
     (arguments
       (integer)))
   (comment
@@ -224,9 +225,10 @@ comprehensions
     (binary_operator
       (binary_operator
         (bitstring
-          (binary_operator
-            (variable)
-            (integer)))
+          (parenthesized_expression
+            (binary_operator
+              (variable)
+              (integer))))
         (bitstring
           (variable)))
       (bitstring
@@ -583,10 +585,11 @@ pound operator
     (comment_content))
   (binary_operator
     (bitstring)
-    (map_content
-      (binary_operator
-        (atom)
-        (atom)))))
+    (map_update
+      (map_content
+        (binary_operator
+          (atom)
+          (atom))))))
 
 ================================================================================
 maybe block (EEP49)

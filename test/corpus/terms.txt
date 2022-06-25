@@ -208,9 +208,10 @@ bitstrings
       (atom))
     (binary_operator
       (integer)
-      (binary_operator
-        (integer)
-        (variable))))
+      (parenthesized_expression
+        (binary_operator
+          (integer)
+          (variable)))))
   (bitstring
     (binary_operator
       (binary_operator
@@ -311,16 +312,18 @@ MyMap#{a := b}
         (atom))))
   (binary_operator
     (variable)
-    (map_content
-      (binary_operator
-        (atom)
-        (atom))))
+    (map_update
+      (map_content
+        (binary_operator
+          (atom)
+          (atom)))))
   (binary_operator
     (variable)
-    (map_content
-      (binary_operator
-        (atom)
-        (atom)))))
+    (map_update
+      (map_content
+        (binary_operator
+          (atom)
+          (atom))))))
 
 ================================================================================
 records
@@ -364,10 +367,11 @@ Mod#mod.name#literal.val.
   (binary_operator
     (variable)
     (record
-      (record
-        (variable)
-        (atom)
-        (atom))
+      (parenthesized_expression
+        (record
+          (variable)
+          (atom)
+          (atom)))
       (atom)
       (atom)))
   (binary_operator
