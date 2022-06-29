@@ -223,7 +223,14 @@ module.exports = grammar({
 
     binary_operator: ($) =>
       choice(
-        binaryOp($, PREC.COLON, prec.left, ":", $._expression, $._expression_without_call),
+        binaryOp(
+          $,
+          PREC.COLON,
+          prec.left,
+          ":",
+          $._expression,
+          $._expression_without_call
+        ),
         binaryOp(
           $,
           PREC.POUND,
