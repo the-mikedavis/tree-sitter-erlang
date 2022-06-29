@@ -117,13 +117,12 @@ erlang:min(A, B)
 --------------------------------------------------------------------------------
 
 (source
-  (binary_operator
+  (call
     (atom)
-    (call
-      (atom)
-      (arguments
-        (variable)
-        (variable)))))
+    (atom)
+    (arguments
+      (variable)
+      (variable))))
 
 ================================================================================
 case embedded in a function call

@@ -52,7 +52,7 @@ module.exports = grammar({
     [$._named_stab_clause, $._literal, $._expression],
     // A literal needs to beat an expression so that calls may be recognized
     // in the case of "parenthesized_expression  •  '('  …".
-    [$._literal, $._expression],
+    [$._literal, $._expression_without_call],
     // This case is needed explicitly for macros:
     //     "'-'  'define'  '('  _expression  ','  _identifier  •  '('  …"
     [$._named_stab_clause, $._literal],
@@ -62,7 +62,7 @@ module.exports = grammar({
     // a string
     [$._identifier, $._strings],
     // "anonymous_function  •  '('  …" needs to interpreted as a call.
-    [$.call, $._expression],
+    [$.call, $._expression_without_call],
     // This conflict allows us to parse a trailing comma ',' within a
     // macro definition:
     //     '-'  'define'  '('  _expression  ','  _expression  •  ','  …
@@ -154,7 +154,7 @@ module.exports = grammar({
         optional(choice($.arguments, alias($._items, $.arguments)))
       ),
 
-    _expression: ($) =>
+    _expression_without_call: ($) =>
       choice(
         $._identifier,
         $._strings,
@@ -171,7 +171,6 @@ module.exports = grammar({
         $.anonymous_function,
         $.function_capture,
         $.function_type,
-        $.call,
         $.block,
         $.if,
         $.case,
@@ -180,6 +179,8 @@ module.exports = grammar({
         $.maybe,
         $.parenthesized_expression
       ),
+
+    _expression: ($) => choice($._expression_without_call, $.call),
 
     parenthesized_expression: ($) =>
       prec(PREC.PARENS_EXPR, parens($._expression)),
@@ -222,7 +223,7 @@ module.exports = grammar({
 
     binary_operator: ($) =>
       choice(
-        binaryOp($, PREC.COLON, prec.left, ":"),
+        binaryOp($, PREC.COLON, prec.left, ":", $._expression, $._expression_without_call),
         binaryOp(
           $,
           PREC.POUND,
