@@ -126,8 +126,10 @@
 
 -behaviour(gen_server).
 % ^ keyword
+%           ^ module
 -behavior(gen_server).
 % ^ keyword
+%           ^ module
 
 -dialyzer({nowarn_function, [compile/1]}).
 % ^ keyword

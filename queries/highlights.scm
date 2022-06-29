@@ -3,7 +3,7 @@
 (attribute
   name: (atom) @keyword
   (arguments (atom) @module)
- (#eq? @keyword "module"))
+ (#match? @keyword "(module|behaviou?r)"))
 
 (attribute
   name: (atom) @keyword
