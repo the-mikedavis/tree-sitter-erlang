@@ -695,7 +695,7 @@
         }
       ]
     },
-    "_expression": {
+    "_expression_without_call": {
       "type": "CHOICE",
       "members": [
         {
@@ -760,10 +760,6 @@
         },
         {
           "type": "SYMBOL",
-          "name": "call"
-        },
-        {
-          "type": "SYMBOL",
           "name": "block"
         },
         {
@@ -789,6 +785,19 @@
         {
           "type": "SYMBOL",
           "name": "parenthesized_expression"
+        }
+      ]
+    },
+    "_expression": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_expression_without_call"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "call"
         }
       ]
     },
@@ -1176,7 +1185,7 @@
                 "name": "right",
                 "content": {
                   "type": "SYMBOL",
-                  "name": "_expression"
+                  "name": "_expression_without_call"
                 }
               }
             ]
@@ -3150,7 +3159,7 @@
     ],
     [
       "_literal",
-      "_expression"
+      "_expression_without_call"
     ],
     [
       "_named_stab_clause",
@@ -3162,7 +3171,7 @@
     ],
     [
       "call",
-      "_expression"
+      "_expression_without_call"
     ],
     [
       "body",
