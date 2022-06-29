@@ -105,6 +105,10 @@
                  phone=1 :: integer()}).
 %                 ^ property
 
+-record(?MODULE, {name}).
+%        ^ constant
+%                  ^ property
+
 -compile({no_auto_import,[min/2]}).
 % ^ keyword
 %          % ^ string.special.symbol

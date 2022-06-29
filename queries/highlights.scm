@@ -16,7 +16,7 @@
   name: (atom) @keyword
   (arguments
     .
-    (atom) @type
+    [(atom) @type (macro)]
     [
       (tuple)
       (tuple (atom) @property)
