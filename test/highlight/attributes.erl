@@ -47,7 +47,7 @@
 %                                 ^ comment.discard
            | #{mfa() => atom()}.
 %          ^ operator
-%            ^ operator
+%            ^ punctuation.bracket
 %             ^ punctuation.bracket
 
 -spec ok_this(Term) -> {ok, Term} when Term :: any().
