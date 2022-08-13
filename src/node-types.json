@@ -136,7 +136,28 @@
   {
     "type": "arguments",
     "named": true,
-    "fields": {},
+    "fields": {
+      "left_paren": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          }
+        ]
+      },
+      "right_paren": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": ")",
+            "named": false
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": false,

@@ -296,7 +296,12 @@ module.exports = grammar({
 
     guard: ($) => sep($._items, ";"),
 
-    arguments: ($) => parens(optional($._items)),
+    arguments: ($) =>
+      seq(
+        field("left_paren", "("),
+        optional($._items),
+        field("right_paren", ")")
+      ),
 
     _body: ($) => choice($._expression, $.body),
 
