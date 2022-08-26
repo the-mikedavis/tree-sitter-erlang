@@ -500,6 +500,9 @@ macros
 ?MODULE() ->
     ok.
 
+?assert(true)() ->
+    ok.
+
 ?assertMatch({foo, N} when N > 0, {foo, 1}).
 %% testing precedence against the unaries:
 ?assertMatch(not {foo, N} when N > 0, {foo, 1}).
@@ -518,11 +521,20 @@ macros
     (arguments
       (integer)
       (integer)))
-  (binary_operator
-    (macro
-      (variable)
-      (arguments))
-    (atom))
+  (function
+    (function_clause
+      (macro
+        (variable))
+      (arguments)
+      (atom)))
+  (function
+    (function_clause
+      (macro
+        (atom)
+        (arguments
+          (atom)))
+      (arguments)
+      (atom)))
   (macro
     (atom)
     (arguments
@@ -684,3 +696,43 @@ end
       (call
         (atom)
         (arguments)))))
+
+================================================================================
+Multi-line anonymous function within larger expression
+================================================================================
+{foo(bar),
+ fun() ->
+     Foo = foo(bar),
+     Foo = foo(bar),
+     ?assert(foo)
+ end()}
+--------------------------------------------------------------------------------
+
+(source
+  (tuple
+    (call
+      (atom)
+      (arguments
+        (atom)))
+    (call
+      (anonymous_function
+        (stab_clause
+          (arguments)
+          (body
+            (binary_operator
+              (variable)
+              (call
+                (atom)
+                (arguments
+                  (atom))))
+            (binary_operator
+              (variable)
+              (call
+                (atom)
+                (arguments
+                  (atom))))
+            (macro
+              (atom)
+              (arguments
+                (atom))))))
+      (arguments))))

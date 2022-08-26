@@ -7,7 +7,6 @@ const COMP_OPS = ["==", "/=", "=<", "<", ">=", ">", "=:=", "=/="];
 const DOUBLE_OPS = ["||", "::"];
 
 const PREC = {
-  MACRO_ARROW: -3,
   MACRO: -2,
   MACRO_WHEN: -1,
   COMMENT: -1,
@@ -41,32 +40,45 @@ module.exports = grammar({
     // should match with higher implicit precedence when the state stack
     // has longer-matching candidates.
     [$.function, $._identifier, $._strings],
+
     // This case "'if'  'fun'  '('  ')'  •  '->'  …" is impossible syntax,
     // but it makes sense to group 'fun' with its arguments at a higher
     // precedence than letting the arguments win.
     [$.function_type, $.arguments],
+
     // Handles a fight between _identifier and attribute caused by unary
     // operators: "'-'  _atom  •  '-'  …"
     [$.attribute, $._identifier],
+
     // Handles the case "_identifier  •  '('  …":
     [$._named_stab_clause, $._literal, $._expression],
+
     // A literal needs to beat an expression so that calls may be recognized
     // in the case of "parenthesized_expression  •  '('  …".
     [$._literal, $._expression_without_call],
-    // This case is needed explicitly for macros:
-    //     "'-'  'define'  '('  _expression  ','  _identifier  •  '('  …"
+
+    // These three cases cover how macros interact with named stab clauses:
+    //     '-'  'define'  '('  _expression  ','  _identifier  •  '('  …
     [$._named_stab_clause, $._literal],
+    //     variable  •  '('  …
+    [$._named_stab_clause, $._identifier],
+    //     _macro_constant  arguments  •  'when'  …
+    [$._named_stab_clause, $._macro_call],
+
     // This case "macro  •  ','  …" pops up because strings can be placed
     // right next to one another to perform concatenation, and macros can
     // contain strings. We prefer _identifier so not every macro looks like
     // a string
     [$._identifier, $._strings],
+
     // "anonymous_function  •  '('  …" needs to interpreted as a call.
     [$.call, $._expression_without_call],
+
     // This conflict allows us to parse a trailing comma ',' within a
     // macro definition:
     //     '-'  'define'  '('  _expression  ','  _expression  •  ','  …
     [$.body, $._body],
+
     // same:
     [$._semicolon_separated_expressions, $._body, $.body],
   ],
@@ -258,7 +270,6 @@ module.exports = grammar({
         binaryOp($, PREC.DOUBLE_OP, prec.right, choice(...DOUBLE_OPS)),
         binaryOp($, PREC.BAR, prec.left, "|"),
         binaryOp($, PREC.ARROW, prec.left, choice("<-", "<=", "=>", ":=")),
-        binaryOp($, PREC.MACRO_ARROW, prec.right, "->"),
         binaryOp($, PREC.MACRO_WHEN, prec.left, "when")
       ),
 
@@ -271,7 +282,15 @@ module.exports = grammar({
 
     _named_stab_clause: ($) =>
       seq(
-        field("name", $._identifier),
+        field(
+          "name",
+          choice(
+            $.atom,
+            $.variable,
+            alias($._macro_constant, $.macro),
+            alias($._macro_call, $.macro)
+          )
+        ),
         field("pattern", $.arguments),
         optional(field("guard", seq("when", $.guard))),
         "->",
@@ -419,15 +438,16 @@ module.exports = grammar({
 
     variable: ($) => /[A-Z_][a-zA-Z0-9_@]*/,
 
-    macro: ($) =>
-      prec.right(
-        seq(
-          "?",
-          optional(token.immediate("?")),
-          field("name", choice($.atom, $.variable)),
-          optional(field("arguments", $.arguments))
-        )
+    macro: ($) => prec.right(choice($._macro_call, $._macro_constant)),
+
+    _macro_constant: ($) =>
+      seq(
+        "?",
+        optional(token.immediate("?")),
+        field("name", choice($.atom, $.variable))
       ),
+
+    _macro_call: ($) => seq($._macro_constant, field("arguments", $.arguments)),
 
     // One can write multiple strings with optional whitespace in between.
     // The strings are combined:
