@@ -1537,6 +1537,9 @@ static const TSSymbol ts_alias_sequences[PRODUCTION_ID_COUNT][MAX_ALIAS_SEQUENCE
   [17] = {
     [2] = sym_arguments,
   },
+  [23] = {
+    [2] = sym_record,
+  },
   [26] = {
     [1] = alias_sym_function_clause,
   },
@@ -1579,6 +1582,9 @@ static const TSSymbol ts_alias_sequences[PRODUCTION_ID_COUNT][MAX_ALIAS_SEQUENCE
 };
 
 static const uint16_t ts_non_terminal_alias_map[] = {
+  sym__record_body, 2,
+    sym__record_body,
+    sym_record,
   sym__named_stab_clause, 3,
     sym__named_stab_clause,
     alias_sym_function_clause,

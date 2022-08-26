@@ -1220,8 +1220,13 @@
                   "type": "CHOICE",
                   "members": [
                     {
-                      "type": "SYMBOL",
-                      "name": "_record_body"
+                      "type": "ALIAS",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "_record_body"
+                      },
+                      "named": true,
+                      "value": "record"
                     },
                     {
                       "type": "SYMBOL",
