@@ -379,8 +379,9 @@ Mod#mod.name#literal.val.
       (variable)
       (atom)
       (atom))
-    (atom)
-    (atom)))
+    (record
+      (atom)
+      (atom))))
 
 ================================================================================
 functions

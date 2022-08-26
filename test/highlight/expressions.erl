@@ -29,3 +29,13 @@ end.
 ?_assertEqual(a, a)
 %% <- keyword.directive
 %% ^ keyword.directive
+
+State#state.config#config.pid
+%% ^ variable
+%%   ^ punctuation.bracket
+%%      ^ type
+%%         ^ punctuation.delimiter
+%%            ^ property
+%%                ^ operator
+%%                   ^ type
+%%                         ^ property

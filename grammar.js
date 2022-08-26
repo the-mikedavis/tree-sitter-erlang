@@ -249,7 +249,7 @@ module.exports = grammar({
           prec.left,
           "#",
           $._expression,
-          choice($._record_body, $.map_update)
+          choice(alias($._record_body, $.record), $.map_update)
         ),
         binaryOp($, PREC.MULT_OP, prec.left, choice(...MULT_OPS)),
         binaryOp($, PREC.ADD_OP, prec.left, choice(...ADD_OPS)),
