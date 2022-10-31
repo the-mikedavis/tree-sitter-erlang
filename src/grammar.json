@@ -15,6 +15,10 @@
             "members": [
               {
                 "type": "SYMBOL",
+                "name": "line_comment"
+              },
+              {
+                "type": "SYMBOL",
                 "name": "_statement"
               },
               {
@@ -3147,16 +3151,52 @@
           "value": "comment_content"
         }
       ]
+    },
+    "line_comment": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "PREC",
+          "value": 0,
+          "content": {
+            "type": "TOKEN",
+            "content": {
+              "type": "REPEAT1",
+              "content": {
+                "type": "STRING",
+                "value": "%"
+              }
+            }
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "comment_content"
+        }
+      ]
+    },
+    "comment_content": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "[^\\n]*"
+        },
+        {
+          "type": "STRING",
+          "value": "\n"
+        }
+      ]
     }
   },
   "extras": [
     {
-      "type": "PATTERN",
-      "value": "[\\x01-\\x20\\x80-\\xA0]+"
-    },
-    {
       "type": "SYMBOL",
       "name": "comment"
+    },
+    {
+      "type": "PATTERN",
+      "value": "[\\x01-\\x20\\x80-\\xA0]+"
     }
   ],
   "conflicts": [
