@@ -32,7 +32,7 @@ const PREC = {
 module.exports = grammar({
   name: "erlang",
 
-  extras: ($) => [WHITE_SPACE, $.comment],
+  extras: ($) => [$.comment, WHITE_SPACE],
 
   conflicts: ($) => [
     // This interestng case: "macro  •  '.'  …" should prefer function,
@@ -88,7 +88,11 @@ module.exports = grammar({
       choice(
         $._expression,
         repeat(
-          choice($._statement, seq(sep($._expression, ","), $._terminator))
+          choice(
+            $.line_comment,
+            $._statement,
+            seq(sep($._expression, ","), $._terminator)
+          )
         )
       ),
 
@@ -494,6 +498,12 @@ module.exports = grammar({
         prec(PREC.COMMENT, token(repeat1("%"))),
         alias(/[^\r\n]*/, $.comment_content)
       ),
+
+    // A comment which starts and finishes a line. Used for documentation
+    // and can be injected with tree-sitter-edoc
+    line_comment: ($) =>
+      seq(prec(PREC.COMMENT + 1, token(repeat1("%"))), $.comment_content),
+    comment_content: ($) => seq(/[^\n]*/, "\n"),
   },
 });
 

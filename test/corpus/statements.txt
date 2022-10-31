@@ -123,9 +123,9 @@ maps:get(date,DateTime).
 --------------------------------------------------------------------------------
 
 (source
-  (comment
+  (line_comment
     (comment_content))
-  (comment
+  (line_comment
     (comment_content))
   (call
     (atom)
@@ -197,7 +197,7 @@ adler32(_Data) ->
         (call
           (atom)
           (arguments)))))
-  (comment
+  (line_comment
     (comment_content))
   (attribute
     (atom)
@@ -210,9 +210,9 @@ adler32(_Data) ->
             (atom)
             (arguments))))
       (atom)))
-  (comment
+  (line_comment
     (comment_content))
-  (comment
+  (line_comment
     (comment_content))
   (attribute
     (atom)
@@ -254,7 +254,7 @@ adler32(_Data) ->
         (call
           (atom)
           (arguments)))))
-  (comment
+  (line_comment
     (comment_content))
   (attribute
     (atom)
@@ -427,7 +427,7 @@ type declarations
         (call
           (atom)
           (arguments)))))
-  (comment
+  (line_comment
     (comment_content))
   (attribute
     (atom)
@@ -587,7 +587,7 @@ macro declarations
           (parenthesized_expression
             (variable))
           (atom)))))
-  (comment
+  (line_comment
     (comment_content))
   (attribute
     (atom)
@@ -619,9 +619,9 @@ macro declarations
           (bitstring
             (string
               (quoted_content)))))))
-  (comment
+  (line_comment
     (comment_content))
-  (comment
+  (line_comment
     (comment_content))
   (attribute
     (atom)
@@ -633,7 +633,7 @@ macro declarations
           (atom)
           (macro
             (variable))))))
-  (comment
+  (line_comment
     (comment_content))
   (attribute
     (atom)
@@ -728,7 +728,7 @@ assert.hrl macro declaration
 --------------------------------------------------------------------------------
 
 (source
-  (comment
+  (line_comment
     (comment_content))
   (attribute
     (atom)
@@ -814,7 +814,7 @@ defined_by_macro(_) -> error.
 --------------------------------------------------------------------------------
 
 (source
-  (comment
+  (line_comment
     (comment_content))
   (function
     (macro

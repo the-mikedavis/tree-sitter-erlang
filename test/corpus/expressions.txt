@@ -53,7 +53,7 @@ end(0).
           (variable))))
     (arguments
       (integer)))
-  (comment
+  (line_comment
     (comment_content))
   (call
     (anonymous_function
@@ -138,7 +138,7 @@ ipv6_v6only_open(Module, Opts) ->
 --------------------------------------------------------------------------------
 
 (source
-  (comment
+  (line_comment
     (comment_content))
   (function
     (function_clause
@@ -201,13 +201,13 @@ comprehensions
 --------------------------------------------------------------------------------
 
 (source
-  (comment
+  (line_comment
     (comment_content))
-  (comment
+  (line_comment
     (comment_content))
-  (comment
+  (line_comment
     (comment_content))
-  (comment
+  (line_comment
     (comment_content))
   (list
     (binary_operator
@@ -548,7 +548,7 @@ macros
       (tuple
         (atom)
         (integer))))
-  (comment
+  (line_comment
     (comment_content))
   (macro
     (atom)
@@ -592,7 +592,7 @@ pound operator
 --------------------------------------------------------------------------------
 
 (source
-  (comment
+  (line_comment
     (comment_content))
   (binary_operator
     (bitstring)
@@ -623,7 +623,7 @@ end
 --------------------------------------------------------------------------------
 
 (source
-  (comment
+  (line_comment
     (comment_content))
   (maybe
     (body
@@ -683,7 +683,7 @@ end
 --------------------------------------------------------------------------------
 
 (source
-  (comment
+  (line_comment
     (comment_content))
   (maybe
     (binary_operator

@@ -98,10 +98,6 @@
 (unary_operator operator: _ @operator)
 ["/" ":" "->"] @operator
 
-(tripledot) @comment.discard
-
-(comment) @comment
-
 ; Macros
 (macro
   "?"+ @constant
@@ -115,6 +111,10 @@
 ; Comments
 ((variable) @comment.discard
  (#match? @comment.discard "^_"))
+
+(tripledot) @comment.discard
+
+[(comment) (line_comment)] @comment
 
 ; Basic types
 (variable) @variable
