@@ -3298,6 +3298,11 @@
     }
   },
   {
+    "type": "shebang",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "source",
     "named": true,
     "fields": {},
@@ -3395,6 +3400,10 @@
         },
         {
           "type": "record",
+          "named": true
+        },
+        {
+          "type": "shebang",
           "named": true
         },
         {
@@ -4067,6 +4076,10 @@
   },
   {
     "type": "#",
+    "named": false
+  },
+  {
+    "type": "#!",
     "named": false
   },
   {
