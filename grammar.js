@@ -85,16 +85,23 @@ module.exports = grammar({
 
   rules: {
     source: ($) =>
-      choice(
-        $._expression,
-        repeat(
-          choice(
-            $.line_comment,
-            $._statement,
-            seq(sep($._expression, ","), $._terminator)
+      seq(
+        optional($.shebang),
+        choice(
+          $.shebang,
+          $._expression,
+          repeat(
+            choice(
+              $.line_comment,
+              $._statement,
+              seq(sep($._expression, ","), $._terminator)
+            )
           )
         )
       ),
+
+    // Valid in escripts.
+    shebang: ($) => seq("#!", /[^\n]*/, "\n"),
 
     _statement: ($) =>
       seq(

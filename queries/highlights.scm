@@ -114,7 +114,7 @@
 
 (tripledot) @comment.discard
 
-[(comment) (line_comment)] @comment
+[(comment) (line_comment) (shebang)] @comment
 
 ; Basic types
 (variable) @variable
