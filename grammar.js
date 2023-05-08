@@ -386,7 +386,7 @@ module.exports = grammar({
         "case",
         field("subject", $._expression),
         "of",
-        sep($.clause, ";"),
+        optional(sep($.clause, ";")),
         "end"
       ),
 

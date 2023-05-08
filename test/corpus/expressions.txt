@@ -736,3 +736,19 @@ Multi-line anonymous function within larger expression
               (arguments
                 (atom))))))
       (arguments))))
+
+================================================================================
+case with no body
+================================================================================
+
+%% This is not actually valid but improves highlighting.
+case Foo of
+end.
+
+--------------------------------------------------------------------------------
+
+(source
+  (line_comment
+    (comment_content))
+  (case
+    (variable)))

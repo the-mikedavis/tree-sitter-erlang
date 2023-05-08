@@ -39,3 +39,10 @@ State#state.config#config.pid
 %%                ^ operator
 %%                   ^ type
 %%                         ^ property
+
+case Foo of
+%% <- keyword
+%%    ^ variable
+%%       ^ keyword
+end
+%% <- keyword
