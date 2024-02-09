@@ -46,3 +46,10 @@ case Foo of
 %%       ^ keyword
 end
 %% <- keyword
+
+-doc """
+     Foos the bar
+     """.
+%%   ^ string
+%%    ^ string
+%%     ^ string
