@@ -50,16 +50,10 @@ module.exports = grammar({
     // operators: "'-'  _atom  •  '-'  …"
     [$.attribute, $._identifier],
 
-    // Handles the case "_identifier  •  '('  …":
-    [$._named_stab_clause, $._literal, $._expression],
-
     // A literal needs to beat an expression so that calls may be recognized
     // in the case of "parenthesized_expression  •  '('  …".
     [$._literal, $._expression_without_call],
 
-    // These three cases cover how macros interact with named stab clauses:
-    //     '-'  'define'  '('  _expression  ','  _identifier  •  '('  …
-    [$._named_stab_clause, $._literal],
     //     variable  •  '('  …
     [$._named_stab_clause, $._identifier],
     //     _macro_constant  arguments  •  'when'  …
@@ -73,11 +67,6 @@ module.exports = grammar({
 
     // "anonymous_function  •  '('  …" needs to interpreted as a call.
     [$.call, $._expression_without_call],
-
-    // This conflict allows us to parse a trailing comma ',' within a
-    // macro definition:
-    //     '-'  'define'  '('  _expression  ','  _expression  •  ','  …
-    [$.body, $._body],
 
     // same:
     [$._semicolon_separated_expressions, $._body, $.body],
