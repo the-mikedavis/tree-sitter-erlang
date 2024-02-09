@@ -188,27 +188,14 @@ end
         (integer)))))
 
 ================================================================================
-comprehensions
+list comprehensions
 ================================================================================
 
-%% Comprehensions are parsed very simply by treating '||' as a (right-assoc)
-%% binary operator.
-%% We could structure this rule more and make syntax assertions about the
-%% generator(s) and qualifier(s) but I don't really see a point.
 [ X * 2 || X <- [1, 2, 3]]
-<< << (X * 2) >> || << X >> <= << 1, 2, 3 >> >>
 
 --------------------------------------------------------------------------------
 
 (source
-  (line_comment
-    (comment_content))
-  (line_comment
-    (comment_content))
-  (line_comment
-    (comment_content))
-  (line_comment
-    (comment_content))
   (list
     (binary_operator
       (binary_operator
@@ -219,7 +206,17 @@ comprehensions
       (list
         (integer)
         (integer)
-        (integer))))
+        (integer)))))
+
+================================================================================
+binary comprehension
+================================================================================
+
+<< << (X * 2) >> || << X >> <= << 1, 2, 3 >> >>
+
+--------------------------------------------------------------------------------
+
+(source
   (bitstring
     (binary_operator
       (binary_operator
