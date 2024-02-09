@@ -97,10 +97,10 @@ dupe(Term) -> {Term, Term}.
       (binary_operator
         (list
           (binary_operator
+            (variable)
             (binary_operator
               (variable)
-              (variable))
-            (variable)))
+              (variable))))
         (variable)))
     (function_clause
       (atom)

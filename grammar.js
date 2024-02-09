@@ -25,8 +25,8 @@ const PREC = {
   RANGE: 51,
   CATCH: 50,
   BAR: 45,
+  ARROW: 40,
   DOUBLE_OP: 35,
-  ARROW: 30,
 };
 
 module.exports = grammar({

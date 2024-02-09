@@ -64,10 +64,10 @@ end(0).
   (call
     (list
       (binary_operator
+        (variable)
         (binary_operator
           (variable)
-          (variable))
-        (variable)))
+          (variable))))
     (arguments))
   (call
     (tuple
@@ -199,14 +199,14 @@ list comprehensions
   (list
     (binary_operator
       (binary_operator
-        (binary_operator
-          (variable)
-          (integer))
-        (variable))
-      (list
-        (integer)
-        (integer)
-        (integer)))))
+        (variable)
+        (integer))
+      (binary_operator
+        (variable)
+        (list
+          (integer)
+          (integer)
+          (integer))))))
 
 ================================================================================
 binary comprehension
@@ -219,18 +219,44 @@ binary comprehension
 (source
   (bitstring
     (binary_operator
+      (bitstring
+        (parenthesized_expression
+          (binary_operator
+            (variable)
+            (integer))))
       (binary_operator
         (bitstring
-          (parenthesized_expression
-            (binary_operator
-              (variable)
-              (integer))))
+          (variable))
         (bitstring
-          (variable)))
-      (bitstring
-        (integer)
-        (integer)
-        (integer)))))
+          (integer)
+          (integer)
+          (integer))))))
+
+================================================================================
+map comprehension
+================================================================================
+
+#{I => I * I || I <- lists:seq(1, 5)}
+
+--------------------------------------------------------------------------------
+
+(source
+  (map
+    (map_content
+      (binary_operator
+        (binary_operator
+          (variable)
+          (binary_operator
+            (variable)
+            (variable)))
+        (binary_operator
+          (variable)
+          (call
+            (atom)
+            (atom)
+            (arguments
+              (integer)
+              (integer))))))))
 
 ================================================================================
 if
