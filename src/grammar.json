@@ -749,6 +749,15 @@
           "name": "_strings"
         },
         {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_triple_quoted_string"
+          },
+          "named": true,
+          "value": "string"
+        },
+        {
           "type": "SYMBOL",
           "name": "tripledot"
         },
@@ -3077,8 +3086,13 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "string"
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_single_quoted_string"
+              },
+              "named": true,
+              "value": "string"
             },
             {
               "type": "SYMBOL",
@@ -3088,7 +3102,7 @@
         }
       }
     },
-    "string": {
+    "_single_quoted_string": {
       "type": "SEQ",
       "members": [
         {
@@ -3165,6 +3179,60 @@
     "quoted_content": {
       "type": "PATTERN",
       "value": "([^\\\\\\\"\\']+|[\\\\\\\"\\'])"
+    },
+    "_triple_quoted_string": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "quoted_start",
+          "content": {
+            "type": "STRING",
+            "value": "\"\"\""
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_triple_quoted_string_contents"
+              },
+              "named": true,
+              "value": "quoted_contents"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "FIELD",
+          "name": "quoted_end",
+          "content": {
+            "type": "STRING",
+            "value": "\"\"\""
+          }
+        }
+      ]
+    },
+    "_triple_quoted_string_contents": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "\""
+          },
+          {
+            "type": "PATTERN",
+            "value": "[^\"]+"
+          }
+        ]
+      }
     },
     "tripledot": {
       "type": "STRING",
