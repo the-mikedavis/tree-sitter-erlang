@@ -3260,17 +3260,8 @@
       "_identifier"
     ],
     [
-      "_named_stab_clause",
-      "_literal",
-      "_expression"
-    ],
-    [
       "_literal",
       "_expression_without_call"
-    ],
-    [
-      "_named_stab_clause",
-      "_literal"
     ],
     [
       "_named_stab_clause",
@@ -3287,10 +3278,6 @@
     [
       "call",
       "_expression_without_call"
-    ],
-    [
-      "body",
-      "_body"
     ],
     [
       "_semicolon_separated_expressions",
