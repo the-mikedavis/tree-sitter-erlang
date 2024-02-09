@@ -1798,7 +1798,7 @@
         },
         {
           "type": "PREC_LEFT",
-          "value": 30,
+          "value": 40,
           "content": {
             "type": "SEQ",
             "members": [
