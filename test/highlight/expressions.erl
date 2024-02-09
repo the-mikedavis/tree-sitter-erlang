@@ -47,6 +47,26 @@ case Foo of
 end
 %% <- keyword
 
+   ~"Hello world"
+%% ^ string
+%%  ^ string
+%%     ^string
+%%              ^ string
+
+   ~b"Hello \nworld"
+%% ^ string
+%%  ^ string
+%%   ^ string
+%%          ^ constant.character.escape
+%%                 ^ string
+
+   ~B"Hello \nworld"
+%% ^ string
+%%   ^ string
+%%    ^ string
+%%          ^ string
+%%                 ^ string
+
 -doc """
      Foos the bar
      """.

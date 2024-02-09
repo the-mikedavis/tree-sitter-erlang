@@ -169,6 +169,7 @@ module.exports = grammar({
     _expression_without_call: ($) =>
       choice(
         $._identifier,
+        $.sigil,
         $._strings,
         alias($._triple_quoted_string, $.string),
         $.tripledot,
@@ -500,6 +501,39 @@ module.exports = grammar({
 
     _triple_quoted_string_contents: ($) => repeat1(choice('"', /[^"]+/)),
 
+    // See <https://www.erlang.org/eeps/eep-0066#sigil>.
+    sigil: ($) =>
+      seq(
+        "~",
+        choice(
+          // Default sigil (no prefix), escape sequences allowed.
+          $._sigil_body,
+          // `s` and `b` sigils, escape sequences allowed.
+          seq(alias(token.immediate(/[sb]/), $.sigil_prefix), $._sigil_body),
+          // `S` and `B` sigils, verbatim.
+          seq(
+            alias(token.immediate(/[SB]/), $.sigil_prefix),
+            $._sigil_body_verbatim
+          )
+        ),
+        optional(alias($._sigil_affix, $.sigil_suffix))
+      ),
+
+    // <https://www.erlang.org/eeps/eep-0066#sigil-prefix>:
+    // > Sigil Type which is a name composed of a sequence of characters that are allowed
+    // > as the second or later characters in a variable or an atom.
+    //
+    // Currently we entirely ignore the sigil name. How we parse the sigil depends on
+    // the sigil name - whether we accept escape sequences or not. To make matters worse,
+    // triple quoted strings never allow escape sequences, all contents are verbatim.
+    // This makes parsing sigils properly really hard, and we would probably need to
+    // add a scanner to do so. For now I'm just doing some dumb parsing and hoping
+    // everything will be OK.
+    _sigil_affix: ($) => token.immediate(/[a-zA-ZÀ-ÿ0-9_@]+/),
+
+    _sigil_body: ($) => choice(...sigilBodies($, false)),
+    _sigil_body_verbatim: ($) => choice(...sigilBodies($, true)),
+
     // Used in typespecs:
     //     -type t :: [integer(), ...].
     tripledot: ($) => "...",
@@ -549,5 +583,73 @@ function binaryOp($, precedence, assoc, operator, left = null, right = null) {
       field("operator", operator),
       field("right", right || $._expression)
     )
+  );
+}
+
+function sigilBodies($, verbatim) {
+  // <https://www.erlang.org/eeps/eep-0066#string-delimiters>
+  // Single-char delimiters: `/ | ' " ` #`
+  // Start-end pairs: `() [] {} <>`
+  const SIGIL_PAIRS = {
+    "/": "/",
+    "|": "|",
+    '"': '"',
+    "'": "'",
+    "`": "`",
+    "#": "#",
+    "(": ")",
+    "[": "]",
+    "{": "}",
+    "<": ">",
+  };
+
+  let bodies = [];
+  for (const [start, end] of Object.entries(SIGIL_PAIRS)) {
+    const escaped_end = end.replace(/[{}()|\[\]]/, "\\$&");
+
+    let body_options;
+    if (verbatim) {
+      body_options = [
+        alias(
+          new RegExp(`([^${escaped_end}\\\\]|\\\\[^${escaped_end}])+`),
+          $.quoted_content
+        ),
+        alias(new RegExp(`\\\\${escaped_end}`), $.escape_sequence),
+      ];
+    } else {
+      body_options = [
+        alias(new RegExp(`[^${escaped_end}\\\\]+`), $.quoted_content),
+        alias(new RegExp(`\\\\${escaped_end}`), $.escape_sequence),
+        $.escape_sequence,
+      ];
+    }
+
+    bodies.push(
+      seq(
+        field("quoted_start", start),
+        repeat(choice(...body_options)),
+        field("quoted_end", end)
+      )
+    );
+  }
+
+  // Triple quoted string is also allowed and treats contents as usual: verbatim.
+  bodies.push($._triple_quoted_string);
+
+  return bodies;
+}
+
+function sigilBody($, start, end) {
+  const escaped_end = end.replace(/[{}()|\[\]"]/, "\\$&");
+  return seq(
+    field("quoted_start", start),
+    repeat(
+      choice(
+        alias(new RegExp(`[^${end}\\\\]+`), $.quoted_content),
+        alias(new RegExp(`\\\\${escaped_end}`), $.escape_sequence),
+        $.escape_sequence
+      )
+    ),
+    field("quoted_end", end)
   );
 }

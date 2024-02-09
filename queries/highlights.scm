@@ -120,7 +120,9 @@
 (variable) @variable
 (atom) @string.special.symbol
 (string) @string
+(sigil) @string
 (character) @constant
+(escape_sequence) @constant.character.escape
 
 [
   (integer)
