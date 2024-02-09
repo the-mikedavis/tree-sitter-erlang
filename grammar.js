@@ -170,6 +170,7 @@ module.exports = grammar({
       choice(
         $._identifier,
         $._strings,
+        alias($._triple_quoted_string, $.string),
         $.tripledot,
         $.character,
         $._number,
@@ -456,9 +457,12 @@ module.exports = grammar({
     // Note that we don't combined these strings: each string gets its own
     // node. I believe this will behave more predictably for anyone using
     // tree-sitter for motion (within an editor for example).
-    _strings: ($) => prec.right(repeat1(choice($.string, $.macro))),
+    _strings: ($) =>
+      prec.right(
+        repeat1(choice(alias($._single_quoted_string, $.string), $.macro))
+      ),
 
-    string: ($) =>
+    _single_quoted_string: ($) =>
       seq(
         field("quoted_start", '"'),
         repeat(choice($.escape_sequence, $.quoted_content)),
@@ -484,6 +488,17 @@ module.exports = grammar({
       ),
 
     quoted_content: ($) => /([^\\\"\']+|[\\\"\'])/,
+
+    // This is more flexible than what Erlang accepts. They may add syntax hints
+    // in the future: <https://www.erlang.org/eeps/eep-0064#triple-quoted-string-start>
+    _triple_quoted_string: ($) =>
+      seq(
+        field("quoted_start", '"""'),
+        optional(alias($._triple_quoted_string_contents, $.quoted_contents)),
+        field("quoted_end", '"""')
+      ),
+
+    _triple_quoted_string_contents: ($) => repeat1(choice('"', /[^"]+/)),
 
     // Used in typespecs:
     //     -type t :: [integer(), ...].
