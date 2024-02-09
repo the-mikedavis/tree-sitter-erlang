@@ -92,6 +92,10 @@
           "named": true
         },
         {
+          "type": "sigil",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
@@ -248,6 +252,10 @@
         },
         {
           "type": "record",
+          "named": true
+        },
+        {
+          "type": "sigil",
           "named": true
         },
         {
@@ -459,6 +467,10 @@
           },
           {
             "type": "record",
+            "named": true
+          },
+          {
+            "type": "sigil",
             "named": true
           },
           {
@@ -742,6 +754,10 @@
             "named": true
           },
           {
+            "type": "sigil",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           },
@@ -858,6 +874,10 @@
           "named": true
         },
         {
+          "type": "sigil",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
@@ -970,6 +990,10 @@
         },
         {
           "type": "record",
+          "named": true
+        },
+        {
+          "type": "sigil",
           "named": true
         },
         {
@@ -1089,6 +1113,10 @@
         },
         {
           "type": "record",
+          "named": true
+        },
+        {
+          "type": "sigil",
           "named": true
         },
         {
@@ -1311,6 +1339,10 @@
             "named": true
           },
           {
+            "type": "sigil",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           },
@@ -1456,6 +1488,10 @@
             "named": true
           },
           {
+            "type": "sigil",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           },
@@ -1584,6 +1620,10 @@
             "named": true
           },
           {
+            "type": "sigil",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           },
@@ -1700,6 +1740,10 @@
         },
         {
           "type": "record",
+          "named": true
+        },
+        {
+          "type": "sigil",
           "named": true
         },
         {
@@ -1839,6 +1883,10 @@
           },
           {
             "type": "record",
+            "named": true
+          },
+          {
+            "type": "sigil",
             "named": true
           },
           {
@@ -2011,6 +2059,10 @@
           },
           {
             "type": "record",
+            "named": true
+          },
+          {
+            "type": "sigil",
             "named": true
           },
           {
@@ -2202,6 +2254,10 @@
             "named": true
           },
           {
+            "type": "sigil",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           },
@@ -2364,6 +2420,10 @@
           "named": true
         },
         {
+          "type": "sigil",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
@@ -2476,6 +2536,10 @@
         },
         {
           "type": "record",
+          "named": true
+        },
+        {
+          "type": "sigil",
           "named": true
         },
         {
@@ -2626,6 +2690,10 @@
         },
         {
           "type": "record",
+          "named": true
+        },
+        {
+          "type": "sigil",
           "named": true
         },
         {
@@ -2789,6 +2857,10 @@
           "named": true
         },
         {
+          "type": "sigil",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
@@ -2942,6 +3014,10 @@
           "named": true
         },
         {
+          "type": "sigil",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
@@ -3054,6 +3130,10 @@
         },
         {
           "type": "record",
+          "named": true
+        },
+        {
+          "type": "sigil",
           "named": true
         },
         {
@@ -3276,6 +3356,10 @@
           "named": true
         },
         {
+          "type": "sigil",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
@@ -3306,6 +3390,138 @@
     "type": "shebang",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "sigil",
+    "named": true,
+    "fields": {
+      "quoted_end": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "\"",
+            "named": false
+          },
+          {
+            "type": "\"\"\"",
+            "named": false
+          },
+          {
+            "type": "#",
+            "named": false
+          },
+          {
+            "type": "'",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "/",
+            "named": false
+          },
+          {
+            "type": ">",
+            "named": false
+          },
+          {
+            "type": "]",
+            "named": false
+          },
+          {
+            "type": "`",
+            "named": false
+          },
+          {
+            "type": "|",
+            "named": false
+          },
+          {
+            "type": "}",
+            "named": false
+          }
+        ]
+      },
+      "quoted_start": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "\"",
+            "named": false
+          },
+          {
+            "type": "\"\"\"",
+            "named": false
+          },
+          {
+            "type": "#",
+            "named": false
+          },
+          {
+            "type": "'",
+            "named": false
+          },
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": "/",
+            "named": false
+          },
+          {
+            "type": "<",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "`",
+            "named": false
+          },
+          {
+            "type": "{",
+            "named": false
+          },
+          {
+            "type": "|",
+            "named": false
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "escape_sequence",
+          "named": true
+        },
+        {
+          "type": "quoted_content",
+          "named": true
+        },
+        {
+          "type": "quoted_contents",
+          "named": true
+        },
+        {
+          "type": "sigil_prefix",
+          "named": true
+        },
+        {
+          "type": "sigil_suffix",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "source",
@@ -3409,6 +3625,10 @@
         },
         {
           "type": "shebang",
+          "named": true
+        },
+        {
+          "type": "sigil",
           "named": true
         },
         {
@@ -3528,6 +3748,10 @@
           },
           {
             "type": "record",
+            "named": true
+          },
+          {
+            "type": "sigil",
             "named": true
           },
           {
@@ -3791,6 +4015,10 @@
             "named": true
           },
           {
+            "type": "sigil",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           },
@@ -3907,6 +4135,10 @@
           "named": true
         },
         {
+          "type": "sigil",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
@@ -4019,6 +4251,10 @@
           },
           {
             "type": "record",
+            "named": true
+          },
+          {
+            "type": "sigil",
             "named": true
           },
           {
@@ -4248,6 +4484,10 @@
     "named": false
   },
   {
+    "type": "`",
+    "named": false
+  },
+  {
     "type": "after",
     "named": false
   },
@@ -4356,6 +4596,14 @@
     "named": false
   },
   {
+    "type": "sigil_prefix",
+    "named": true
+  },
+  {
+    "type": "sigil_suffix",
+    "named": true
+  },
+  {
     "type": "tripledot",
     "named": true
   },
@@ -4389,6 +4637,10 @@
   },
   {
     "type": "}",
+    "named": false
+  },
+  {
+    "type": "~",
     "named": false
   }
 ]
