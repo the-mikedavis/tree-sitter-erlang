@@ -17,7 +17,7 @@
 #define STATE_COUNT 2562
 #define LARGE_STATE_COUNT 691
 #define SYMBOL_COUNT 225
-#define ALIAS_COUNT 4
+#define ALIAS_COUNT 3
 #define TOKEN_COUNT 126
 #define EXTERNAL_TOKEN_COUNT 0
 #define FIELD_COUNT 22
@@ -251,8 +251,7 @@ enum {
   aux_sym__sigil_body_verbatim_repeat10 = 224,
   alias_sym_function_clause = 225,
   alias_sym_map_content = 226,
-  alias_sym_quoted_contents = 227,
-  alias_sym_record_content = 228,
+  alias_sym_record_content = 227,
 };
 
 static const char * const ts_symbol_names[] = {
@@ -483,7 +482,6 @@ static const char * const ts_symbol_names[] = {
   [aux_sym__sigil_body_verbatim_repeat10] = "_sigil_body_verbatim_repeat10",
   [alias_sym_function_clause] = "function_clause",
   [alias_sym_map_content] = "map_content",
-  [alias_sym_quoted_contents] = "quoted_contents",
   [alias_sym_record_content] = "record_content",
 };
 
@@ -715,7 +713,6 @@ static const TSSymbol ts_symbol_map[] = {
   [aux_sym__sigil_body_verbatim_repeat10] = aux_sym__sigil_body_verbatim_repeat10,
   [alias_sym_function_clause] = alias_sym_function_clause,
   [alias_sym_map_content] = alias_sym_map_content,
-  [alias_sym_quoted_contents] = alias_sym_quoted_contents,
   [alias_sym_record_content] = alias_sym_record_content,
 };
 
@@ -1628,10 +1625,6 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = true,
     .named = true,
   },
-  [alias_sym_quoted_contents] = {
-    .visible = true,
-    .named = true,
-  },
   [alias_sym_record_content] = {
     .visible = true,
     .named = true,
@@ -2035,7 +2028,7 @@ static const TSSymbol ts_alias_sequences[PRODUCTION_ID_COUNT][MAX_ALIAS_SEQUENCE
     [2] = sym_arguments,
   },
   [24] = {
-    [1] = alias_sym_quoted_contents,
+    [1] = sym_quoted_content,
   },
   [27] = {
     [2] = sym_record,
@@ -2106,7 +2099,7 @@ static const uint16_t ts_non_terminal_alias_map[] = {
     sym__single_quoted_string,
   aux_sym__triple_quoted_string_contents, 2,
     aux_sym__triple_quoted_string_contents,
-    alias_sym_quoted_contents,
+    sym_quoted_content,
   0,
 };
 

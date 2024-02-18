@@ -3205,7 +3205,7 @@
                 "name": "_triple_quoted_string_contents"
               },
               "named": true,
-              "value": "quoted_contents"
+              "value": "quoted_content"
             },
             {
               "type": "BLANK"

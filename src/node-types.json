@@ -3164,7 +3164,7 @@
     }
   },
   {
-    "type": "quoted_contents",
+    "type": "quoted_content",
     "named": true,
     "fields": {}
   },
@@ -3506,10 +3506,6 @@
         },
         {
           "type": "quoted_content",
-          "named": true
-        },
-        {
-          "type": "quoted_contents",
           "named": true
         },
         {
@@ -3867,10 +3863,6 @@
         },
         {
           "type": "quoted_content",
-          "named": true
-        },
-        {
-          "type": "quoted_contents",
           "named": true
         }
       ]
@@ -4582,10 +4574,6 @@
   {
     "type": "orelse",
     "named": false
-  },
-  {
-    "type": "quoted_content",
-    "named": true
   },
   {
     "type": "receive",
