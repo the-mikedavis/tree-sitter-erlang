@@ -495,7 +495,7 @@ module.exports = grammar({
     _triple_quoted_string: ($) =>
       seq(
         field("quoted_start", '"""'),
-        optional(alias($._triple_quoted_string_contents, $.quoted_contents)),
+        optional(alias($._triple_quoted_string_contents, $.quoted_content)),
         field("quoted_end", '"""')
       ),
 

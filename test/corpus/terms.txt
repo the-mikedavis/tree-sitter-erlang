@@ -48,9 +48,9 @@ Hello "world"
 
 (source
   (string
-    (quoted_contents))
+    (quoted_content))
   (string
-    (quoted_contents)))
+    (quoted_content)))
 
 ================================================================================
 atoms

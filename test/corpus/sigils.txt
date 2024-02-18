@@ -62,4 +62,4 @@ All contents are verbatim, even this: ~r"abc\d+"i.
 (source
   (sigil
     (sigil_prefix)
-    (quoted_contents)))
+    (quoted_content)))
