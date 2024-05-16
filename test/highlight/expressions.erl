@@ -6,6 +6,10 @@ maybe
     %%    ^ operator
     %%        ^ operator
     %%         ^ operator
+else
+%% <- keyword
+    [] ->
+        ok
 end
 %% <- keyword
 
