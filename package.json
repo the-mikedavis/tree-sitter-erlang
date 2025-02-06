@@ -19,7 +19,7 @@
     "erlang"
   ],
   "author": "the-mikedavis",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/the-mikedavis/tree-sitter-erlang/issues"
   },
