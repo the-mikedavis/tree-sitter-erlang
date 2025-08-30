@@ -477,7 +477,7 @@ module.exports = grammar({
           choice(
             // hexadecimal
             /x[\da-fA-F]{2}/,
-            /x{[\da-fA-F]+}/,
+            /x\{[\da-fA-F]+\}/,
             // octal
             /[0-7]{1,3}/,
             // control sequences,
