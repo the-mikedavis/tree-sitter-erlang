@@ -31,7 +31,6 @@ jobs:
       - name: Generate parser files
         run: |
           npx tree-sitter generate
-          npx tree-sitter build-wasm
 
       - name: Commit generated parser files
         run: |
@@ -39,19 +38,4 @@ jobs:
           git config --global user.name "$(git log --format='%an' HEAD^!)"
           git add src
           git commit -m "Generate parser" || true
-          git push
-
-      - name: Checkout gh-pages branch to ./gh-pages
-        uses: actions/checkout@v4
-        with:
-          ref: gh-pages
-          path: ./gh-pages
-
-      - run: mv *.wasm ./gh-pages
-
-      - name: Commit generated wasm binding to the gh-pages branch
-        run: |
-          cd ./gh-pages
-          git add *.wasm
-          git commit -m "Generate WASM binding" || true
           git push
