@@ -1,0 +1,36 @@
+{
+  "grammars": [
+    {
+      "name": "erlang",
+      "camelcase": "Erlang",
+      "scope": "source.erlang",
+      "path": ".",
+      "file-types": [
+        "erl",
+        "hrl",
+        "rebar.config"
+      ]
+    }
+  ],
+  "metadata": {
+    "version": "0.0.1",
+    "license": "Apache-2.0",
+    "description": "An Erlang grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "the-mikedavis"
+      }
+    ],
+    "links": {
+      "repository": "git+https://github.com/the-mikedavis/tree-sitter-erlang.git"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}

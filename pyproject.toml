@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tree-sitter-erlang"
+description = "An Erlang grammar for tree-sitter"
+version = "0.0.1"
+keywords = ["incremental", "parsing", "tree-sitter", "erlang"]
+classifiers = [
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: Compilers",
+  "Topic :: Text Processing :: Linguistic",
+  "Typing :: Typed",
+]
+authors = [{ name = "the-mikedavis" }]
+requires-python = ">=3.9"
+license.text = "Apache-2.0"
+readme = "README.md"
+
+[project.urls]
+Homepage = "git+https://github.com/the-mikedavis/tree-sitter-erlang.git"
+
+[project.optional-dependencies]
+core = ["tree-sitter~=0.22"]
+
+[tool.cibuildwheel]
+build = "cp39-*"
+build-frontend = "build"

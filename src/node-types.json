@@ -1776,7 +1776,6 @@
   {
     "type": "comment",
     "named": true,
-    "extra": true,
     "fields": {},
     "children": {
       "multiple": false,
